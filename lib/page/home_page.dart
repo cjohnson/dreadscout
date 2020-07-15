@@ -1,3 +1,4 @@
+import 'package:dreadscout/form/element/checkbox_form_element.dart';
 import 'package:flutter/material.dart';
 
 /// Dreadscout Home Page
@@ -77,6 +78,7 @@ class _MyHomePageState extends State<MyHomePage> {
               '$_counter',
               style: Theme.of(context).textTheme.headline4,
             ),
+            CheckboxFormElement(formElementTitle: 'The Title',)
           ],
         ),
       ),
