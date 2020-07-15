@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:dreadscout/page/home_page.dart';
 
 class MyApp extends StatelessWidget {
+  final applicationName = 'DreadScout';
+  final applicationVersion = 'v.1.1.1';
+
   // This widget is the root of your application.
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -18,7 +21,7 @@ class MyApp extends StatelessWidget {
         // closer together (more dense) than on mobile platforms.
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: MyHomePage(title: "$applicationName $applicationVersion"),
     );
   }
 }
