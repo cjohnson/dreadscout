@@ -4,5 +4,5 @@ import 'package:dreadscout/dreadscout.dart';
 
 /// Main entry point of the application.
 /// 
-/// Runs package:dreadscout/dreadscout.dart.
-void main() => runApp(MyApp());
+/// Runs main DreadScout application.
+void main() => runApp(DreadScout());
