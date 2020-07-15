@@ -47,11 +47,18 @@ class _RadioOptionFormElementState extends State<RadioOptionFormElement> {
         mainAxisSize: MainAxisSize.min,
         children: [
           for(int index = 0; index < widget.numberOfRadioOptions; ++index)
-            Radio<int>(
-              value: index,
-              groupValue: widget.radioValue,
-              onChanged: _handleRadioValueChanged,
-            )
+            Column(
+              children: [
+                Text(
+                  '$index'
+                ),
+                Radio<int>(
+                  value: index,
+                  groupValue: widget.radioValue,
+                  onChanged: _handleRadioValueChanged,
+                )
+              ],
+            ),
         ],
       ),
     );
