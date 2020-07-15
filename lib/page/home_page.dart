@@ -1,6 +1,7 @@
+import 'package:dreadscout/form/element/boolean/switch_form_element.dart';
 import 'package:flutter/material.dart';
 
-import 'package:dreadscout/form/element/checkbox_form_element.dart';
+import 'file:///C:/Workspace/dreadscout/lib/form/element/boolean/checkbox_form_element.dart';
 
 /// Dreadscout Home Page [DreadScoutHomePage]
 /// 
@@ -35,8 +36,8 @@ class _DreadScoutHomePageState extends State<DreadScoutHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             // Sample Dreadscout Widgets for Scouting Collection Data.
-            CheckboxFormElement(formElementTitle: 'Number of Cargo',),
-            CheckboxFormElement(formElementTitle: 'Number of Hatch Panels',)
+            CheckboxFormElement(formElementTitle: 'Robot Broke?',),
+            SwitchFormElement(formElementTitle: 'Robot participated in water game?',)
           ],
         ),
       ),
