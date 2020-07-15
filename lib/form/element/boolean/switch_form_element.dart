@@ -6,9 +6,13 @@ import 'package:dreadscout/form/element/input_form_element.dart';
 ///
 /// This form element collects a "Enabled/Disabled" datum.
 /// Use for specific input configuration.
+// ignore: must_be_immutable
 class SwitchFormElement extends InputFormElement {
+  /// [switchValue] represents the current state of the datum.
+  bool switchValue;
+
   /// Default Optional Arguments Constructor for [SwitchFormElement].
-  SwitchFormElement({Key key, String formElementTitle})
+  SwitchFormElement({Key key, String formElementTitle, this.switchValue: false})
       : super(key: key, formElementTitle: formElementTitle);
 
   /// Default Overridden [createState] Flutter method.
@@ -20,16 +24,13 @@ class SwitchFormElement extends InputFormElement {
 ///
 /// Represents a current state of [SwitchFormElement]
 class _SwitchFormElementState extends State<SwitchFormElement> {
-  /// Current state of the switch.
-  bool switchValue = false;
-
   /// Click event for the switch [_changeSwitch].
   ///
   /// Changes the state of the datum based on the switch state.
   void _changeSwitch(bool value) {
     setState(() {
       // Set data to new switch status.
-      switchValue = value;
+      widget.switchValue = value;
     });
   }
 
@@ -38,7 +39,7 @@ class _SwitchFormElementState extends State<SwitchFormElement> {
   Widget build(BuildContext context) {
     return widget.buildInputFormElement(
       Switch(
-        value: switchValue,
+        value: widget.switchValue,
         onChanged: _changeSwitch,
       )
     );
