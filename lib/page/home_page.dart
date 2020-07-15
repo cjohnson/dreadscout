@@ -29,7 +29,7 @@ import 'package:dreadscout/form/element/boolean/switch_form_element.dart';
 import 'package:dreadscout/form/element/multiplechoice/radio_option_form_element.dart';
 
 /// Dreadscout Home Page [DreadScoutHomePage]
-/// 
+///
 /// This is the Home Page of the Dreadscout Application.
 /// This acts as a gateway to multiple different subpages.
 class DreadScoutHomePage extends StatefulWidget {
@@ -45,7 +45,6 @@ class DreadScoutHomePage extends StatefulWidget {
 ///
 /// This acts as a state for when the Stateful object [DreadScoutHomePage] changes.
 class _DreadScoutHomePageState extends State<DreadScoutHomePage> {
-
   /// Standard [build] method, overrides Flutter build.
   @override
   Widget build(BuildContext context) {
@@ -61,9 +60,16 @@ class _DreadScoutHomePageState extends State<DreadScoutHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             // Sample Dreadscout Widgets for Scouting Collection Data.
-            RadioOptionFormElement(3, formElementTitle: 'Hab Level',),
-            CheckboxFormElement(formElementTitle: 'Robot Broke?',),
-            SwitchFormElement(formElementTitle: 'Robot participated in water game?',)
+            RadioOptionFormElement(
+              3,
+              formElementTitle: 'Hab Level',
+            ),
+            CheckboxFormElement(
+              formElementTitle: 'Robot Broke?',
+            ),
+            SwitchFormElement(
+              formElementTitle: 'Robot participated in water game?',
+            )
           ],
         ),
       ),

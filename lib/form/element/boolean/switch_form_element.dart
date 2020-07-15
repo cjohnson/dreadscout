@@ -61,11 +61,9 @@ class _SwitchFormElementState extends State<SwitchFormElement> {
   /// Standard overridden [build] method from Flutter.
   @override
   Widget build(BuildContext context) {
-    return widget.buildInputFormElement(
-      Switch(
-        value: widget.switchValue,
-        onChanged: _changeSwitch,
-      )
-    );
+    return widget.buildInputFormElement(Switch(
+      value: widget.switchValue,
+      onChanged: _changeSwitch,
+    ));
   }
 }

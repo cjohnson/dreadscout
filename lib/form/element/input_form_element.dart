@@ -39,7 +39,8 @@ abstract class InputFormElement extends StatefulWidget {
   final String formElementTitle;
 
   /// Default Optional Arguments Constructor for [InputFormElement]
-  const InputFormElement({Key key, @required this.formElementTitle}) : super(key: key);
+  const InputFormElement({Key key, @required this.formElementTitle})
+      : super(key: key);
 
   /// Constructs a basic [InputFormElement] Widget Tree.
   Widget buildInputFormElement(Widget inputMethodWidget) {
@@ -52,8 +53,8 @@ abstract class InputFormElement extends StatefulWidget {
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: <Widget> [
-          Text(formElementTitle??InputFormElement.defaultFormElementTitle),
+        children: <Widget>[
+          Text(formElementTitle ?? InputFormElement.defaultFormElementTitle),
           inputMethodWidget,
         ],
       ),

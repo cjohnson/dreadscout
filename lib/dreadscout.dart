@@ -49,7 +49,8 @@ class DreadScout extends StatelessWidget {
   /// This makes the visual density adapt to the platform that you run
   /// the app on. For desktop platforms, the controls will be smaller and
   /// closer together (more dense) than on mobile platforms.
-  final VisualDensity platformVisualDensity = VisualDensity.adaptivePlatformDensity;
+  final VisualDensity platformVisualDensity =
+      VisualDensity.adaptivePlatformDensity;
 
   /// Standard Build Method of the Application. [build]
   ///
@@ -62,12 +63,9 @@ class DreadScout extends StatelessWidget {
       title: applicationName,
       theme: ThemeData(
         primarySwatch: colorTheme,
-
         visualDensity: platformVisualDensity,
       ),
-      home: DreadScoutHomePage(
-          title: "$applicationName $applicationVersion"
-      ),
+      home: DreadScoutHomePage(title: "$applicationName $applicationVersion"),
     );
   }
 }

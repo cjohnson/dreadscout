@@ -36,7 +36,8 @@ class CheckboxFormElement extends InputFormElement {
   bool checkboxValue;
 
   /// Default Optional Arguments Constructor for [CheckboxFormElement].
-  CheckboxFormElement({Key key, String formElementTitle, this.checkboxValue: false})
+  CheckboxFormElement(
+      {Key key, String formElementTitle, this.checkboxValue: false})
       : super(key: key, formElementTitle: formElementTitle);
 
   /// Default Overridden [createState] Flutter method.
@@ -61,11 +62,9 @@ class _CheckboxFormElementState extends State<CheckboxFormElement> {
   /// Standard overridden [build] method from Flutter.
   @override
   Widget build(BuildContext context) {
-    return widget.buildInputFormElement(
-      Checkbox(
-        value: widget.checkboxValue,
-        onChanged: _changeCheck,
-      )
-    );
+    return widget.buildInputFormElement(Checkbox(
+      value: widget.checkboxValue,
+      onChanged: _changeCheck,
+    ));
   }
 }
