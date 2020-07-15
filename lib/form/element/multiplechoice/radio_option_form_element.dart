@@ -76,21 +76,32 @@ class _RadioOptionFormElementState extends State<RadioOptionFormElement> {
   }
 }
 
+/// Custom [TitledRadioWidget] widget to represent a titled radio option.
 class TitledRadioWidget extends StatefulWidget {
+  /// The [title] of the Radio Option.
   String title;
 
+  /// The Value (or index) of the option.
   int radioValue;
+
+  /// The current selected radio in the group of radio buttons.
   int radioGroupValue;
+
+  /// [onRadioChange] executes when radio is selected.
   Function(int) onRadioChange;
 
+  /// [TitledRadioWidget] Optional/Required args constructor.
   TitledRadioWidget(
-      this.title, this.radioValue, this.radioGroupValue, this.onRadioChange);
+      {this.title: 'Option', @required this.radioValue, @required this.radioGroupValue, @required this.onRadioChange});
 
+  /// Default overridden [createState] method from Flutter.
   @override
   _TitledRadioWidgetState createState() => _TitledRadioWidgetState();
 }
 
+/// State class for [TitledRadioWidget] class.
 class _TitledRadioWidgetState extends State<TitledRadioWidget> {
+  /// Default overriden [build] method from Flutter.
   @override
   Widget build(BuildContext context) {
     return Container(
