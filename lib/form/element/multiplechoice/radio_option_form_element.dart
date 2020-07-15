@@ -16,9 +16,7 @@ class RadioOptionFormElement extends InputFormElement {
 
   /// Default Optional Arguments Constructor for [RadioOptionFormElement].
   RadioOptionFormElement(this.numberOfRadioOptions,
-                        {Key key,
-                         String formElementTitle,
-                         this.radioValue = 0})
+      {Key key, String formElementTitle, this.radioValue = 0})
       : super(key: key, formElementTitle: formElementTitle);
 
   @override
@@ -31,7 +29,7 @@ class RadioOptionFormElement extends InputFormElement {
 class _RadioOptionFormElementState extends State<RadioOptionFormElement> {
   /// Click event for the radio option [_handleRadioValueChanged]
   ///
-  /// Changes the state of teh datum based on the checkbox state.
+  /// Changes the state of the datum based on the checkbox state.
   void _handleRadioValueChanged(int value) {
     setState(() {
       widget.radioValue = value;
@@ -46,21 +44,42 @@ class _RadioOptionFormElementState extends State<RadioOptionFormElement> {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         mainAxisSize: MainAxisSize.min,
         children: [
-          for(int index = 0; index < widget.numberOfRadioOptions; ++index)
-            Column(
-              children: [
-                Text(
-                  '$index'
-                ),
-                Radio<int>(
-                  value: index,
-                  groupValue: widget.radioValue,
-                  onChanged: _handleRadioValueChanged,
-                )
-              ],
-            ),
+          for (int index = 0; index < widget.numberOfRadioOptions; ++index)
+            TitledRadioWidget('$index', index, widget.radioValue, _handleRadioValueChanged),
         ],
       ),
+    );
+  }
+}
+
+class TitledRadioWidget extends StatefulWidget {
+  String title;
+
+  int radioValue;
+  int radioGroupValue;
+  Function(int) onRadioChange;
+
+  TitledRadioWidget(
+      this.title, this.radioValue, this.radioGroupValue, this.onRadioChange);
+
+  @override
+  _TitledRadioWidgetState createState() => _TitledRadioWidgetState();
+}
+
+class _TitledRadioWidgetState extends State<TitledRadioWidget> {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Column(
+        children: [
+          Text('${widget.title}'),
+          Radio<int>(
+            value: widget.radioValue,
+            groupValue: widget.radioGroupValue,
+            onChanged: widget.onRadioChange,
+          ),
+        ]
+      )
     );
   }
 }
