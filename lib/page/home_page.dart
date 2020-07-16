@@ -27,6 +27,7 @@ import 'package:flutter/material.dart';
 import 'package:dreadscout/form/element/boolean/checkbox_form_element.dart';
 import 'package:dreadscout/form/element/boolean/switch_form_element.dart';
 import 'package:dreadscout/form/element/multiplechoice/radio_option_form_element.dart';
+import 'package:dreadscout/form/element/numeric/counter_form_element.dart';
 
 /// Dreadscout Home Page [DreadScoutHomePage]
 ///
@@ -69,7 +70,10 @@ class _DreadScoutHomePageState extends State<DreadScoutHomePage> {
             ),
             SwitchFormElement(
               formElementTitle: 'Robot participated in water game?',
-            )
+            ),
+            CounterFormElement(
+              formElementTitle: 'Number of Hatch Panels',
+            ),
           ],
         ),
       ),
