@@ -57,26 +57,38 @@ class _DreadScoutHomePageState extends State<DreadScoutHomePage> {
       // Contents are contained within Center & Column Objects
       // TODO Reorganize Home Page
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            // Sample Dreadscout Widgets for Scouting Collection Data.
-            RadioOptionFormElement(
-              3,
-              formElementTitle: 'Hab Level',
-            ),
-            CheckboxFormElement(
-              formElementTitle: 'Robot Broke?',
-            ),
-            SwitchFormElement(
-              formElementTitle: 'Robot participated in water game?',
-            ),
-            CounterFormElement(
-              formElementTitle: 'Number of Hatch Panels',
-            ),
-          ],
-        ),
+        child: DreadScoutFormDemo(),
       ),
+    );
+  }
+}
+
+/// [DreadScoutFormDemo] is a demonstration widget of the features of central dreadscout.
+class DreadScoutFormDemo extends StatelessWidget {
+  const DreadScoutFormDemo({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: <Widget>[
+        // Sample Dreadscout Widgets for Scouting Collection Data.
+        RadioOptionFormElement(
+          3,
+          formElementTitle: 'Hab Level',
+        ),
+        CheckboxFormElement(
+          formElementTitle: 'Robot Broke?',
+        ),
+        SwitchFormElement(
+          formElementTitle: 'Robot participated in water game?',
+        ),
+        CounterFormElement(
+          formElementTitle: 'Number of Hatch Panels',
+        ),
+      ],
     );
   }
 }
