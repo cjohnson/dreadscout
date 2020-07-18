@@ -18,19 +18,26 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
  */
 
+import 'dart:developer';
+
 import 'package:dart_numerics/dart_numerics.dart' as numerics;
 
 import 'package:flutter/material.dart';
 
 import 'package:dreadscout/form/element/input_form_element.dart';
 
+/// [CounterFormElement] for numeric value tracking.
 // ignore: must_be_immutable
 class CounterFormElement extends InputFormElement {
+  /// Maximum Possible value.
   final int maximumValue;
+  /// Minimum Possible value.
   final int minimumValue;
 
+  /// Current Value of the Counter.
   int currentValue;
 
+  /// Standard Optional Args Constructor.
   CounterFormElement(
       {Key key,
       String formElementTitle,
@@ -39,11 +46,14 @@ class CounterFormElement extends InputFormElement {
       this.currentValue: 0})
       : super(key: key, formElementTitle: formElementTitle);
 
+  /// Default Override for StatefulWidgets.
   @override
   State<StatefulWidget> createState() => _CounterFormElementState();
 }
 
+/// State Class of [CounterFormElement]
 class _CounterFormElementState extends State<CounterFormElement> {
+  /// Increments the counter on '+' button click.
   void _counterIncrement() {
     // Bounds check and 'improper' value checking
     if (widget.currentValue >= widget.maximumValue) {
@@ -58,6 +68,7 @@ class _CounterFormElementState extends State<CounterFormElement> {
     });
   }
 
+  /// Decrements the counter on '-' button click.
   void _counterDecrement() {
     // Bounds check and 'improper' value checking
     if (widget.currentValue <= widget.minimumValue) {
@@ -72,6 +83,7 @@ class _CounterFormElementState extends State<CounterFormElement> {
     });
   }
 
+  /// Standard Overriden [build] method from Flutter.
   @override
   Widget build(BuildContext context) {
     return widget.buildInputFormElement(Row(
