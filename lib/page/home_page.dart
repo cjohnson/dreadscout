@@ -22,6 +22,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
  */
 
+import 'package:dreadscout/form/element/multiplechoice/choice_chip_option_form_element.dart';
 import 'package:flutter/material.dart';
 
 import 'package:dreadscout/form/element/boolean/checkbox_form_element.dart';
@@ -76,6 +77,10 @@ class DreadScoutFormDemo extends StatelessWidget {
       children: <Widget>[
         // Sample Dreadscout Widgets for Scouting Collection Data.
         RadioOptionFormElement(
+          3,
+          formElementTitle: 'Hab Level',
+        ),
+        ChoiceChipOptionFormElement(
           3,
           formElementTitle: 'Hab Level',
         ),

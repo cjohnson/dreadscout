@@ -25,3 +25,41 @@ SOFTWARE.
 import 'package:flutter/material.dart';
 
 import 'package:dreadscout/form/element/input_form_element.dart';
+
+class ChoiceChipOptionFormElement extends InputFormElement {
+  final int numberOfChoiceChipOptions;
+
+  int choiceChipValue;
+
+  ChoiceChipOptionFormElement(this.numberOfChoiceChipOptions,
+      {Key key, String formElementTitle, this.choiceChipValue})
+      : super(key: key, formElementTitle: formElementTitle);
+
+  @override
+  _ChoiceChipOptionFormElementState createState() =>
+      _ChoiceChipOptionFormElementState();
+}
+
+class _ChoiceChipOptionFormElementState
+    extends State<ChoiceChipOptionFormElement> {
+  @override
+  Widget build(BuildContext context) {
+    return widget.buildInputFormElement(
+        Row(
+      mainAxisSize: MainAxisSize.min,
+      mainAxisAlignment: MainAxisAlignment.end,
+      children: [
+        for (int index = 0; index < widget.numberOfChoiceChipOptions; ++index)
+          ChoiceChip(
+            label: Text('$index'),
+            selected: widget.choiceChipValue == index,
+            onSelected: (value) {
+              setState(() {
+                widget.choiceChipValue = value ? index : -1;
+              });
+            },
+          )
+      ],
+    ));
+  }
+}
