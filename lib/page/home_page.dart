@@ -22,6 +22,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
  */
 
+import 'package:dreadscout/form/element/button/submit_form_button.dart';
 import 'package:dreadscout/form/element/multiplechoice/choice_chip_option_form_element.dart';
 import 'package:flutter/material.dart';
 
@@ -93,6 +94,7 @@ class DreadScoutFormDemo extends StatelessWidget {
         CounterFormElement(
           formElementTitle: 'Number of Hatch Panels',
         ),
+        SubmitFormButton(),
       ],
     );
   }

@@ -68,4 +68,23 @@ abstract class InputFormElement extends StatefulWidget {
       ),
     );
   }
+
+  /// Constructs a special [InputFormElement] Widget Tree for special buttons.
+  Widget buildFormSubmitFormElement(Widget inputMethodWidget) {
+    return Container(
+      padding: EdgeInsets.only(
+        left: InputFormElement.containerSidePadding,
+        right: InputFormElement.containerSidePadding,
+        top: InputFormElement.containerTopBottomPadding,
+        bottom: InputFormElement.containerTopBottomPadding,
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: <Widget>[
+          SizedBox(),
+          inputMethodWidget,
+        ],
+      ),
+    );
+  }
 }
