@@ -25,18 +25,24 @@ SOFTWARE.
 import 'package:dreadscout/form/element/input_form_element.dart';
 import 'package:flutter/material.dart';
 
+/// [SubmitFormButton] to submit scouting forms.
 class SubmitFormButton extends InputFormElement {
+  /// Default Overridden [createState] method from Flutter
   @override
   _SubmitFormButtonState createState() => _SubmitFormButtonState();
 }
 
+/// [_SubmitFormButtonState] state class for [SubmitFormButton].
 class _SubmitFormButtonState extends State<SubmitFormButton> {
+  /// Default overridden [build] method from Flutter.
   @override
   Widget build(BuildContext context) {
     return widget.buildFormSubmitFormElement(
       FloatingActionButton.extended(
           icon: const Icon(Icons.archive),
-          onPressed: () {},
+          onPressed: () {
+            print("Submitted form: ${0}");
+          },
           label: Text("Submit"),
       ),
     );
