@@ -44,8 +44,7 @@ class _ChoiceChipOptionFormElementState
     extends State<ChoiceChipOptionFormElement> {
   @override
   Widget build(BuildContext context) {
-    return widget.buildInputFormElement(
-        Row(
+    return widget.buildInputFormElement(Row(
       mainAxisSize: MainAxisSize.min,
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
