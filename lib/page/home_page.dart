@@ -22,14 +22,14 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
  */
 
-import 'package:dreadscout/form/element/button/submit_form_button.dart';
-import 'package:dreadscout/form/element/multiplechoice/choice_chip_option_form_element.dart';
 import 'package:flutter/material.dart';
 
 import 'package:dreadscout/form/element/boolean/checkbox_form_element.dart';
 import 'package:dreadscout/form/element/boolean/switch_form_element.dart';
 import 'package:dreadscout/form/element/multiplechoice/radio_option_form_element.dart';
 import 'package:dreadscout/form/element/numeric/counter_form_element.dart';
+import 'package:dreadscout/form/element/button/submit_form_button.dart';
+import 'package:dreadscout/form/element/multiplechoice/choice_chip_option_form_element.dart';
 
 /// Dreadscout Home Page [DreadScoutHomePage]
 ///
@@ -82,7 +82,11 @@ class DreadScoutFormDemo extends StatelessWidget {
           formElementTitle: 'Hab Level',
         ),
         ChoiceChipOptionFormElement(
-          3,
+          <String>[
+            "One",
+            "Two",
+            "Three"
+          ],
           formElementTitle: 'Hab Level',
         ),
         CheckboxFormElement(
