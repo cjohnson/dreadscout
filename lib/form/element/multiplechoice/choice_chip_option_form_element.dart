@@ -27,12 +27,15 @@ import 'package:flutter/material.dart';
 import 'package:dreadscout/form/element/input_form_element.dart';
 
 class ChoiceChipOptionFormElement extends InputFormElement {
-  final List<String> choiceTitles;
+  List<String> choiceTitles;
 
   int choiceChipValue;
 
-  ChoiceChipOptionFormElement(this.choiceTitles,
-      {Key key, String formElementTitle, this.choiceChipValue})
+  ChoiceChipOptionFormElement(
+      {Key key,
+      String formElementTitle,
+      this.choiceChipValue,
+      this.choiceTitles})
       : super(key: key, formElementTitle: formElementTitle);
 
   @override
@@ -50,7 +53,9 @@ class _ChoiceChipOptionFormElementState
       children: [
         for (int index = 0; index < widget.choiceTitles.length; ++index)
           ChoiceChip(
-            label: Text('${widget.choiceTitles[index]}'),
+            label: Text(widget.choiceTitles.isEmpty
+                ? '$index'
+                : '${widget.choiceTitles[index]}'),
             selected: widget.choiceChipValue == index,
             onSelected: (value) {
               setState(() {

@@ -82,12 +82,12 @@ class DreadScoutFormDemo extends StatelessWidget {
           formElementTitle: 'Hab Level',
         ),
         ChoiceChipOptionFormElement(
-          <String>[
+          formElementTitle: 'Hab Level',
+          choiceTitles: <String>[
             "One",
             "Two",
             "Three"
           ],
-          formElementTitle: 'Hab Level',
         ),
         CheckboxFormElement(
           formElementTitle: 'Robot Broke?',
