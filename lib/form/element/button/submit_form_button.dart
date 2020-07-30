@@ -22,8 +22,9 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
  */
 
-import 'package:dreadscout/form/element/input_form_element.dart';
 import 'package:flutter/material.dart';
+
+import 'package:dreadscout/form/element/input_form_element.dart';
 
 /// [SubmitFormButton] to submit scouting forms.
 class SubmitFormButton extends InputFormElement {

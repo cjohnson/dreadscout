@@ -53,11 +53,11 @@ abstract class InputFormElement extends StatefulWidget {
       ),
       decoration: BoxDecoration(
         color: Colors.blueGrey[50],
-        border: Border.all(
-          color: Colors.blueGrey[100],
-          width: 0.5,
-          style: BorderStyle.solid
-        )
+//        border: Border.all(
+//          color: Colors.blueGrey[100],
+//          width: 0.5,
+//          style: BorderStyle.solid
+//        )
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,

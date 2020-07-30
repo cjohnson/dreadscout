@@ -52,17 +52,22 @@ class _ChoiceChipOptionFormElementState
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
         for (int index = 0; index < widget.choiceTitles.length; ++index)
-          ChoiceChip(
-            label: Text(widget.choiceTitles.isEmpty
-                ? '$index'
-                : '${widget.choiceTitles[index]}'),
-            selected: widget.choiceChipValue == index,
-            onSelected: (value) {
-              setState(() {
-                widget.choiceChipValue = value ? index : -1;
-              });
-            },
-          )
+          Row(children: <Widget>[
+            ChoiceChip(
+              label: Text(widget.choiceTitles.isEmpty
+                  ? '$index'
+                  : '${widget.choiceTitles[index]}'),
+              selected: widget.choiceChipValue == index,
+              onSelected: (value) {
+                setState(() {
+                  widget.choiceChipValue = value ? index : -1;
+                });
+              },
+            ),
+            SizedBox(
+              width: 8,
+            ),
+          ]),
       ],
     ));
   }
