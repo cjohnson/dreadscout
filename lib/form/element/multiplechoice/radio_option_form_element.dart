@@ -32,14 +32,14 @@ import 'package:dreadscout/form/element/input_form_element.dart';
 /// Example: Robot Hab Level: 1st, 2nd, 3rd
 // ignore: must_be_immutable
 class RadioOptionFormElement extends InputFormElement {
-  /// [numberOfRadioOptions] represents the number of possible radio options.
-  final int numberOfRadioOptions;
+  /// [choiceTitles] is the list of options in the multiple choice list.
+  List<String> choiceTitles;
 
   /// [radioValue] represents current selected radio element.
   int radioValue;
 
   /// Default Optional Arguments Constructor for [RadioOptionFormElement].
-  RadioOptionFormElement(this.numberOfRadioOptions,
+  RadioOptionFormElement(this.choiceTitles,
       {Key key, String formElementTitle, this.radioValue = 0})
       : super(key: key, formElementTitle: formElementTitle);
 
@@ -68,9 +68,9 @@ class _RadioOptionFormElementState extends State<RadioOptionFormElement> {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         mainAxisSize: MainAxisSize.min,
         children: [
-          for (int index = 0; index < widget.numberOfRadioOptions; ++index)
+          for (int index = 0; index < widget.choiceTitles.length; ++index)
             TitledRadioWidget(
-                title: '$index',
+                title: '${widget.choiceTitles[index]}',
                 radioValue: index,
                 radioGroupValue: widget.radioValue,
                 onRadioChange: _handleRadioValueChanged),

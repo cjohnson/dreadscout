@@ -31,11 +31,8 @@ class ChoiceChipOptionFormElement extends InputFormElement {
 
   int choiceChipValue;
 
-  ChoiceChipOptionFormElement(
-      {Key key,
-      String formElementTitle,
-      this.choiceChipValue,
-      this.choiceTitles})
+  ChoiceChipOptionFormElement(this.choiceTitles,
+      {Key key, String formElementTitle, this.choiceChipValue})
       : super(key: key, formElementTitle: formElementTitle);
 
   @override
@@ -54,9 +51,7 @@ class _ChoiceChipOptionFormElementState
         for (int index = 0; index < widget.choiceTitles.length; ++index)
           Row(children: <Widget>[
             ChoiceChip(
-              label: Text(widget.choiceTitles.isEmpty
-                  ? '$index'
-                  : '${widget.choiceTitles[index]}'),
+              label: Text('${widget.choiceTitles[index]}'),
               selected: widget.choiceChipValue == index,
               onSelected: (value) {
                 setState(() {

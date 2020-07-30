@@ -78,16 +78,20 @@ class DreadScoutFormDemo extends StatelessWidget {
       children: <Widget>[
         // Sample Dreadscout Widgets for Scouting Collection Data.
         RadioOptionFormElement(
-          3,
-          formElementTitle: 'Hab Level',
-        ),
-        ChoiceChipOptionFormElement(
-          formElementTitle: 'Hab Level',
-          choiceTitles: <String>[
+          <String>[
             "One",
             "Two",
             "Three"
           ],
+          formElementTitle: 'Hab Level',
+        ),
+        ChoiceChipOptionFormElement(
+          <String>[
+            "One",
+            "Two",
+            "Three"
+          ],
+          formElementTitle: 'Hab Level',
         ),
         CheckboxFormElement(
           formElementTitle: 'Robot Broke?',
