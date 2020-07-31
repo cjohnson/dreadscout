@@ -22,6 +22,10 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
  */
 
+import 'package:intl/intl.dart';
+
+import 'package:logging/logging.dart';
+
 import 'package:flutter/material.dart';
 
 import 'package:dreadscout/page/home_page.dart';
@@ -36,6 +40,11 @@ class DreadScout extends StatelessWidget {
   /// and the current version in code [applicationVersion].
   final String applicationName = 'DreadScout';
   final String applicationVersion = 'v.1.1.1';
+
+  /// [Logger] object for logging utilities.
+  ///
+  /// This class is from the logging package for Dart.
+  final Logger logger;
 
   /// Application Color Theme [colorTheme]
   ///
@@ -52,12 +61,30 @@ class DreadScout extends StatelessWidget {
   final VisualDensity platformVisualDensity =
       VisualDensity.adaptivePlatformDensity;
 
+  /// Default [DreadScout] constructor.
+  ///
+  /// This provides logging functionality to future classes.
+  DreadScout(this.logger) {
+    Logger.root.level = Level.ALL;
+    Logger.root.onRecord.listen((record) {
+      final DateFormat dateFormatter = DateFormat('HH:mm:ss');
+      final String formattedDateTime = dateFormatter.format(record.time);
+
+      final String formattedLogMessage = '[$formattedDateTime ${record.level}]: ${record.message}';
+      print(formattedLogMessage);
+    });
+
+    logger.info('Starting $applicationName $applicationVersion...');
+  }
+
   /// Standard Build Method of the Application. [build]
   ///
   /// Entry point for the application, overrides
   /// Flutter's default Widget.build(BuildContext) method.
   @override
   Widget build(BuildContext context) {
+    logger.info('Building Core App Widget... $context');
+
     return MaterialApp(
       // Official Application Title.
       title: applicationName,
