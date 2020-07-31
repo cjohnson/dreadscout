@@ -58,6 +58,8 @@ class _SubmitFormButtonState extends State<SubmitFormButton> {
   Widget _buildButton(Widget button) {
     return widget.buildFormElementContainer(
       Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisSize: MainAxisSize.max,
         children: [
           SizedBox(width: 0,),
           button,
