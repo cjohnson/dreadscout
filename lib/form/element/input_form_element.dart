@@ -24,16 +24,12 @@ SOFTWARE.
 
 import 'package:flutter/material.dart';
 
+import 'package:dreadscout/form/element/form_element.dart';
+
 /// Base Class [InputFormElement] widget for common form element ideas.
-abstract class InputFormElement extends StatefulWidget {
+abstract class InputFormElement extends FormElement {
   /// [defaultFormElementTitle] to stand in where no title is given.
   static final String defaultFormElementTitle = 'Datum Value?';
-
-  /// [containerSidePadding] is the left and right padding of the object.
-  static final double containerSidePadding = 12.0;
-
-  /// [containerTopBottomPadding] is the top and bottom padding of the object.
-  static final double containerTopBottomPadding = 8.0;
 
   /// Title of the element datum.
   final String formElementTitle;
@@ -46,10 +42,10 @@ abstract class InputFormElement extends StatefulWidget {
   Widget buildInputFormElement(Widget inputMethodWidget) {
     return Container(
       padding: EdgeInsets.only(
-        left: InputFormElement.containerSidePadding,
-        right: InputFormElement.containerSidePadding,
-        top: InputFormElement.containerTopBottomPadding,
-        bottom: InputFormElement.containerTopBottomPadding,
+        left: FormElement.containerSidePadding,
+        right: FormElement.containerSidePadding,
+        top: FormElement.containerTopBottomPadding,
+        bottom: FormElement.containerTopBottomPadding,
       ),
       decoration: BoxDecoration(
         color: Colors.blueGrey[50],
@@ -63,25 +59,6 @@ abstract class InputFormElement extends StatefulWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
           Text(formElementTitle ?? InputFormElement.defaultFormElementTitle),
-          inputMethodWidget,
-        ],
-      ),
-    );
-  }
-
-  /// Constructs a special [InputFormElement] Widget Tree for special buttons.
-  Widget buildFormSubmitFormElement(Widget inputMethodWidget) {
-    return Container(
-      padding: EdgeInsets.only(
-        left: InputFormElement.containerSidePadding,
-        right: InputFormElement.containerSidePadding,
-        top: InputFormElement.containerTopBottomPadding,
-        bottom: InputFormElement.containerTopBottomPadding,
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: <Widget>[
-          SizedBox(),
           inputMethodWidget,
         ],
       ),

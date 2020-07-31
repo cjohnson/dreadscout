@@ -24,33 +24,31 @@ SOFTWARE.
 
 import 'package:flutter/material.dart';
 
-import 'package:dreadscout/form/element/form_element.dart';
+abstract class FormElement extends StatefulWidget {
+  /// [containerSidePadding] is the left and right padding of the object.
+  static final double containerSidePadding = 12.0;
 
-/// [SubmitFormButton] to submit scouting forms.
-class SubmitFormButton extends FormElement {
-  /// [formTitle] is the title of the current form.
-  final String formTitle;
+  /// [containerTopBottomPadding] is the top and bottom padding of the object.
+  static final double containerTopBottomPadding = 8.0;
 
-  /// Optional (required) args constructor for [SubmitFormButton]
-  SubmitFormButton({this.formTitle: 'Untitled New Form'});
+  /// [FormElement] default optional key args constructor for default StatefulWidget Objects.
+  const FormElement({Key key}) : super(key: key);
 
-  /// Default Overridden [createState] method from Flutter
-  @override
-  _SubmitFormButtonState createState() => _SubmitFormButtonState();
-}
-
-/// [_SubmitFormButtonState] state class for [SubmitFormButton].
-class _SubmitFormButtonState extends State<SubmitFormButton> {
-  /// Default overridden [build] method from Flutter.
-  @override
-  Widget build(BuildContext context) {
-    return widget.buildFormSubmitFormElement(
-      FloatingActionButton.extended(
-          icon: const Icon(Icons.archive),
-          onPressed: () {
-            print("Submitted form: ${widget.formTitle}");
-          },
-          label: Text("Submit"),
+  /// Constructs a special [InputFormElement] Widget Tree for special buttons.
+  Widget buildFormSubmitFormElement(Widget inputMethodWidget) {
+    return Container(
+      padding: EdgeInsets.only(
+        left: FormElement.containerSidePadding,
+        right: FormElement.containerSidePadding,
+        top: FormElement.containerTopBottomPadding,
+        bottom: FormElement.containerTopBottomPadding,
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: <Widget>[
+          SizedBox(),
+          inputMethodWidget,
+        ],
       ),
     );
   }
