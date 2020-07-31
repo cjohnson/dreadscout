@@ -18,8 +18,6 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
  */
 
-import 'dart:developer';
-
 import 'package:dart_numerics/dart_numerics.dart' as numerics;
 
 import 'package:flutter/material.dart';
@@ -93,16 +91,18 @@ class _CounterFormElementState extends State<CounterFormElement> {
         RaisedButton(
           onPressed: _counterDecrement,
           child: Text('-'),
-          color: Colors.lightBlue[100],
+          color: Colors.blueGrey[500],
         ),
+        SizedBox(width: 12,),
         Container(
-          padding: EdgeInsets.only(left: 8.0, right: 8.0),
+          //padding: EdgeInsets.only(left: 8.0, right: 8.0),
           child: Text('${widget.currentValue}'),
         ),
+        SizedBox(width: 12,),
         RaisedButton(
           onPressed: _counterIncrement,
           child: Text('+'),
-          color: Colors.lightBlue[100],
+          color: Colors.blueGrey[500],
         ),
       ],
     ));
