@@ -30,6 +30,7 @@ import 'package:dreadscout/form/element/multiplechoice/radio_option_form_element
 import 'package:dreadscout/form/element/numeric/counter_form_element.dart';
 import 'package:dreadscout/form/element/button/submit_form_button.dart';
 import 'package:dreadscout/form/element/multiplechoice/choice_chip_option_form_element.dart';
+import 'package:dreadscout/form/element/form_element.dart';
 
 /// Dreadscout Home Page [DreadScoutHomePage]
 ///
@@ -75,7 +76,7 @@ class DreadScoutFormDemo extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
-      children: <Widget>[
+      children: <FormElement>[
         // Sample Dreadscout Widgets for Scouting Collection Data.
         RadioOptionFormElement(
           <String>[
