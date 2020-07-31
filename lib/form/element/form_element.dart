@@ -34,8 +34,7 @@ abstract class FormElement extends StatefulWidget {
   /// [FormElement] default optional key args constructor for default StatefulWidget Objects.
   const FormElement({Key key}) : super(key: key);
 
-  /// Constructs a special [InputFormElement] Widget Tree for special buttons.
-  Widget buildFormSubmitFormElement(Widget inputMethodWidget) {
+  Widget buildFormElementContainer(Widget child) {
     return Container(
       padding: EdgeInsets.only(
         left: FormElement.containerSidePadding,
@@ -43,13 +42,22 @@ abstract class FormElement extends StatefulWidget {
         top: FormElement.containerTopBottomPadding,
         bottom: FormElement.containerTopBottomPadding,
       ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: <Widget>[
-          SizedBox(),
-          inputMethodWidget,
-        ],
+      child: child,
+    );
+  }
+
+  Widget buildStylizedFormElementContainer(Widget child) {
+    return Container(
+      padding: EdgeInsets.only(
+        left: FormElement.containerSidePadding,
+        right: FormElement.containerSidePadding,
+        top: FormElement.containerTopBottomPadding,
+        bottom: FormElement.containerTopBottomPadding,
       ),
+      decoration: BoxDecoration(
+        color: Colors.blueGrey[50],
+      ),
+      child: child,
     );
   }
 }

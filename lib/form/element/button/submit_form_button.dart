@@ -44,14 +44,25 @@ class _SubmitFormButtonState extends State<SubmitFormButton> {
   /// Default overridden [build] method from Flutter.
   @override
   Widget build(BuildContext context) {
-    return widget.buildFormSubmitFormElement(
+    return _buildButton(
       FloatingActionButton.extended(
-          icon: const Icon(Icons.archive),
-          onPressed: () {
-            print("Submitted form: ${widget.formTitle}");
-          },
-          label: Text("Submit"),
+        icon: const Icon(Icons.archive),
+        onPressed: () {
+          print("Submitted form: ${widget.formTitle}");
+        },
+        label: Text("Submit"),
       ),
+    );
+  }
+
+  Widget _buildButton(Widget button) {
+    return widget.buildFormElementContainer(
+      Row(
+        children: [
+          SizedBox(width: 0,),
+          button,
+        ],
+      )
     );
   }
 }

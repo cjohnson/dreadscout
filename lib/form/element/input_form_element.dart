@@ -40,22 +40,8 @@ abstract class InputFormElement extends FormElement {
 
   /// Constructs a basic [InputFormElement] Widget Tree.
   Widget buildInputFormElement(Widget inputMethodWidget) {
-    return Container(
-      padding: EdgeInsets.only(
-        left: FormElement.containerSidePadding,
-        right: FormElement.containerSidePadding,
-        top: FormElement.containerTopBottomPadding,
-        bottom: FormElement.containerTopBottomPadding,
-      ),
-      decoration: BoxDecoration(
-        color: Colors.blueGrey[50],
-//        border: Border.all(
-//          color: Colors.blueGrey[100],
-//          width: 0.5,
-//          style: BorderStyle.solid
-//        )
-      ),
-      child: Row(
+    return buildStylizedFormElementContainer(
+      Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
           Text(formElementTitle ?? InputFormElement.defaultFormElementTitle),
