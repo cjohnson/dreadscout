@@ -23,6 +23,9 @@ SOFTWARE.
  */
 
 import 'package:dreadscout/form/element/section/section_header.dart';
+import 'package:dreadscout/form/form_display.dart';
+import 'package:dreadscout/form/scouting_form.dart';
+import 'package:dreadscout/utility/namespaced_key.dart';
 import 'package:flutter/material.dart';
 
 import 'package:dreadscout/form/element/boolean/checkbox_form_element.dart';
@@ -75,38 +78,12 @@ class DreadScoutFormDemo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: <FormElement>[
-        // Sample Dreadscout Widgets for Scouting Collection Data.
-        SectionHeader(title: 'Autonomous Period'),
-        RadioOptionFormElement(
-          <String>[
-            "One",
-            "Two",
-            "Three"
-          ],
-          formElementTitle: 'Hab Level',
-        ),
-        ChoiceChipOptionFormElement(
-          <String>[
-            "One",
-            "Two",
-            "Three"
-          ],
-          formElementTitle: 'Hab Level',
-        ),
-        CheckboxFormElement(
-          formElementTitle: 'Robot Broke?',
-        ),
-        SwitchFormElement(
-          formElementTitle: 'Robot participated in water game?',
-        ),
-        CounterFormElement(
-          formElementTitle: 'Number of Hatch Panels',
-        ),
-        SubmitFormButton(formTitle: 'Qualification Match 30, Scouting frc:team_3656',),
-      ],
+    return FormDisplay(
+        '3656_2021_belleville', 
+        'qualification_36',
+        new ScoutingForm(
+            NamespacedKey('scouting_templates', 'test_2021'),
+        )..formValues.putIfAbsent(NamespacedKey('test_2021', 'autonomous_header'), () => SectionHeader(title: 'Autonomous Period'))
     );
   }
 }
