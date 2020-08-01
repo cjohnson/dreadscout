@@ -27,7 +27,7 @@ import 'package:flutter/material.dart';
 import 'package:dreadscout/form/element/input_form_element.dart';
 
 class ChoiceChipOptionFormElement extends InputFormElement {
-  List<String> choiceTitles;
+  final List<String> choiceTitles;
 
   int choiceChipValue;
 

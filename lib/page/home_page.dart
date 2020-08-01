@@ -22,6 +22,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
  */
 
+import 'package:dreadscout/form/element/section/section_header.dart';
 import 'package:flutter/material.dart';
 
 import 'package:dreadscout/form/element/boolean/checkbox_form_element.dart';
@@ -78,6 +79,7 @@ class DreadScoutFormDemo extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: <FormElement>[
         // Sample Dreadscout Widgets for Scouting Collection Data.
+        SectionHeader(title: 'Autonomous Period'),
         RadioOptionFormElement(
           <String>[
             "One",
