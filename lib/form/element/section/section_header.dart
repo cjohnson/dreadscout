@@ -33,6 +33,9 @@ class SectionHeader extends FormElement {
 
   @override
   _SectionHeaderState createState() => _SectionHeaderState();
+
+  @override
+  String getElementData() => title;
 }
 
 class _SectionHeaderState extends State<SectionHeader> {

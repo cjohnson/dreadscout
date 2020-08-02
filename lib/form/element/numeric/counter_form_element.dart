@@ -47,6 +47,9 @@ class CounterFormElement extends InputFormElement {
   /// Default Override for StatefulWidgets.
   @override
   State<StatefulWidget> createState() => _CounterFormElementState();
+
+  @override
+  int getElementData() => currentValue;
 }
 
 /// State Class of [CounterFormElement]

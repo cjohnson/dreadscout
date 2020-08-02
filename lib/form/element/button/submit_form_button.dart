@@ -37,6 +37,9 @@ class SubmitFormButton extends FormElement {
   /// Default Overridden [createState] method from Flutter
   @override
   _SubmitFormButtonState createState() => _SubmitFormButtonState();
+
+  @override
+  getElementData() => null;
 }
 
 /// [_SubmitFormButtonState] state class for [SubmitFormButton].

@@ -43,6 +43,9 @@ class CheckboxFormElement extends InputFormElement {
   /// Default Overridden [createState] Flutter method.
   @override
   _CheckboxFormElementState createState() => _CheckboxFormElementState();
+
+  @override
+  bool getElementData() => checkboxValue;
 }
 
 /// Custom [_CheckboxFormElementState] state class for [CheckboxFormElement]

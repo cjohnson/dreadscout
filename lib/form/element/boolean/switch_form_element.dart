@@ -42,6 +42,9 @@ class SwitchFormElement extends InputFormElement {
   /// Default Overridden [createState] Flutter method.
   @override
   _SwitchFormElementState createState() => _SwitchFormElementState();
+
+  @override
+  bool getElementData() => switchValue;
 }
 
 /// Custom [_SwitchFormElementState] state class for [SwitchFormElement]

@@ -34,6 +34,8 @@ abstract class FormElement extends StatefulWidget {
   /// [FormElement] default optional key args constructor for default StatefulWidget Objects.
   const FormElement({Key key}) : super(key: key);
 
+  dynamic getElementData();
+
   Widget buildFormElementContainer(Widget child) {
     return Container(
       padding: EdgeInsets.only(

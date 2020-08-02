@@ -45,6 +45,9 @@ class RadioOptionFormElement extends InputFormElement {
 
   @override
   _RadioOptionFormElementState createState() => _RadioOptionFormElementState();
+
+  @override
+  Set<Object> getElementData() => {radioValue, choiceTitles[radioValue]};
 }
 
 /// Custom [_RadioOptionFormElementState] state class

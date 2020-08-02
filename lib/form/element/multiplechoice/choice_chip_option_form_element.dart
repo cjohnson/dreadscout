@@ -38,6 +38,9 @@ class ChoiceChipOptionFormElement extends InputFormElement {
   @override
   _ChoiceChipOptionFormElementState createState() =>
       _ChoiceChipOptionFormElementState();
+
+  @override
+  Set<Object> getElementData() => {choiceChipValue, choiceTitles[choiceChipValue]};
 }
 
 class _ChoiceChipOptionFormElementState
