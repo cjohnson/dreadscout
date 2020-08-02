@@ -24,38 +24,10 @@ class FormDisplay extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <FormElement>[
-          for (NamespacedKey key in form.formValues.keys) form.formValues[key],
-        ]
-//        SectionHeader(title: 'Autonomous Period'),
-//        RadioOptionFormElement(
-//          <String>[
-//            "One",
-//            "Two",
-//            "Three"
-//          ],
-//          formElementTitle: 'Hab Level',
-//        ),
-//        ChoiceChipOptionFormElement(
-//          <String>[
-//            "One",
-//            "Two",
-//            "Three"
-//          ],
-//          formElementTitle: 'Hab Level',
-//        ),
-//        CheckboxFormElement(
-//          formElementTitle: 'Robot Broke?',
-//        ),
-//        SwitchFormElement(
-//          formElementTitle: 'Robot participated in water game?',
-//        ),
-//        CounterFormElement(
-//          formElementTitle: 'Number of Hatch Panels',
-//        ),
-//        SubmitFormButton(formTitle: 'Qualification Match 30, Scouting frc:team_3656',),
-//      ],
-        );
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: <FormElement>[
+        for (NamespacedKey key in form.formValues.keys) form.formValues[key],
+      ]
+    );
   }
 }

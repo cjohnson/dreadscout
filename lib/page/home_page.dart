@@ -34,7 +34,6 @@ import 'package:dreadscout/form/element/multiplechoice/radio_option_form_element
 import 'package:dreadscout/form/element/numeric/counter_form_element.dart';
 import 'package:dreadscout/form/element/button/submit_form_button.dart';
 import 'package:dreadscout/form/element/multiplechoice/choice_chip_option_form_element.dart';
-import 'package:dreadscout/form/element/form_element.dart';
 
 /// Dreadscout Home Page [DreadScoutHomePage]
 ///
@@ -79,11 +78,37 @@ class DreadScoutFormDemo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FormDisplay(
-        '3656_2021_belleville', 
+        '3656_2021_belleville',
         'qualification_36',
+        // TODO Remove hardcode example, as templates are designed by users, not developers.
         new ScoutingForm(
-            NamespacedKey('scouting_templates', 'test_2021'),
-        )..formValues.putIfAbsent(NamespacedKey('test_2021', 'autonomous_header'), () => SectionHeader(title: 'Autonomous Period'))
-    );
+          NamespacedKey('scouting_templates', 'test_2021'),
+        )..addScoutingElements({
+            NamespacedKey('test_2021', 'autonomous_header'):
+                SectionHeader(title: 'Autonomous Period'),
+            NamespacedKey('test_2021', 'hab_level_radio'):
+                RadioOptionFormElement(
+              <String>["One", "Two", "Three"],
+              formElementTitle: 'Hab Level',
+            ),
+            NamespacedKey('test_2021', 'hab_level_choice_chip'):
+                ChoiceChipOptionFormElement(
+              <String>["One", "Two", "Three"],
+              formElementTitle: 'Hab Level',
+            ),
+            NamespacedKey('test_2021', 'robot_broken'): CheckboxFormElement(
+              formElementTitle: 'Robot Broke?',
+            ),
+            NamespacedKey('test_2021', 'robot_water_game'): SwitchFormElement(
+              formElementTitle: 'Robot participated in water game?',
+            ),
+            NamespacedKey('test_2021', 'number_hatchpanel'): CounterFormElement(
+              formElementTitle: 'Number of Hatch Panels',
+            ),
+            NamespacedKey('test_2021', 'default_submit_button'):
+                SubmitFormButton(
+              formTitle: '3656_2021_belleville:qualification_36, frc:team_3656',
+            ),
+          }));
   }
 }
