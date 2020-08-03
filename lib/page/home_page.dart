@@ -77,13 +77,16 @@ class DreadScoutFormDemo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ScoutingForm demoScoutingForm = ScoutingForm(
+      NamespacedKey('scouting_templates', 'test_2021'),
+    );
+
     return FormDisplay(
         '3656_2021_belleville',
         'qualification_36',
         // TODO Remove hardcode example, as templates are designed by users, not developers.
-        new ScoutingForm(
-          NamespacedKey('scouting_templates', 'test_2021'),
-        )..addScoutingElements({
+        demoScoutingForm
+          ..addScoutingElements({
             NamespacedKey('test_2021', 'autonomous_header'):
                 SectionHeader(title: 'Autonomous Period'),
             NamespacedKey('test_2021', 'hab_level_radio'):
@@ -107,6 +110,7 @@ class DreadScoutFormDemo extends StatelessWidget {
             ),
             NamespacedKey('test_2021', 'default_submit_button'):
                 SubmitFormButton(
+              demoScoutingForm,
               formTitle: '3656_2021_belleville:qualification_36, frc:team_3656',
             ),
           }));

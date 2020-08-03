@@ -33,6 +33,15 @@ class ScoutingForm {
   /// [formValues] are the keyed values of each form (data)
   Map<NamespacedKey, FormElement> formValues;
 
+  /// Required [formKey] constructor.
+  ScoutingForm(this.formKey) {
+    this.formValues = Map<NamespacedKey, FormElement>();
+  }
+
+  void submit() {
+    print('Submitting $formKey...\nNew Values: $formValues');
+  }
+
   void addScoutingElement(String namespace, String name, FormElement Function() ifAbsent) {
     formValues.putIfAbsent(NamespacedKey(namespace, name), ifAbsent);
   }
@@ -42,8 +51,8 @@ class ScoutingForm {
       formValues[key] = newFormValues[key];
   }
 
-  /// Required [formKey] constructor.
-  ScoutingForm(this.formKey) {
-    this.formValues = Map<NamespacedKey, FormElement>();
+  @override
+  String toString() {
+    return 'ScoutingForm{formKey: $formKey, formValues: $formValues}';
   }
 }
