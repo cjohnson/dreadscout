@@ -30,7 +30,6 @@ import 'package:dreadscout/form/element/input_form_element.dart';
 ///
 /// This form element collects a "Yes/No" or "True/False" datum.
 /// Example: Robot Broke? CHECKBOX: Yes/No.
-// ignore: must_be_immutable
 class CheckboxFormElement extends InputFormElement {
   /// [checkboxValue] represents current state of the datum.
   bool checkboxValue;

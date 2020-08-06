@@ -30,7 +30,6 @@ import 'package:dreadscout/form/element/input_form_element.dart';
 ///
 /// This form element collects a multiple choice style option.
 /// Example: Robot Hab Level: 1st, 2nd, 3rd
-// ignore: must_be_immutable
 class RadioOptionFormElement extends InputFormElement {
   /// [choiceTitles] is the list of options in the multiple choice list.
   List<String> choiceTitles;

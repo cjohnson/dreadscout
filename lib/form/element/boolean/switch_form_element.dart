@@ -30,7 +30,6 @@ import 'package:dreadscout/form/element/input_form_element.dart';
 ///
 /// This form element collects a "Enabled/Disabled" datum.
 /// Use for specific input configuration.
-// ignore: must_be_immutable
 class SwitchFormElement extends InputFormElement {
   /// [switchValue] represents the current state of the datum.
   bool switchValue;

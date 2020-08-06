@@ -25,7 +25,6 @@ import 'package:flutter/material.dart';
 import 'package:dreadscout/form/element/input_form_element.dart';
 
 /// [CounterFormElement] for numeric value tracking.
-// ignore: must_be_immutable
 class CounterFormElement extends InputFormElement {
   /// Maximum Possible value.
   final int maximumValue;
