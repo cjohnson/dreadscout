@@ -110,7 +110,7 @@ class DreadScoutFormDemo extends StatelessWidget {
             ),
             NamespacedKey('test_2021', 'default_submit_button'):
                 SubmitFormButton(
-              demoScoutingForm,
+              demoScoutingForm.submit,
               formTitle: '3656_2021_belleville:qualification_36, frc:team_3656',
             ),
           }));

@@ -33,10 +33,10 @@ class SubmitFormButton extends FormElement {
   /// [formTitle] is the title of the current form.
   final String formTitle;
 
-  ScoutingForm associativeScoutingForm;
+  final void Function() onSubmit;
 
   /// Optional (required) args constructor for [SubmitFormButton]
-  SubmitFormButton(this.associativeScoutingForm, {this.formTitle: 'Untitled New Form'});
+  SubmitFormButton(this.onSubmit, {this.formTitle: 'Untitled New Form'});
 
   /// Default Overridden [createState] method from Flutter
   @override
@@ -54,9 +54,7 @@ class _SubmitFormButtonState extends State<SubmitFormButton> {
     return _buildButtonWrapping(
       FloatingActionButton.extended(
         icon: const Icon(Icons.archive),
-        onPressed: () {
-          widget.associativeScoutingForm.submit();
-        },
+        onPressed: widget.onSubmit,
         label: Text("Submit"),
       ),
     );
