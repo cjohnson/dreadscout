@@ -22,12 +22,18 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
  */
 
-import 'package:dreadscout/ui/home_page.dart';
+import 'package:dreadscout/bloc/form/element/checkbox_form_element_bloc.dart';
 import 'package:intl/intl.dart';
 
 import 'package:logging/logging.dart';
 
 import 'package:flutter/material.dart';
+
+import 'package:bloc/bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import 'package:dreadscout/bloc/bloc_observer.dart';
+import 'package:dreadscout/ui/home_page.dart';
 
 /// [DreadScout] is the top-level class for the application.
 ///
@@ -64,6 +70,13 @@ class DreadScout extends StatelessWidget {
   ///
   /// This provides logging functionality to future classes.
   DreadScout(this.logger) {
+    Bloc.observer = DreadScoutBlocObserver();
+
+    CheckboxFormElementBloc()
+      ..add(CheckboxFormElementEvent.check)
+      ..add(CheckboxFormElementEvent.uncheck)
+      ..close();
+
     Logger.root.level = Level.ALL;
     Logger.root.onRecord.listen((record) {
       final DateFormat dateFormatter = DateFormat('HH:mm:ss');
