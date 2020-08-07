@@ -70,7 +70,7 @@ class DreadScout extends StatelessWidget {
   ///
   /// This provides logging functionality to future classes.
   DreadScout(this.logger) {
-    Bloc.observer = DreadScoutBlocObserver();
+    Bloc.observer = DreadScoutBlocObserver(logger);
 
     CheckboxFormElementBloc()
       ..add(CheckboxFormElementEvent.toggleCheck)
