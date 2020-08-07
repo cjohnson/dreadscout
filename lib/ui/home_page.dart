@@ -67,7 +67,7 @@ class _DreadScoutHomePageState extends State<DreadScoutHomePage> {
       body: Center(
         child: RadioOptionFormElement.constructFullElement(
           formElementTitle: 'Hab Level',
-          choiceTitles: <String>["One", "Two", "Three"],
+          radioTitles: <String>["One", "Two", "Three"],
         ),
       ),
     );

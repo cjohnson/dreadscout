@@ -32,7 +32,10 @@ class RadioOptionFormElementEvent {
 }
 
 class RadioOptionFormElementBloc extends Bloc<RadioOptionFormElementEvent, int> {
-  RadioOptionFormElementBloc() : super(-1);
+  /// [radioTitles] is the list of options in the multiple choice list.
+  final List<String> radioTitles;
+
+  RadioOptionFormElementBloc(this.radioTitles) : super(-1);
 
   @override
   Stream<int> mapEventToState(RadioOptionFormElementEvent event) async* {

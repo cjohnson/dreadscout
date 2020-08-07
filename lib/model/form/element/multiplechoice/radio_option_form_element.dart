@@ -33,45 +33,40 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 /// This form element collects a multiple choice style option.
 /// Example: Robot Hab Level: 1st, 2nd, 3rd
 class RadioOptionFormElement extends InputFormElement {
-  /// [choiceTitles] is the list of options in the multiple choice list.
-  List<String> choiceTitles;
-
   static BlocProvider<RadioOptionFormElementBloc> constructFullElement(
-      {@required String formElementTitle,
-      @required List<String> choiceTitles}) {
+      {@required String formElementTitle, @required List<String> radioTitles}) {
     return BlocProvider<RadioOptionFormElementBloc>(
-      create: (_) => RadioOptionFormElementBloc(),
+      create: (_) => RadioOptionFormElementBloc(radioTitles),
       child: RadioOptionFormElement(
-        choiceTitles,
         formElementTitle: formElementTitle,
       ),
     );
   }
 
   /// Default Optional Arguments Constructor for [RadioOptionFormElement].
-  RadioOptionFormElement(this.choiceTitles, {Key key, String formElementTitle})
+  RadioOptionFormElement({Key key, String formElementTitle})
       : super(key: key, formElementTitle: formElementTitle);
 
   @override
   Widget build(BuildContext context) {
-    final RadioOptionFormElementBloc radioOptionFormElementBloc =
+    // ignore: close_sinks
+    final RadioOptionFormElementBloc bloc =
         context.bloc<RadioOptionFormElementBloc>();
 
     return buildInputFormElement(
       Container(
         child: Row(
           children: [
-            for (int index = 0; index < choiceTitles.length; ++index)
+            for (int index = 0; index < bloc.radioTitles.length; ++index)
               Column(mainAxisSize: MainAxisSize.min, children: [
-                Text('${choiceTitles[index]}'),
+                Text('${bloc.radioTitles[index]}'),
                 BlocBuilder<RadioOptionFormElementBloc, int>(
                     builder: (context, indexSelected) {
                   return Radio<int>(
                     value: index,
-                    groupValue: radioOptionFormElementBloc.state,
+                    groupValue: bloc.state,
                     onChanged: (value) {
-                      radioOptionFormElementBloc
-                          .add(RadioOptionFormElementEvent(index));
+                      bloc.add(RadioOptionFormElementEvent(index));
                     },
                   );
                 }),
