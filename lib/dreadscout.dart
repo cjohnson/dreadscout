@@ -22,7 +22,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
  */
 
-import 'package:dreadscout/bloc/form/element/checkbox_form_element_bloc.dart';
+import 'file:///C:/Workspace/dreadscout/lib/bloc/form/element/boolean/checkbox_form_element_bloc.dart';
 import 'package:intl/intl.dart';
 
 import 'package:logging/logging.dart';
@@ -73,8 +73,7 @@ class DreadScout extends StatelessWidget {
     Bloc.observer = DreadScoutBlocObserver();
 
     CheckboxFormElementBloc()
-      ..add(CheckboxFormElementEvent.check)
-      ..add(CheckboxFormElementEvent.uncheck)
+      ..add(CheckboxFormElementEvent.toggleCheck)
       ..close();
 
     Logger.root.level = Level.ALL;

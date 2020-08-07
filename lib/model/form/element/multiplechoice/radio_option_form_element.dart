@@ -22,9 +22,11 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
  */
 
+import 'package:dreadscout/bloc/form/element/multiplechoice/radio_option_form_element_bloc.dart';
 import 'package:flutter/material.dart';
 
 import 'package:dreadscout/model/form/element/input_form_element.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 /// Custom [RadioOptionFormElement] Widget for Multiple Choice Style Options.
 ///
@@ -34,93 +36,39 @@ class RadioOptionFormElement extends InputFormElement {
   /// [choiceTitles] is the list of options in the multiple choice list.
   List<String> choiceTitles;
 
-  /// [radioValue] represents current selected radio element.
-  int radioValue;
-
   /// Default Optional Arguments Constructor for [RadioOptionFormElement].
   RadioOptionFormElement(this.choiceTitles,
-      {Key key, String formElementTitle, this.radioValue = 0})
+      {Key key, String formElementTitle})
       : super(key: key, formElementTitle: formElementTitle);
 
   @override
-  _RadioOptionFormElementState createState() => _RadioOptionFormElementState();
-
-  @override
-  Set<Object> getElementData() => {radioValue, choiceTitles[radioValue]};
-}
-
-/// Custom [_RadioOptionFormElementState] state class
-///
-/// Represents a current state of [RadioOptionFormElement]
-class _RadioOptionFormElementState extends State<RadioOptionFormElement> {
-  /// Click event for the radio option [_handleRadioValueChanged]
-  ///
-  /// Changes the state of the datum based on the checkbox state.
-  void _handleRadioValueChanged(int value) {
-    setState(() {
-      widget.radioValue = value;
-    });
-  }
-
-  /// Standard overridden [build] method from Flutter.
-  @override
   Widget build(BuildContext context) {
-    return widget.buildInputFormElement(
+    final RadioOptionFormElementBloc radioOptionFormElementBloc = BlocProvider.of<RadioOptionFormElementBloc>(context);
+
+    return buildInputFormElement(
       Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         mainAxisSize: MainAxisSize.min,
         children: [
-          for (int index = 0; index < widget.choiceTitles.length; ++index)
-            TitledRadioWidget(
-                title: '${widget.choiceTitles[index]}',
-                radioValue: index,
-                radioGroupValue: widget.radioValue,
-                onRadioChange: _handleRadioValueChanged),
+          for (int index = 0; index < choiceTitles.length; ++index)
+            Container(
+                child: Column(
+                    children: [
+                      Text('${choiceTitles[index]}'),
+                      BlocBuilder<RadioOptionFormElementBloc, int>(builder: (context, indexSelected) {
+                        return Radio<int>(
+                          value: index,
+                          groupValue: radioOptionFormElementBloc.state,
+                          onChanged: (value) {
+                            radioOptionFormElementBloc.add(RadioOptionFormElementEvent(index));
+                          },
+                        );
+                      }),
+                    ]
+                )
+            ),
         ],
       ),
-    );
-  }
-}
-
-/// Custom [TitledRadioWidget] widget to represent a titled radio option.
-class TitledRadioWidget extends StatefulWidget {
-  /// The [title] of the Radio Option.
-  String title;
-
-  /// The Value (or index) of the option.
-  int radioValue;
-
-  /// The current selected radio in the group of radio buttons.
-  int radioGroupValue;
-
-  /// [onRadioChange] executes when radio is selected.
-  Function(int) onRadioChange;
-
-  /// [TitledRadioWidget] Optional/Required args constructor.
-  TitledRadioWidget(
-      {this.title: 'Option', @required this.radioValue, @required this.radioGroupValue, @required this.onRadioChange});
-
-  /// Default overridden [createState] method from Flutter.
-  @override
-  _TitledRadioWidgetState createState() => _TitledRadioWidgetState();
-}
-
-/// State class for [TitledRadioWidget] class.
-class _TitledRadioWidgetState extends State<TitledRadioWidget> {
-  /// Default overriden [build] method from Flutter.
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        children: [
-          Text('${widget.title}'),
-          Radio<int>(
-            value: widget.radioValue,
-            groupValue: widget.radioGroupValue,
-            onChanged: widget.onRadioChange,
-          ),
-        ]
-      )
     );
   }
 }

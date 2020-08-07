@@ -22,44 +22,20 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
  */
 
-import 'package:flutter/material.dart';
+import 'package:bloc/bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:dreadscout/model/form/element/form_element.dart';
+enum CheckboxFormElementEvent { toggleCheck }
 
-/// [SubmitFormButton] to submit scouting forms.
-class SubmitFormButton extends FormElement {
-  /// [formTitle] is the title of the current form.
-  final String formTitle;
-
-  final void Function() onSubmit;
-
-  /// Optional (required) args constructor for [SubmitFormButton]
-  SubmitFormButton(this.onSubmit, {this.formTitle: 'Untitled New Form'});
+class CheckboxFormElementBloc extends Bloc<CheckboxFormElementEvent, bool> {
+  CheckboxFormElementBloc() : super(false);
 
   @override
-  Widget build(BuildContext context) {
-    return _buildButtonWrapping(
-      FloatingActionButton.extended(
-        icon: const Icon(Icons.archive),
-        onPressed: onSubmit,
-        label: Text("Submit"),
-      ),
-    );
+  Stream<bool> mapEventToState(CheckboxFormElementEvent event) async* {
+    switch(event) {
+      case CheckboxFormElementEvent.toggleCheck:
+        yield !state;
+        break;
+    }
   }
-
-  Widget _buildButtonWrapping(Widget button) {
-    return buildFormElementContainer(
-      Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        mainAxisSize: MainAxisSize.max,
-        children: [
-          SizedBox(width: 0,),
-          button,
-        ],
-      )
-    );
-  }
-
-  @override
-  getElementData() => null;
 }

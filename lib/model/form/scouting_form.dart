@@ -25,6 +25,7 @@ SOFTWARE.
 import 'package:dreadscout/utility/namespaced_key.dart';
 
 import 'package:dreadscout/model/form/element/form_element.dart';
+import 'package:flutter/cupertino.dart';
 
 /// Represents storage of the various forms tracked during the app's runtime.
 class ScoutingForm {
@@ -32,7 +33,7 @@ class ScoutingForm {
   final NamespacedKey formKey;
 
   /// [formValues] are the keyed values of each form (data)
-  Map<NamespacedKey, FormElement> formValues;
+  Map<NamespacedKey, StatelessWidget> formValues;
 
   /// Required [formKey] constructor.
   ScoutingForm(this.formKey) {
@@ -47,7 +48,7 @@ class ScoutingForm {
     formValues.putIfAbsent(NamespacedKey(namespace, name), ifAbsent);
   }
 
-  void addScoutingElements(Map<NamespacedKey, FormElement> newFormValues) {
+  void addScoutingElements(Map<NamespacedKey, StatelessWidget> newFormValues) {
     for(NamespacedKey key in newFormValues.keys)
       formValues[key] = newFormValues[key];
   }

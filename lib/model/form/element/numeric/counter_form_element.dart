@@ -19,10 +19,12 @@ SOFTWARE.
  */
 
 import 'package:dart_numerics/dart_numerics.dart' as numerics;
+import 'package:dreadscout/bloc/form/element/numeric/counter_form_element_bloc.dart';
 
 import 'package:flutter/material.dart';
 
 import 'package:dreadscout/model/form/element/input_form_element.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 /// [CounterFormElement] for numeric value tracking.
 class CounterFormElement extends InputFormElement {
@@ -45,64 +47,31 @@ class CounterFormElement extends InputFormElement {
 
   /// Default Override for StatefulWidgets.
   @override
-  State<StatefulWidget> createState() => _CounterFormElementState();
-
-  @override
-  int getElementData() => currentValue;
-}
-
-/// State Class of [CounterFormElement]
-class _CounterFormElementState extends State<CounterFormElement> {
-  /// Increments the counter on '+' button click.
-  void _counterIncrement() {
-    // Bounds check and 'improper' value checking
-    if (widget.currentValue >= widget.maximumValue) {
-      widget.currentValue = widget.maximumValue;
-
-      return;
-    }
-
-    setState(() {
-      // Standard increment
-      ++widget.currentValue;
-    });
-  }
-
-  /// Decrements the counter on '-' button click.
-  void _counterDecrement() {
-    // Bounds check and 'improper' value checking
-    if (widget.currentValue <= widget.minimumValue) {
-      widget.currentValue = widget.minimumValue;
-
-      return;
-    }
-
-    setState(() {
-      // Standard Decrement
-      --widget.currentValue;
-    });
-  }
-
-  /// Standard Overriden [build] method from Flutter.
-  @override
   Widget build(BuildContext context) {
-    return widget.buildInputFormElement(Row(
+    final CounterFormElementBloc counterFormElementBloc = BlocProvider.of<CounterFormElementBloc>(context);
+
+    return buildInputFormElement(Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       mainAxisSize: MainAxisSize.max,
       children: [
         RaisedButton(
-          onPressed: _counterDecrement,
+          onPressed: () {
+            counterFormElementBloc.add(CounterFormElementEvent.decrement);
+          },
           child: Text('-'),
           color: Colors.blueGrey[500],
         ),
         SizedBox(width: 12,),
-        Container(
-          //padding: EdgeInsets.only(left: 8.0, right: 8.0),
-          child: Text('${widget.currentValue}'),
+        BlocBuilder<CounterFormElementBloc, int>(
+          builder: (context, value) {
+            return Text('$value');
+          },
         ),
         SizedBox(width: 12,),
         RaisedButton(
-          onPressed: _counterIncrement,
+          onPressed: () {
+            counterFormElementBloc.add(CounterFormElementEvent.increment);
+          },
           child: Text('+'),
           color: Colors.blueGrey[500],
         ),

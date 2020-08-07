@@ -22,50 +22,39 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
  */
 
+import 'package:dreadscout/bloc/form/element/boolean/switch_form_element_bloc.dart';
 import 'package:flutter/material.dart';
 
 import 'package:dreadscout/model/form/element/input_form_element.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 /// Custom [SwitchFormElement] widget for simple switch options in a widget
 ///
 /// This form element collects a "Enabled/Disabled" datum.
 /// Use for specific input configuration.
 class SwitchFormElement extends InputFormElement {
-  /// [switchValue] represents the current state of the datum.
-  bool switchValue;
-
   /// Default Optional Arguments Constructor for [SwitchFormElement].
-  SwitchFormElement({Key key, String formElementTitle, this.switchValue: false})
+  SwitchFormElement({Key key, String formElementTitle})
       : super(key: key, formElementTitle: formElementTitle);
 
-  /// Default Overridden [createState] Flutter method.
-  @override
-  _SwitchFormElementState createState() => _SwitchFormElementState();
-
-  @override
-  bool getElementData() => switchValue;
-}
-
-/// Custom [_SwitchFormElementState] state class for [SwitchFormElement]
-///
-/// Represents a current state of [SwitchFormElement]
-class _SwitchFormElementState extends State<SwitchFormElement> {
-  /// Click event for the switch [_changeSwitch].
-  ///
-  /// Changes the state of the datum based on the switch state.
-  void _changeSwitch(bool value) {
-    setState(() {
-      // Set data to new switch status.
-      widget.switchValue = value;
-    });
-  }
-
-  /// Standard overridden [build] method from Flutter.
   @override
   Widget build(BuildContext context) {
-    return widget.buildInputFormElement(Switch(
-      value: widget.switchValue,
-      onChanged: _changeSwitch,
-    ));
+    final SwitchFormElementBloc switchFormElementBloc = BlocProvider.of<SwitchFormElementBloc>(context);
+
+    return buildInputFormElement(
+      BlocBuilder<SwitchFormElementBloc, bool>(
+        builder: (context, SwitchValue) {
+          return Switch(
+            value: SwitchValue,
+            onChanged: (newState) {
+              switchFormElementBloc.add(SwitchFormElementEvent.toggleSwitch);
+            },
+          );
+        },
+      ),
+    );
   }
+
+  @override
+  bool getElementData() => false;
 }

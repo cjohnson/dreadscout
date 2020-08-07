@@ -32,18 +32,10 @@ class SectionHeader extends FormElement {
   SectionHeader({this.title: "Section Header"});
 
   @override
-  _SectionHeaderState createState() => _SectionHeaderState();
-
-  @override
-  String getElementData() => title;
-}
-
-class _SectionHeaderState extends State<SectionHeader> {
-  @override
   Widget build(BuildContext context) {
-    return widget.buildFormElementContainer(
+    return buildFormElementContainer(
       Center(
-        child: Text('${widget.title}'),
+        child: Text('$title'),
       ),
     );
   }

@@ -22,6 +22,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
  */
 
+import 'package:dreadscout/bloc/form/element/multiplechoice/radio_option_form_element_bloc.dart';
 import 'package:flutter/material.dart';
 
 import 'package:dreadscout/model/form/element/boolean/checkbox_form_element.dart';
@@ -34,6 +35,7 @@ import 'package:dreadscout/model/form/element/section/section_header.dart';
 import 'package:dreadscout/model/form/form_display.dart';
 import 'package:dreadscout/model/form/scouting_form.dart';
 import 'package:dreadscout/utility/namespaced_key.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 /// Dreadscout Home Page [DreadScoutHomePage]
 ///
@@ -63,7 +65,13 @@ class _DreadScoutHomePageState extends State<DreadScoutHomePage> {
       // Contents are contained within Center & Column Objects
       // TODO Reorganize Home Page
       body: Center(
-        child: DreadScoutFormDemo(),
+        child: BlocProvider<RadioOptionFormElementBloc>(
+          create: (_) => RadioOptionFormElementBloc(),
+          child: RadioOptionFormElement(
+            <String>["One", "Two", "Three"],
+            formElementTitle: 'Hab Level',
+          ),
+        ),
       ),
     );
   }
@@ -88,12 +96,16 @@ class DreadScoutFormDemo extends StatelessWidget {
         demoScoutingForm
           ..addScoutingElements({
             NamespacedKey('test_2021', 'autonomous_header'):
-                SectionHeader(title: 'Autonomous Period'),
+              SectionHeader(title: 'Autonomous Period'),
             NamespacedKey('test_2021', 'hab_level_radio'):
-                RadioOptionFormElement(
-              <String>["One", "Two", "Three"],
-              formElementTitle: 'Hab Level',
+            BlocProvider<RadioOptionFormElementBloc>(
+              create: (_) => RadioOptionFormElementBloc(),
+              child: RadioOptionFormElement(
+                <String>["One", "Two", "Three"],
+                formElementTitle: 'Hab Level',
+              ),
             ),
+
             NamespacedKey('test_2021', 'hab_level_choice_chip'):
                 ChoiceChipOptionFormElement(
               <String>["One", "Two", "Three"],

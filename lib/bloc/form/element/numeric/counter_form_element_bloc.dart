@@ -25,19 +25,19 @@ SOFTWARE.
 import 'package:bloc/bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-enum CheckboxFormElementEvent { check, uncheck }
+enum CounterFormElementEvent { increment, decrement }
 
-class CheckboxFormElementBloc extends Bloc<CheckboxFormElementEvent, bool> {
-  CheckboxFormElementBloc() : super(false);
+class CounterFormElementBloc extends Bloc<CounterFormElementEvent, int> {
+  CounterFormElementBloc() : super(0);
 
   @override
-  Stream<bool> mapEventToState(CheckboxFormElementEvent event) async* {
+  Stream<int> mapEventToState(CounterFormElementEvent event) async* {
     switch(event) {
-      case CheckboxFormElementEvent.check:
-        yield true;
+      case CounterFormElementEvent.increment:
+        yield state - 1;
         break;
-      case CheckboxFormElementEvent.uncheck:
-        yield false;
+      case CounterFormElementEvent.decrement:
+        yield state + 1;
         break;
     }
   }

@@ -22,9 +22,11 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
  */
 
+import 'package:dreadscout/bloc/form/element/multiplechoice/choice_chip_option_form_element_bloc.dart';
 import 'package:flutter/material.dart';
 
 import 'package:dreadscout/model/form/element/input_form_element.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ChoiceChipOptionFormElement extends InputFormElement {
   final List<String> choiceTitles;
@@ -36,37 +38,36 @@ class ChoiceChipOptionFormElement extends InputFormElement {
       : super(key: key, formElementTitle: formElementTitle);
 
   @override
-  _ChoiceChipOptionFormElementState createState() =>
-      _ChoiceChipOptionFormElementState();
-
-  @override
   Set<Object> getElementData() => {choiceChipValue, choiceTitles[choiceChipValue]};
-}
 
-class _ChoiceChipOptionFormElementState
-    extends State<ChoiceChipOptionFormElement> {
   @override
   Widget build(BuildContext context) {
-    return widget.buildInputFormElement(Row(
-      mainAxisSize: MainAxisSize.min,
-      mainAxisAlignment: MainAxisAlignment.end,
-      children: [
-        for (int index = 0; index < widget.choiceTitles.length; ++index)
-          Row(children: <Widget>[
-            ChoiceChip(
-              label: Text('${widget.choiceTitles[index]}'),
-              selected: widget.choiceChipValue == index,
-              onSelected: (value) {
-                setState(() {
-                  widget.choiceChipValue = value ? index : -1;
-                });
-              },
+    final ChoiceChipOptionFormElementBloc choiceChipOptionFormElementBloc = BlocProvider.of<ChoiceChipOptionFormElementBloc>(context);
+
+    return buildInputFormElement(
+      Row(
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          for(int index = 0; index < choiceTitles.length; index++)
+            Row(
+              children: [
+                BlocBuilder<ChoiceChipOptionFormElementBloc, int>(
+                  builder: (context, indexSelected) {
+                    return ChoiceChip(
+                      label: Text('${choiceTitles[index]}'),
+                      selected: choiceChipOptionFormElementBloc.state == index,
+                      onSelected: (value) {
+                        choiceChipOptionFormElementBloc.add(ChoiceChipOptionFormElementEvent(index));
+                      },
+                    );
+                  },
+                ),
+                SizedBox(width: 0,),
+              ],
             ),
-            SizedBox(
-              width: 8,
-            ),
-          ]),
-      ],
-    ));
+        ],
+      ),
+    );
   }
 }
