@@ -22,7 +22,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
  */
 
-import 'file:///C:/Workspace/dreadscout/lib/bloc/form/element/boolean/checkbox_form_element_bloc.dart';
+import 'package:dreadscout/bloc/form/element/boolean/checkbox_form_element_bloc.dart';
 import 'package:flutter/material.dart';
 
 import 'package:dreadscout/model/form/element/input_form_element.dart';
@@ -33,13 +33,25 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 /// This form element collects a "Yes/No" or "True/False" datum.
 /// Example: Robot Broke? CHECKBOX: Yes/No.
 class CheckboxFormElement extends InputFormElement {
+  static BlocProvider<CheckboxFormElementBloc> constructFullElement(
+      {@required String formElementTitle}) {
+    return BlocProvider<CheckboxFormElementBloc>(
+      create: (_) => CheckboxFormElementBloc(),
+      child: CheckboxFormElement(
+        formElementTitle: formElementTitle,
+      ),
+    );
+  }
+
   /// Default Optional Arguments Constructor for [CheckboxFormElement].
   CheckboxFormElement(
       {Key key, String formElementTitle}) : super(key: key, formElementTitle: formElementTitle);
 
   @override
   Widget build(BuildContext context) {
-    final CheckboxFormElementBloc checkboxFormElementBloc = BlocProvider.of<CheckboxFormElementBloc>(context);
+    // Since the BLoC is provided by the BlocProvider class, the BlocProvider also closes the sink.
+    // ignore: close_sinks
+    final CheckboxFormElementBloc checkboxFormElementBloc = context.bloc<CheckboxFormElementBloc>();
 
     return buildInputFormElement(
       BlocBuilder<CheckboxFormElementBloc, bool>(
@@ -54,7 +66,4 @@ class CheckboxFormElement extends InputFormElement {
       ),
     );
   }
-
-  @override
-  getElementData() => '';
 }
