@@ -65,66 +65,11 @@ class _DreadScoutHomePageState extends State<DreadScoutHomePage> {
       // Contents are contained within Center & Column Objects
       // TODO Reorganize Home Page
       body: Center(
-        child: BlocProvider<RadioOptionFormElementBloc>(
-          create: (_) => RadioOptionFormElementBloc(),
-          child: RadioOptionFormElement(
-            <String>["One", "Two", "Three"],
-            formElementTitle: 'Hab Level',
-          ),
+        child: RadioOptionFormElement.constructFullElement(
+          formElementTitle: 'Hab Level',
+          choiceTitles: <String>["One", "Two", "Three"],
         ),
       ),
     );
-  }
-}
-
-/// [DreadScoutFormDemo] is a demonstration widget of the features of central dreadscout.
-class DreadScoutFormDemo extends StatelessWidget {
-  const DreadScoutFormDemo({
-    Key key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    ScoutingForm demoScoutingForm = ScoutingForm(
-      NamespacedKey('scouting_templates', 'test_2021'),
-    );
-
-    return FormDisplay(
-        '3656_2021_belleville',
-        'qualification_36',
-        // TODO Remove hardcode example, as templates are designed by users, not developers.
-        demoScoutingForm
-          ..addScoutingElements({
-            NamespacedKey('test_2021', 'autonomous_header'):
-              SectionHeader(title: 'Autonomous Period'),
-            NamespacedKey('test_2021', 'hab_level_radio'):
-            BlocProvider<RadioOptionFormElementBloc>(
-              create: (_) => RadioOptionFormElementBloc(),
-              child: RadioOptionFormElement(
-                <String>["One", "Two", "Three"],
-                formElementTitle: 'Hab Level',
-              ),
-            ),
-
-            NamespacedKey('test_2021', 'hab_level_choice_chip'):
-                ChoiceChipOptionFormElement(
-              <String>["One", "Two", "Three"],
-              formElementTitle: 'Hab Level',
-            ),
-            NamespacedKey('test_2021', 'robot_broken'): CheckboxFormElement(
-              formElementTitle: 'Robot Broke?',
-            ),
-            NamespacedKey('test_2021', 'robot_water_game'): SwitchFormElement(
-              formElementTitle: 'Robot participated in water game?',
-            ),
-            NamespacedKey('test_2021', 'number_hatchpanel'): CounterFormElement(
-              formElementTitle: 'Number of Hatch Panels',
-            ),
-            NamespacedKey('test_2021', 'default_submit_button'):
-                SubmitFormButton(
-              demoScoutingForm.submit,
-              formTitle: '3656_2021_belleville:qualification_36, frc:team_3656',
-            ),
-          }));
   }
 }

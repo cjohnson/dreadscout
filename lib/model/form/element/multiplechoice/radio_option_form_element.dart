@@ -36,38 +36,48 @@ class RadioOptionFormElement extends InputFormElement {
   /// [choiceTitles] is the list of options in the multiple choice list.
   List<String> choiceTitles;
 
+  static BlocProvider<RadioOptionFormElementBloc> constructFullElement(
+      {@required String formElementTitle,
+      @required List<String> choiceTitles}) {
+    return BlocProvider<RadioOptionFormElementBloc>(
+      create: (_) => RadioOptionFormElementBloc(),
+      child: RadioOptionFormElement(
+        choiceTitles,
+        formElementTitle: formElementTitle,
+      ),
+    );
+  }
+
   /// Default Optional Arguments Constructor for [RadioOptionFormElement].
-  RadioOptionFormElement(this.choiceTitles,
-      {Key key, String formElementTitle})
+  RadioOptionFormElement(this.choiceTitles, {Key key, String formElementTitle})
       : super(key: key, formElementTitle: formElementTitle);
 
   @override
   Widget build(BuildContext context) {
-    final RadioOptionFormElementBloc radioOptionFormElementBloc = BlocProvider.of<RadioOptionFormElementBloc>(context);
+    final RadioOptionFormElementBloc radioOptionFormElementBloc =
+        context.bloc<RadioOptionFormElementBloc>();
 
     return buildInputFormElement(
-      Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          for (int index = 0; index < choiceTitles.length; ++index)
-            Container(
-                child: Column(
-                    children: [
-                      Text('${choiceTitles[index]}'),
-                      BlocBuilder<RadioOptionFormElementBloc, int>(builder: (context, indexSelected) {
-                        return Radio<int>(
-                          value: index,
-                          groupValue: radioOptionFormElementBloc.state,
-                          onChanged: (value) {
-                            radioOptionFormElementBloc.add(RadioOptionFormElementEvent(index));
-                          },
-                        );
-                      }),
-                    ]
-                )
-            ),
-        ],
+      Container(
+        child: Row(
+          children: [
+            for (int index = 0; index < choiceTitles.length; ++index)
+              Column(mainAxisSize: MainAxisSize.min, children: [
+                Text('${choiceTitles[index]}'),
+                BlocBuilder<RadioOptionFormElementBloc, int>(
+                    builder: (context, indexSelected) {
+                  return Radio<int>(
+                    value: index,
+                    groupValue: radioOptionFormElementBloc.state,
+                    onChanged: (value) {
+                      radioOptionFormElementBloc
+                          .add(RadioOptionFormElementEvent(index));
+                    },
+                  );
+                }),
+              ])
+          ],
+        ),
       ),
     );
   }

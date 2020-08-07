@@ -43,6 +43,7 @@ abstract class InputFormElement extends FormElement {
     return buildStylizedFormElementContainer(
       Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisSize: MainAxisSize.max,
         children: <Widget>[
           Text(formElementTitle ?? InputFormElement.defaultFormElementTitle),
           inputMethodWidget,
