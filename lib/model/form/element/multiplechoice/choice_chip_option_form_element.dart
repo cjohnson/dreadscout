@@ -24,7 +24,7 @@ SOFTWARE.
 
 import 'package:flutter/material.dart';
 
-import 'package:dreadscout/form/element/input_form_element.dart';
+import 'package:dreadscout/model/form/element/input_form_element.dart';
 
 class ChoiceChipOptionFormElement extends InputFormElement {
   final List<String> choiceTitles;

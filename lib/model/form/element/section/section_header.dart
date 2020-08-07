@@ -24,52 +24,27 @@ SOFTWARE.
 
 import 'package:flutter/material.dart';
 
-import 'package:dreadscout/form/element/form_element.dart';
+import 'package:dreadscout/model/form/element/form_element.dart';
 
-import '../../scouting_form.dart';
+class SectionHeader extends FormElement {
+  final String title;
 
-/// [SubmitFormButton] to submit scouting forms.
-class SubmitFormButton extends FormElement {
-  /// [formTitle] is the title of the current form.
-  final String formTitle;
-
-  final void Function() onSubmit;
-
-  /// Optional (required) args constructor for [SubmitFormButton]
-  SubmitFormButton(this.onSubmit, {this.formTitle: 'Untitled New Form'});
-
-  /// Default Overridden [createState] method from Flutter
-  @override
-  _SubmitFormButtonState createState() => _SubmitFormButtonState();
+  SectionHeader({this.title: "Section Header"});
 
   @override
-  getElementData() => null;
+  _SectionHeaderState createState() => _SectionHeaderState();
+
+  @override
+  String getElementData() => title;
 }
 
-/// [_SubmitFormButtonState] state class for [SubmitFormButton].
-class _SubmitFormButtonState extends State<SubmitFormButton> {
-  /// Default overridden [build] method from Flutter.
+class _SectionHeaderState extends State<SectionHeader> {
   @override
   Widget build(BuildContext context) {
-    return _buildButtonWrapping(
-      FloatingActionButton.extended(
-        icon: const Icon(Icons.archive),
-        onPressed: widget.onSubmit,
-        label: Text("Submit"),
-      ),
-    );
-  }
-
-  Widget _buildButtonWrapping(Widget button) {
     return widget.buildFormElementContainer(
-      Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        mainAxisSize: MainAxisSize.max,
-        children: [
-          SizedBox(width: 0,),
-          button,
-        ],
-      )
+      Center(
+        child: Text('${widget.title}'),
+      ),
     );
   }
 }

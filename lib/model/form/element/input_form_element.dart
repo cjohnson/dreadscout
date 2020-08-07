@@ -24,7 +24,7 @@ SOFTWARE.
 
 import 'package:flutter/material.dart';
 
-import 'package:dreadscout/form/element/form_element.dart';
+import 'package:dreadscout/model/form/element/form_element.dart';
 
 /// Base Class [InputFormElement] widget for common form element ideas.
 abstract class InputFormElement extends FormElement {

@@ -24,49 +24,48 @@ SOFTWARE.
 
 import 'package:flutter/material.dart';
 
-import 'package:dreadscout/form/element/input_form_element.dart';
+import 'package:dreadscout/model/form/element/input_form_element.dart';
 
-/// Custom [CheckboxFormElement] widget for simple checkbox options in a Widget.
+/// Custom [SwitchFormElement] widget for simple switch options in a widget
 ///
-/// This form element collects a "Yes/No" or "True/False" datum.
-/// Example: Robot Broke? CHECKBOX: Yes/No.
-class CheckboxFormElement extends InputFormElement {
-  /// [checkboxValue] represents current state of the datum.
-  bool checkboxValue;
+/// This form element collects a "Enabled/Disabled" datum.
+/// Use for specific input configuration.
+class SwitchFormElement extends InputFormElement {
+  /// [switchValue] represents the current state of the datum.
+  bool switchValue;
 
-  /// Default Optional Arguments Constructor for [CheckboxFormElement].
-  CheckboxFormElement(
-      {Key key, String formElementTitle, this.checkboxValue: false})
+  /// Default Optional Arguments Constructor for [SwitchFormElement].
+  SwitchFormElement({Key key, String formElementTitle, this.switchValue: false})
       : super(key: key, formElementTitle: formElementTitle);
 
   /// Default Overridden [createState] Flutter method.
   @override
-  _CheckboxFormElementState createState() => _CheckboxFormElementState();
+  _SwitchFormElementState createState() => _SwitchFormElementState();
 
   @override
-  bool getElementData() => checkboxValue;
+  bool getElementData() => switchValue;
 }
 
-/// Custom [_CheckboxFormElementState] state class for [CheckboxFormElement]
+/// Custom [_SwitchFormElementState] state class for [SwitchFormElement]
 ///
-/// Represents a current state of [CheckboxFormElement]
-class _CheckboxFormElementState extends State<CheckboxFormElement> {
-  /// Click event for the checkbox [_changeCheck].
+/// Represents a current state of [SwitchFormElement]
+class _SwitchFormElementState extends State<SwitchFormElement> {
+  /// Click event for the switch [_changeSwitch].
   ///
-  /// Changes the state of the datum based on the checkbox state.
-  void _changeCheck(bool value) {
+  /// Changes the state of the datum based on the switch state.
+  void _changeSwitch(bool value) {
     setState(() {
-      // Set data to new checkbox status.
-      widget.checkboxValue = value;
+      // Set data to new switch status.
+      widget.switchValue = value;
     });
   }
 
   /// Standard overridden [build] method from Flutter.
   @override
   Widget build(BuildContext context) {
-    return widget.buildInputFormElement(Checkbox(
-      value: widget.checkboxValue,
-      onChanged: _changeCheck,
+    return widget.buildInputFormElement(Switch(
+      value: widget.switchValue,
+      onChanged: _changeSwitch,
     ));
   }
 }

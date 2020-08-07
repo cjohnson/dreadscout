@@ -22,7 +22,7 @@ import 'package:dart_numerics/dart_numerics.dart' as numerics;
 
 import 'package:flutter/material.dart';
 
-import 'package:dreadscout/form/element/input_form_element.dart';
+import 'package:dreadscout/model/form/element/input_form_element.dart';
 
 /// [CounterFormElement] for numeric value tracking.
 class CounterFormElement extends InputFormElement {

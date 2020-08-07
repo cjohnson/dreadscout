@@ -24,7 +24,7 @@ SOFTWARE.
 
 import 'package:flutter/material.dart';
 
-import 'package:dreadscout/form/element/input_form_element.dart';
+import 'package:dreadscout/model/form/element/input_form_element.dart';
 
 /// Custom [RadioOptionFormElement] Widget for Multiple Choice Style Options.
 ///

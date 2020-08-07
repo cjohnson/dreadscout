@@ -22,15 +22,38 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
  */
 
-import 'package:dreadscout/form/scouting_form.dart';
+import 'package:dreadscout/utility/namespaced_key.dart';
 
-/// [FormManager] acts as a manager of forms in memory.
-class FormManager {
-  /// List of the [ScoutingForm] objects.
-  List<ScoutingForm> forms;
+import 'package:dreadscout/model/form/element/form_element.dart';
 
-  /// Initialization constructor of [FormManager]
-  FormManager() {
-    this.forms = List<ScoutingForm>();
+/// Represents storage of the various forms tracked during the app's runtime.
+class ScoutingForm {
+  /// [formKey] acts as the unique identifier of the form.
+  final NamespacedKey formKey;
+
+  /// [formValues] are the keyed values of each form (data)
+  Map<NamespacedKey, FormElement> formValues;
+
+  /// Required [formKey] constructor.
+  ScoutingForm(this.formKey) {
+    this.formValues = Map<NamespacedKey, FormElement>();
+  }
+
+  void submit() {
+    print('Submitting $formKey...\nNew Values: $formValues');
+  }
+
+  void addScoutingElement(String namespace, String name, FormElement Function() ifAbsent) {
+    formValues.putIfAbsent(NamespacedKey(namespace, name), ifAbsent);
+  }
+
+  void addScoutingElements(Map<NamespacedKey, FormElement> newFormValues) {
+    for(NamespacedKey key in newFormValues.keys)
+      formValues[key] = newFormValues[key];
+  }
+
+  @override
+  String toString() {
+    return 'ScoutingForm{formKey: $formKey, formValues: $formValues}';
   }
 }

@@ -22,18 +22,18 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
  */
 
-import 'package:dreadscout/form/element/section/section_header.dart';
-import 'package:dreadscout/form/form_display.dart';
-import 'package:dreadscout/form/scouting_form.dart';
-import 'package:dreadscout/utility/namespaced_key.dart';
 import 'package:flutter/material.dart';
 
-import 'package:dreadscout/form/element/boolean/checkbox_form_element.dart';
-import 'package:dreadscout/form/element/boolean/switch_form_element.dart';
-import 'package:dreadscout/form/element/multiplechoice/radio_option_form_element.dart';
-import 'package:dreadscout/form/element/numeric/counter_form_element.dart';
-import 'package:dreadscout/form/element/button/submit_form_button.dart';
-import 'package:dreadscout/form/element/multiplechoice/choice_chip_option_form_element.dart';
+import 'package:dreadscout/model/form/element/boolean/checkbox_form_element.dart';
+import 'package:dreadscout/model/form/element/boolean/switch_form_element.dart';
+import 'package:dreadscout/model/form/element/button/submit_form_button.dart';
+import 'package:dreadscout/model/form/element/multiplechoice/choice_chip_option_form_element.dart';
+import 'package:dreadscout/model/form/element/multiplechoice/radio_option_form_element.dart';
+import 'package:dreadscout/model/form/element/numeric/counter_form_element.dart';
+import 'package:dreadscout/model/form/element/section/section_header.dart';
+import 'package:dreadscout/model/form/form_display.dart';
+import 'package:dreadscout/model/form/scouting_form.dart';
+import 'package:dreadscout/utility/namespaced_key.dart';
 
 /// Dreadscout Home Page [DreadScoutHomePage]
 ///

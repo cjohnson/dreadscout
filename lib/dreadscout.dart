@@ -22,13 +22,12 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
  */
 
+import 'package:dreadscout/ui/home_page.dart';
 import 'package:intl/intl.dart';
 
 import 'package:logging/logging.dart';
 
 import 'package:flutter/material.dart';
-
-import 'package:dreadscout/page/home_page.dart';
 
 /// [DreadScout] is the top-level class for the application.
 ///

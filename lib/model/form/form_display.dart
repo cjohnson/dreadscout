@@ -1,16 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'package:dreadscout/form/element/form_element.dart';
+import 'package:dreadscout/model/form/scouting_form.dart';
+import 'package:dreadscout/model/form/element/form_element.dart';
 import 'package:dreadscout/utility/namespaced_key.dart';
-
-import 'element/boolean/checkbox_form_element.dart';
-import 'element/boolean/switch_form_element.dart';
-import 'element/button/submit_form_button.dart';
-import 'element/multiplechoice/choice_chip_option_form_element.dart';
-import 'element/multiplechoice/radio_option_form_element.dart';
-import 'element/numeric/counter_form_element.dart';
-import 'element/section/section_header.dart';
-import 'scouting_form.dart';
 
 class FormDisplay extends StatelessWidget {
   ScoutingForm form;

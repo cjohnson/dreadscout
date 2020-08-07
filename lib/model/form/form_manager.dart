@@ -22,29 +22,15 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
  */
 
-import 'package:flutter/material.dart';
+import 'package:dreadscout/model/form/scouting_form.dart';
 
-import 'package:dreadscout/form/element/form_element.dart';
+/// [FormManager] acts as a manager of forms in memory.
+class FormManager {
+  /// List of the [ScoutingForm] objects.
+  List<ScoutingForm> forms;
 
-class SectionHeader extends FormElement {
-  final String title;
-
-  SectionHeader({this.title: "Section Header"});
-
-  @override
-  _SectionHeaderState createState() => _SectionHeaderState();
-
-  @override
-  String getElementData() => title;
-}
-
-class _SectionHeaderState extends State<SectionHeader> {
-  @override
-  Widget build(BuildContext context) {
-    return widget.buildFormElementContainer(
-      Center(
-        child: Text('${widget.title}'),
-      ),
-    );
+  /// Initialization constructor of [FormManager]
+  FormManager() {
+    this.forms = List<ScoutingForm>();
   }
 }
