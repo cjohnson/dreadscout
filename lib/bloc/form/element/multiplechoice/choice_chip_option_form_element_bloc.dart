@@ -31,7 +31,8 @@ class ChoiceChipOptionFormElementEvent {
   ChoiceChipOptionFormElementEvent(this.indexSelect);
 }
 
-class ChoiceChipOptionFormElementBloc extends Bloc<ChoiceChipOptionFormElementEvent, int> {
+class ChoiceChipOptionFormElementBloc
+    extends Bloc<ChoiceChipOptionFormElementEvent, int> {
   ChoiceChipOptionFormElementBloc() : super(-1);
 
   @override

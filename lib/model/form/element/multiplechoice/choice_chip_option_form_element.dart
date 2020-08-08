@@ -38,18 +38,20 @@ class ChoiceChipOptionFormElement extends InputFormElement {
       : super(key: key, formElementTitle: formElementTitle);
 
   @override
-  Set<Object> getElementData() => {choiceChipValue, choiceTitles[choiceChipValue]};
+  Set<Object> getElementData() =>
+      {choiceChipValue, choiceTitles[choiceChipValue]};
 
   @override
   Widget build(BuildContext context) {
-    final ChoiceChipOptionFormElementBloc choiceChipOptionFormElementBloc = BlocProvider.of<ChoiceChipOptionFormElementBloc>(context);
+    final ChoiceChipOptionFormElementBloc choiceChipOptionFormElementBloc =
+        BlocProvider.of<ChoiceChipOptionFormElementBloc>(context);
 
     return buildInputFormElement(
       Row(
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
-          for(int index = 0; index < choiceTitles.length; index++)
+          for (int index = 0; index < choiceTitles.length; index++)
             Row(
               children: [
                 BlocBuilder<ChoiceChipOptionFormElementBloc, int>(
@@ -58,12 +60,15 @@ class ChoiceChipOptionFormElement extends InputFormElement {
                       label: Text('${choiceTitles[index]}'),
                       selected: choiceChipOptionFormElementBloc.state == index,
                       onSelected: (value) {
-                        choiceChipOptionFormElementBloc.add(ChoiceChipOptionFormElementEvent(index));
+                        choiceChipOptionFormElementBloc
+                            .add(ChoiceChipOptionFormElementEvent(index));
                       },
                     );
                   },
                 ),
-                SizedBox(width: 0,),
+                SizedBox(
+                  width: 0,
+                ),
               ],
             ),
         ],

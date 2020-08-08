@@ -39,7 +39,8 @@ class SwitchFormElement extends InputFormElement {
 
   @override
   Widget build(BuildContext context) {
-    final SwitchFormElementBloc switchFormElementBloc = BlocProvider.of<SwitchFormElementBloc>(context);
+    final SwitchFormElementBloc switchFormElementBloc =
+        BlocProvider.of<SwitchFormElementBloc>(context);
 
     return buildInputFormElement(
       BlocBuilder<SwitchFormElementBloc, bool>(

@@ -32,7 +32,7 @@ class CounterFormElementBloc extends Bloc<CounterFormElementEvent, int> {
 
   @override
   Stream<int> mapEventToState(CounterFormElementEvent event) async* {
-    switch(event) {
+    switch (event) {
       case CounterFormElementEvent.increment:
         yield state - 1;
         break;

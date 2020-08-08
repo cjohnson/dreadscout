@@ -51,8 +51,7 @@ class DreadScoutHomePage extends StatelessWidget {
           children: [
             // TODO Remove Hardcoded Example/Demo, as templates/forms are created by users, not developers.
             CheckboxFormElement.constructFullElement(
-              formElementTitle: 'Robot Broke?'
-            ),
+                formElementTitle: 'Robot Broke?'),
             RadioOptionFormElement.constructFullElement(
               formElementTitle: 'Hab Level',
               radioTitles: <String>["One", "Two", "Three"],

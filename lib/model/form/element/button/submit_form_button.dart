@@ -48,16 +48,16 @@ class SubmitFormButton extends FormElement {
   }
 
   Widget _buildButtonWrapping(Widget button) {
-    return buildFormElementContainer(
-      Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        mainAxisSize: MainAxisSize.max,
-        children: [
-          SizedBox(width: 0,),
-          button,
-        ],
-      )
-    );
+    return buildFormElementContainer(Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      mainAxisSize: MainAxisSize.max,
+      children: [
+        SizedBox(
+          width: 0,
+        ),
+        button,
+      ],
+    ));
   }
 
   @override

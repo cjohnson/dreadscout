@@ -30,6 +30,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class CounterFormElement extends InputFormElement {
   /// Maximum Possible value.
   final int maximumValue;
+
   /// Minimum Possible value.
   final int minimumValue;
 
@@ -48,7 +49,8 @@ class CounterFormElement extends InputFormElement {
   /// Default Override for StatefulWidgets.
   @override
   Widget build(BuildContext context) {
-    final CounterFormElementBloc counterFormElementBloc = BlocProvider.of<CounterFormElementBloc>(context);
+    final CounterFormElementBloc counterFormElementBloc =
+        BlocProvider.of<CounterFormElementBloc>(context);
 
     return buildInputFormElement(Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -61,13 +63,17 @@ class CounterFormElement extends InputFormElement {
           child: Text('-'),
           color: Colors.blueGrey[500],
         ),
-        SizedBox(width: 12,),
+        SizedBox(
+          width: 12,
+        ),
         BlocBuilder<CounterFormElementBloc, int>(
           builder: (context, value) {
             return Text('$value');
           },
         ),
-        SizedBox(width: 12,),
+        SizedBox(
+          width: 12,
+        ),
         RaisedButton(
           onPressed: () {
             counterFormElementBloc.add(CounterFormElementEvent.increment);

@@ -9,17 +9,16 @@ class FormDisplay extends StatelessWidget {
 
   FormDisplay(String formNamespace, String formName, ScoutingForm template) {
     this.form = ScoutingForm(NamespacedKey(formNamespace, formName));
-    for(NamespacedKey key in template.formValues.keys)
+    for (NamespacedKey key in template.formValues.keys)
       this.form.formValues[key] = template.formValues[key];
   }
 
   @override
   Widget build(BuildContext context) {
     return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: <FormElement>[
-        for (NamespacedKey key in form.formValues.keys) form.formValues[key],
-      ]
-    );
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <FormElement>[
+          for (NamespacedKey key in form.formValues.keys) form.formValues[key],
+        ]);
   }
 }

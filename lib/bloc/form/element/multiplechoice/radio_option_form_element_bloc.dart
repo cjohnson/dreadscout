@@ -31,7 +31,8 @@ class RadioOptionFormElementEvent {
   RadioOptionFormElementEvent(this.indexSelect);
 }
 
-class RadioOptionFormElementBloc extends Bloc<RadioOptionFormElementEvent, int> {
+class RadioOptionFormElementBloc
+    extends Bloc<RadioOptionFormElementEvent, int> {
   /// [radioTitles] is the list of options in the multiple choice list.
   final List<String> radioTitles;
 

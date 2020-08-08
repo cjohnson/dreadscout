@@ -44,12 +44,13 @@ class ScoutingForm {
     print('Submitting $formKey...\nNew Values: $formValues');
   }
 
-  void addScoutingElement(String namespace, String name, FormElement Function() ifAbsent) {
+  void addScoutingElement(
+      String namespace, String name, FormElement Function() ifAbsent) {
     formValues.putIfAbsent(NamespacedKey(namespace, name), ifAbsent);
   }
 
   void addScoutingElements(Map<NamespacedKey, StatelessWidget> newFormValues) {
-    for(NamespacedKey key in newFormValues.keys)
+    for (NamespacedKey key in newFormValues.keys)
       formValues[key] = newFormValues[key];
   }
 

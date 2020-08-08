@@ -81,7 +81,8 @@ class DreadScout extends StatelessWidget {
       final DateFormat dateFormatter = DateFormat('HH:mm:ss');
       final String formattedDateTime = dateFormatter.format(record.time);
 
-      final String formattedLogMessage = '[$formattedDateTime ${record.level}]: ${record.message}';
+      final String formattedLogMessage =
+          '[$formattedDateTime ${record.level}]: ${record.message}';
       print(formattedLogMessage);
     });
 
