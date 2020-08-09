@@ -29,7 +29,7 @@ import 'package:bloc_test/bloc_test.dart';
 // Internal
 import 'package:dreadscout/bloc/form/element/boolean/boolean_data_bloc.dart';
 
-void main() {
+void testBooleanDataBloc() {
   group('BooleanDataBloc', () {
     // ignore: close_sinks
     BooleanDataBloc booleanDataBlocToggleTestInitialFalse;
