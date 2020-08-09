@@ -27,65 +27,54 @@ import 'package:test/test.dart';
 import 'package:bloc_test/bloc_test.dart';
 
 // Internal
-import 'package:dreadscout/bloc/form/element/boolean/checkbox_form_element_bloc.dart';
-import 'package:dreadscout/bloc/form/element/boolean/switch_form_element_bloc.dart';
+import 'package:dreadscout/bloc/form/element/boolean/boolean_data_bloc.dart';
 
 void main() {
-  group('CheckboxFormElementBloc', () {
+  group('BooleanDataBloc', () {
     // ignore: close_sinks
-    CheckboxFormElementBloc checkboxFormElementBlocInitialFalse;
+    BooleanDataBloc booleanDataBlocToggleTestInitialFalse;
     // ignore: close_sinks
-    CheckboxFormElementBloc checkboxFormElementBlocInitialTrue;
+    BooleanDataBloc booleanDataBlocToggleTestInitialTrue;
+
+    // ignore: close_sinks
+    BooleanDataBloc booleanDataBlocSetTest;
 
     setUp(() {
-      checkboxFormElementBlocInitialFalse = CheckboxFormElementBloc(initialState: false);
-      checkboxFormElementBlocInitialTrue = CheckboxFormElementBloc(initialState: true);
+      booleanDataBlocToggleTestInitialFalse = BooleanDataBloc(initialState: false);
+      booleanDataBlocToggleTestInitialTrue = BooleanDataBloc(initialState: true);
+
+      booleanDataBlocSetTest = BooleanDataBloc(initialState: false);
     });
 
     test('Initial State of CheckboxFormElementBloc is false', () {
-      expect(checkboxFormElementBlocInitialFalse.state, false);
-      expect(checkboxFormElementBlocInitialTrue.state, true);
+      expect(booleanDataBlocToggleTestInitialFalse.state, false);
+      expect(booleanDataBlocToggleTestInitialTrue.state, true);
+
+      expect(booleanDataBlocSetTest.state, false);
     });
 
-    blocTest('emits [true] when CheckboxFormElementEvent.toggleCheck is added',
-      build: () => checkboxFormElementBlocInitialFalse,
-      act: (bloc) => bloc.add(CheckboxFormElementEvent.toggleCheck),
+    blocTest('emits [true] when BooleanDataBlocEvent.toggleBoolean is added',
+      build: () => booleanDataBlocToggleTestInitialFalse,
+      act: (bloc) => bloc.add(BooleanDataBlocEvent.toggleBoolean),
       expect: [true],
     );
 
-    blocTest('emits [false] when CheckboxFormElementEvent.toggleCheck is added',
-      build: () => checkboxFormElementBlocInitialTrue,
-      act: (bloc) => bloc.add(CheckboxFormElementEvent.toggleCheck),
+    blocTest('emits [false] when BooleanDataBlocEvent.toggleBoolean is added',
+      build: () => booleanDataBlocToggleTestInitialTrue,
+      act: (bloc) => bloc.add(BooleanDataBlocEvent.toggleBoolean),
       expect: [false],
     );
-  });
 
-  group('SwitchFormElementBloc', () {
-    // ignore: close_sinks
-    SwitchFormElementBloc switchFormElementBlocInitialFalse;
-    // ignore: close_sinks
-    SwitchFormElementBloc switchFormElementBlocInitialTrue;
+    blocTest('emits [false] when BooleanDataBlocEvent.setFalse is added',
+      build: () => booleanDataBlocSetTest,
+      act: (bloc) => bloc.add(BooleanDataBlocEvent.setFalse),
+      expect: [false],
+    );
 
-    setUp(() {
-      switchFormElementBlocInitialFalse = SwitchFormElementBloc(initialState: false);
-      switchFormElementBlocInitialTrue = SwitchFormElementBloc(initialState: true);
-    });
-
-    test('Initial State of SwitchFormElementBloc is false', () {
-      expect(switchFormElementBlocInitialFalse.state, false);
-      expect(switchFormElementBlocInitialTrue.state, true);
-    });
-
-    blocTest('emits [true] when SwitchFormElementEvent.toggleSwitch is added',
-      build: () => switchFormElementBlocInitialFalse,
-      act: (bloc) => bloc.add(SwitchFormElementEvent.toggleSwitch),
+    blocTest('emits [true] when BooleanDataBlocEvent.setTrue is added',
+      build: () => booleanDataBlocSetTest,
+      act: (bloc) => bloc.add(BooleanDataBlocEvent.setTrue),
       expect: [true],
-    );
-
-    blocTest('emits [false] when SwitchFormElementEvent.toggleSwitch is added',
-      build: () => switchFormElementBlocInitialTrue,
-      act: (bloc) => bloc.add(SwitchFormElementEvent.toggleSwitch),
-      expect: [false],
     );
   });
 }

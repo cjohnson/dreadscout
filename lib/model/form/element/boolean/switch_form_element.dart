@@ -22,7 +22,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
  */
 
-import 'package:dreadscout/bloc/form/element/boolean/switch_form_element_bloc.dart';
+import 'package:dreadscout/bloc/form/element/boolean/boolean_data_bloc.dart';
 import 'package:flutter/material.dart';
 
 import 'package:dreadscout/model/form/element/input_form_element.dart';
@@ -39,16 +39,16 @@ class SwitchFormElement extends InputFormElement {
 
   @override
   Widget build(BuildContext context) {
-    final SwitchFormElementBloc switchFormElementBloc =
-        BlocProvider.of<SwitchFormElementBloc>(context);
+    final BooleanDataBloc switchFormElementBloc =
+        BlocProvider.of<BooleanDataBloc>(context);
 
     return buildInputFormElement(
-      BlocBuilder<SwitchFormElementBloc, bool>(
+      BlocBuilder<BooleanDataBloc, bool>(
         builder: (context, SwitchValue) {
           return Switch(
             value: SwitchValue,
             onChanged: (newState) {
-              switchFormElementBloc.add(SwitchFormElementEvent.toggleSwitch);
+              switchFormElementBloc.add(BooleanDataBlocEvent.toggleBoolean);
             },
           );
         },

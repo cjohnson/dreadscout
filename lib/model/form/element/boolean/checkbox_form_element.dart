@@ -27,7 +27,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 // Internal Packages
-import 'package:dreadscout/bloc/form/element/boolean/checkbox_form_element_bloc.dart';
+import 'package:dreadscout/bloc/form/element/boolean/boolean_data_bloc.dart';
 import 'package:dreadscout/model/form/element/input_form_element.dart';
 
 /// [CheckboxFormElement] is a custom data collection widget for boolean data.
@@ -48,11 +48,11 @@ class CheckboxFormElement extends InputFormElement {
   /// business logic is managed by a BLoC.
   /// [formElementTitle] is the title of the form element (title to the left of
   /// data collection).
-  static BlocProvider<CheckboxFormElementBloc> constructFullElement(
+  static BlocProvider<BooleanDataBloc> constructFullElement(
       {@required String formElementTitle}) {
-    return BlocProvider<CheckboxFormElementBloc>(
+    return BlocProvider<BooleanDataBloc>(
       // BLoC Class to Instantiate the BLoC.
-      create: (_) => CheckboxFormElementBloc(),
+      create: (_) => BooleanDataBloc(),
       // Instance of the CheckboxFormElement Widget.
       child: CheckboxFormElement(
         formElementTitle: formElementTitle,
@@ -79,20 +79,20 @@ class CheckboxFormElement extends InputFormElement {
     // Since the BLoC is provided by the BlocProvider class,
     // the BlocProvider also closes the sink.
     // ignore: close_sinks
-    final CheckboxFormElementBloc checkboxFormElementBloc =
-        context.bloc<CheckboxFormElementBloc>();
+    final BooleanDataBloc checkboxFormElementBloc =
+        context.bloc<BooleanDataBloc>();
 
     // Return Extension of InputFormElement's default style and UI.
     return buildInputFormElement(
       // BlocBuilder for Handling State Management & Re-rendering.
-      BlocBuilder<CheckboxFormElementBloc, bool>(
+      BlocBuilder<BooleanDataBloc, bool>(
         builder: (context, checkboxValue) {
           // On re-render, use latest state data. (checkboxValue).
           return Checkbox(
             value: checkboxValue,
             onChanged: (newState) {
               // Add an instruction to the BLoC to update state & re-render.
-              checkboxFormElementBloc.add(CheckboxFormElementEvent.toggleCheck);
+              checkboxFormElementBloc.add(BooleanDataBlocEvent.toggleBoolean);
             },
           );
         },
