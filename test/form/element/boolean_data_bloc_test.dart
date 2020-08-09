@@ -46,7 +46,7 @@ void testBooleanDataBloc() {
       booleanDataBlocSetTest = BooleanDataBloc(initialState: false);
     });
 
-    test('Initial State of CheckboxFormElementBloc is false', () {
+    test('Initial State of BooleanDataBloc is false', () {
       expect(booleanDataBlocToggleTestInitialFalse.state, false);
       expect(booleanDataBlocToggleTestInitialTrue.state, true);
 

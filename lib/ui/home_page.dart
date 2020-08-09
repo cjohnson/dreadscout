@@ -23,6 +23,7 @@ SOFTWARE.
  */
 
 import 'package:dreadscout/model/form/element/boolean/checkbox_form_element.dart';
+import 'package:dreadscout/model/form/element/multiplechoice/choice_chip_option_form_element.dart';
 import 'package:flutter/material.dart';
 
 import 'package:dreadscout/model/form/element/multiplechoice/radio_option_form_element.dart';
@@ -54,8 +55,12 @@ class DreadScoutHomePage extends StatelessWidget {
                 formElementTitle: 'Robot Broke?'),
             RadioOptionFormElement.constructFullElement(
               formElementTitle: 'Hab Level',
-              radioTitles: <String>["One", "Two", "Three"],
+              indexList: <String>["One", "Two", "Three"],
             ),
+            ChoiceChipOptionFormElement.constructFullElement(
+              formElementTitle: 'Hab Level',
+              indexList: <String>["One", "Two", "Three"],
+            )
           ],
         ),
       ),

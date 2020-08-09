@@ -22,57 +22,66 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
  */
 
-import 'package:dreadscout/bloc/form/element/multiplechoice/choice_chip_option_form_element_bloc.dart';
+import 'package:dreadscout/bloc/form/element/multiplechoice/indexed_data_bloc.dart';
 import 'package:flutter/material.dart';
 
 import 'package:dreadscout/model/form/element/input_form_element.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ChoiceChipOptionFormElement extends InputFormElement {
-  final List<String> choiceTitles;
+  static BlocProvider<IndexedDataBloc> constructFullElement(
+      {@required String formElementTitle, @required List<String> indexList}) {
+    return BlocProvider<IndexedDataBloc>(
+      create: (_) => IndexedDataBloc(indexList),
+      child: ChoiceChipOptionFormElement(
+        formElementTitle: formElementTitle,
+      ),
+    );
+  }
 
-  int choiceChipValue;
-
-  ChoiceChipOptionFormElement(this.choiceTitles,
-      {Key key, String formElementTitle, this.choiceChipValue})
+  ChoiceChipOptionFormElement({Key key, String formElementTitle})
       : super(key: key, formElementTitle: formElementTitle);
 
   @override
-  Set<Object> getElementData() =>
-      {choiceChipValue, choiceTitles[choiceChipValue]};
-
-  @override
   Widget build(BuildContext context) {
-    final ChoiceChipOptionFormElementBloc choiceChipOptionFormElementBloc =
-        BlocProvider.of<ChoiceChipOptionFormElementBloc>(context);
+    // Since the BLoC is provided by the BlocProvider class,
+    // the BlocProvider also closes the sink.
+    // ignore: close_sinks
+    final IndexedDataBloc choiceChipOptionFormElementBloc =
+        BlocProvider.of<IndexedDataBloc>(context);
 
     return buildInputFormElement(
       Row(
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
-          for (int index = 0; index < choiceTitles.length; index++)
-            Row(
-              children: [
-                BlocBuilder<ChoiceChipOptionFormElementBloc, int>(
-                  builder: (context, indexSelected) {
-                    return ChoiceChip(
-                      label: Text('${choiceTitles[index]}'),
-                      selected: choiceChipOptionFormElementBloc.state == index,
-                      onSelected: (value) {
-                        choiceChipOptionFormElementBloc
-                            .add(ChoiceChipOptionFormElementEvent(index));
-                      },
-                    );
-                  },
-                ),
-                SizedBox(
-                  width: 0,
-                ),
-              ],
-            ),
+          for (int index = 0; index < choiceChipOptionFormElementBloc.indexList.length; index++)
+            constructChoiceChipElement(index, choiceChipOptionFormElementBloc),
         ],
       ),
+    );
+  }
+
+  Row constructChoiceChipElement(
+      int index, IndexedDataBloc choiceChipOptionFormElementBloc) {
+    return Row(
+      children: [
+        BlocBuilder<IndexedDataBloc, int>(
+          builder: (context, indexSelected) {
+            return ChoiceChip(
+              label: Text('${choiceChipOptionFormElementBloc.indexList[index]}'),
+              selected: choiceChipOptionFormElementBloc.state == index,
+              onSelected: (value) {
+                choiceChipOptionFormElementBloc
+                    .add(IndexedDataBlocEvent(index));
+              },
+            );
+          },
+        ),
+        SizedBox(
+          width: 0,
+        ),
+      ],
     );
   }
 }

@@ -22,7 +22,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
  */
 
-import 'package:dreadscout/bloc/form/element/multiplechoice/radio_option_form_element_bloc.dart';
+import 'package:dreadscout/bloc/form/element/multiplechoice/indexed_data_bloc.dart';
 import 'package:flutter/material.dart';
 
 import 'package:dreadscout/model/form/element/input_form_element.dart';
@@ -33,10 +33,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 /// This form element collects a multiple choice style option.
 /// Example: Robot Hab Level: 1st, 2nd, 3rd
 class RadioOptionFormElement extends InputFormElement {
-  static BlocProvider<RadioOptionFormElementBloc> constructFullElement(
-      {@required String formElementTitle, @required List<String> radioTitles}) {
-    return BlocProvider<RadioOptionFormElementBloc>(
-      create: (_) => RadioOptionFormElementBloc(radioTitles),
+  static BlocProvider<IndexedDataBloc> constructFullElement(
+      {@required String formElementTitle, @required List<String> indexList}) {
+    return BlocProvider<IndexedDataBloc>(
+      create: (_) => IndexedDataBloc(indexList),
       child: RadioOptionFormElement(
         formElementTitle: formElementTitle,
       ),
@@ -50,30 +50,32 @@ class RadioOptionFormElement extends InputFormElement {
   @override
   Widget build(BuildContext context) {
     // ignore: close_sinks
-    final RadioOptionFormElementBloc bloc =
-        context.bloc<RadioOptionFormElementBloc>();
+    final IndexedDataBloc bloc = context.bloc<IndexedDataBloc>();
 
     return buildInputFormElement(
       Container(
         child: Row(
           children: [
-            for (int index = 0; index < bloc.radioTitles.length; ++index)
-              Column(mainAxisSize: MainAxisSize.min, children: [
-                Text('${bloc.radioTitles[index]}'),
-                BlocBuilder<RadioOptionFormElementBloc, int>(
-                    builder: (context, indexSelected) {
-                  return Radio<int>(
-                    value: index,
-                    groupValue: bloc.state,
-                    onChanged: (value) {
-                      bloc.add(RadioOptionFormElementEvent(index));
-                    },
-                  );
-                }),
-              ])
+            for (int index = 0; index < bloc.indexList.length; ++index)
+              buildChoiceChipElement(bloc, index),
           ],
         ),
       ),
     );
+  }
+
+  Column buildChoiceChipElement(IndexedDataBloc bloc, int index) {
+    return Column(mainAxisSize: MainAxisSize.min, children: [
+      Text('${bloc.indexList[index]}'),
+      BlocBuilder<IndexedDataBloc, int>(builder: (context, indexSelected) {
+        return Radio<int>(
+          value: index,
+          groupValue: bloc.state,
+          onChanged: (value) {
+            bloc.add(IndexedDataBlocEvent(index));
+          },
+        );
+      }),
+    ]);
   }
 }

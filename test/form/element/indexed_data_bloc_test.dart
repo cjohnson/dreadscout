@@ -20,10 +20,43 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-import 'form/element/boolean_data_bloc_test.dart';
-import 'form/element/indexed_data_bloc_test.dart';
+// Testing Packages
+import 'package:test/test.dart';
 
-void main() {
-  testBooleanDataBloc();
-  testIndexedDataBloc();
+// Flutter Testing Packages
+import 'package:bloc_test/bloc_test.dart';
+
+// Internal
+import 'package:dreadscout/bloc/form/element/multiplechoice/indexed_data_bloc.dart';
+
+void testIndexedDataBloc() {
+  group('IndexedDataBloc', () {
+    // ignore: close_sinks
+    IndexedDataBloc indexedDataBloc;
+
+    setUp(() {
+      indexedDataBloc = IndexedDataBloc(<String>[
+        'Option One',
+        'Option Two',
+        'Option Three',
+      ],
+      initialIndex: -1);
+    });
+
+    test('Initial State of IndexedDataBloc is 1', () {
+      expect(indexedDataBloc.state, -1);
+    });
+
+    blocTest('emits [1] when IndexedDataBlocEvent(1) is added',
+      build: () => indexedDataBloc,
+      act: (bloc) => bloc.add(IndexedDataBlocEvent(1)),
+      expect: [1],
+    );
+
+    blocTest('emits [2] when IndexedDataBlocEvent(2) is added',
+      build: () => indexedDataBloc,
+      act: (bloc) => bloc.add(IndexedDataBlocEvent(2)),
+      expect: [2],
+    );
+  });
 }
