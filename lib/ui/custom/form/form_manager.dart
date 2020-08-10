@@ -22,7 +22,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
  */
 
-import 'package:dreadscout/model/form/scouting_form.dart';
+import 'package:dreadscout/ui/custom/form/scouting_form.dart';
 
 /// [FormManager] acts as a manager of forms in memory.
 class FormManager {

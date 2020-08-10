@@ -27,7 +27,7 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 // Internal
-import 'package:dreadscout/model/form/element/boolean/checkbox_form_element.dart';
+import 'file:///C:/Workspace/dreadscout/lib/ui/custom/form/element/boolean/checkbox_form_element.dart';
 
 /// [CheckboxFormElementEvent] represents an event that has happened on the frontend.
 ///

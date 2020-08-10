@@ -25,63 +25,57 @@ SOFTWARE.
 import 'package:dreadscout/bloc/form/element/multiplechoice/indexed_data_bloc.dart';
 import 'package:flutter/material.dart';
 
-import 'package:dreadscout/model/form/element/input_form_element.dart';
+import 'file:///C:/Workspace/dreadscout/lib/ui/custom/form/element/input_form_element.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class ChoiceChipOptionFormElement extends InputFormElement {
+/// Custom [RadioOptionFormElement] Widget for Multiple Choice Style Options.
+///
+/// This form element collects a multiple choice style option.
+/// Example: Robot Hab Level: 1st, 2nd, 3rd
+class RadioOptionFormElement extends InputFormElement {
   static BlocProvider<IndexedDataBloc> constructFullElement(
       {@required String formElementTitle, @required List<String> indexList}) {
     return BlocProvider<IndexedDataBloc>(
       create: (_) => IndexedDataBloc(indexList),
-      child: ChoiceChipOptionFormElement(
+      child: RadioOptionFormElement(
         formElementTitle: formElementTitle,
       ),
     );
   }
 
-  ChoiceChipOptionFormElement({Key key, String formElementTitle})
+  /// Default Optional Arguments Constructor for [RadioOptionFormElement].
+  RadioOptionFormElement({Key key, String formElementTitle})
       : super(key: key, formElementTitle: formElementTitle);
 
   @override
   Widget build(BuildContext context) {
-    // Since the BLoC is provided by the BlocProvider class,
-    // the BlocProvider also closes the sink.
     // ignore: close_sinks
-    final IndexedDataBloc choiceChipOptionFormElementBloc =
-        BlocProvider.of<IndexedDataBloc>(context);
+    final IndexedDataBloc bloc = context.bloc<IndexedDataBloc>();
 
     return buildInputFormElement(
-      Row(
-        mainAxisSize: MainAxisSize.min,
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: [
-          for (int index = 0; index < choiceChipOptionFormElementBloc.indexList.length; index++)
-            constructChoiceChipElement(index, choiceChipOptionFormElementBloc),
-        ],
+      Container(
+        child: Row(
+          children: [
+            for (int index = 0; index < bloc.indexList.length; ++index)
+              buildChoiceChipElement(bloc, index),
+          ],
+        ),
       ),
     );
   }
 
-  Row constructChoiceChipElement(
-      int index, IndexedDataBloc choiceChipOptionFormElementBloc) {
-    return Row(
-      children: [
-        BlocBuilder<IndexedDataBloc, int>(
-          builder: (context, indexSelected) {
-            return ChoiceChip(
-              label: Text('${choiceChipOptionFormElementBloc.indexList[index]}'),
-              selected: choiceChipOptionFormElementBloc.state == index,
-              onSelected: (value) {
-                choiceChipOptionFormElementBloc
-                    .add(IndexedDataBlocEvent(index));
-              },
-            );
+  Column buildChoiceChipElement(IndexedDataBloc bloc, int index) {
+    return Column(mainAxisSize: MainAxisSize.min, children: [
+      Text('${bloc.indexList[index]}'),
+      BlocBuilder<IndexedDataBloc, int>(builder: (context, indexSelected) {
+        return Radio<int>(
+          value: index,
+          groupValue: bloc.state,
+          onChanged: (value) {
+            bloc.add(IndexedDataBlocEvent(index));
           },
-        ),
-        SizedBox(
-          width: 0,
-        ),
-      ],
-    );
+        );
+      }),
+    ]);
   }
 }

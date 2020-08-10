@@ -24,18 +24,30 @@ SOFTWARE.
 
 import 'package:flutter/material.dart';
 
-import 'package:dreadscout/model/form/element/form_element.dart';
+import 'file:///C:/Workspace/dreadscout/lib/ui/custom/form/element/form_element.dart';
 
-class SectionHeader extends FormElement {
-  final String title;
+/// Base Class [InputFormElement] widget for common form element ideas.
+abstract class InputFormElement extends FormElement {
+  /// [defaultFormElementTitle] to stand in where no title is given.
+  static final String defaultFormElementTitle = 'Datum Value?';
 
-  SectionHeader({this.title: "Section Header"});
+  /// Title of the element datum.
+  final String formElementTitle;
 
-  @override
-  Widget build(BuildContext context) {
-    return buildFormElementContainer(
-      Center(
-        child: Text('$title'),
+  /// Default Optional Arguments Constructor for [InputFormElement]
+  const InputFormElement({Key key, @required this.formElementTitle})
+      : super(key: key);
+
+  /// Constructs a basic [InputFormElement] Widget Tree.
+  Widget buildInputFormElement(Widget inputMethodWidget) {
+    return buildStylizedFormElementContainer(
+      Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisSize: MainAxisSize.max,
+        children: <Widget>[
+          Text(formElementTitle ?? InputFormElement.defaultFormElementTitle),
+          inputMethodWidget,
+        ],
       ),
     );
   }

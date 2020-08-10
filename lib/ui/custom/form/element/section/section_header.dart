@@ -22,40 +22,21 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
  */
 
-import 'package:dreadscout/utility/namespaced_key.dart';
+import 'package:flutter/material.dart';
 
-import 'package:dreadscout/model/form/element/form_element.dart';
-import 'package:flutter/cupertino.dart';
+import 'file:///C:/Workspace/dreadscout/lib/ui/custom/form/element/form_element.dart';
 
-/// Represents storage of the various forms tracked during the app's runtime.
-class ScoutingForm {
-  /// [formKey] acts as the unique identifier of the form.
-  final NamespacedKey formKey;
+class SectionHeader extends FormElement {
+  final String title;
 
-  /// [formValues] are the keyed values of each form (data)
-  Map<NamespacedKey, StatelessWidget> formValues;
-
-  /// Required [formKey] constructor.
-  ScoutingForm(this.formKey) {
-    this.formValues = Map<NamespacedKey, FormElement>();
-  }
-
-  void submit() {
-    print('Submitting $formKey...\nNew Values: $formValues');
-  }
-
-  void addScoutingElement(
-      String namespace, String name, FormElement Function() ifAbsent) {
-    formValues.putIfAbsent(NamespacedKey(namespace, name), ifAbsent);
-  }
-
-  void addScoutingElements(Map<NamespacedKey, StatelessWidget> newFormValues) {
-    for (NamespacedKey key in newFormValues.keys)
-      formValues[key] = newFormValues[key];
-  }
+  SectionHeader({this.title: "Section Header"});
 
   @override
-  String toString() {
-    return 'ScoutingForm{formKey: $formKey, formValues: $formValues}';
+  Widget build(BuildContext context) {
+    return buildFormElementContainer(
+      Center(
+        child: Text('$title'),
+      ),
+    );
   }
 }

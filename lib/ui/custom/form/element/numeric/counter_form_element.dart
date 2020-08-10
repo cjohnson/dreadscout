@@ -23,7 +23,7 @@ import 'package:dreadscout/bloc/form/element/numeric/counter_form_element_bloc.d
 
 import 'package:flutter/material.dart';
 
-import 'package:dreadscout/model/form/element/input_form_element.dart';
+import 'file:///C:/Workspace/dreadscout/lib/ui/custom/form/element/input_form_element.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 /// [CounterFormElement] for numeric value tracking.

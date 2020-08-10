@@ -24,31 +24,42 @@ SOFTWARE.
 
 import 'package:flutter/material.dart';
 
-import 'package:dreadscout/model/form/element/form_element.dart';
+import 'file:///C:/Workspace/dreadscout/lib/ui/custom/form/element/form_element.dart';
 
-/// Base Class [InputFormElement] widget for common form element ideas.
-abstract class InputFormElement extends FormElement {
-  /// [defaultFormElementTitle] to stand in where no title is given.
-  static final String defaultFormElementTitle = 'Datum Value?';
+/// [SubmitFormButton] to submit scouting forms.
+class SubmitFormButton extends FormElement {
+  /// [formTitle] is the title of the current form.
+  final String formTitle;
 
-  /// Title of the element datum.
-  final String formElementTitle;
+  final void Function() onSubmit;
 
-  /// Default Optional Arguments Constructor for [InputFormElement]
-  const InputFormElement({Key key, @required this.formElementTitle})
-      : super(key: key);
+  /// Optional (required) args constructor for [SubmitFormButton]
+  SubmitFormButton(this.onSubmit, {this.formTitle: 'Untitled New Form'});
 
-  /// Constructs a basic [InputFormElement] Widget Tree.
-  Widget buildInputFormElement(Widget inputMethodWidget) {
-    return buildStylizedFormElementContainer(
-      Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        mainAxisSize: MainAxisSize.max,
-        children: <Widget>[
-          Text(formElementTitle ?? InputFormElement.defaultFormElementTitle),
-          inputMethodWidget,
-        ],
+  @override
+  Widget build(BuildContext context) {
+    return _buildButtonWrapping(
+      FloatingActionButton.extended(
+        icon: const Icon(Icons.archive),
+        onPressed: onSubmit,
+        label: Text("Submit"),
       ),
     );
   }
+
+  Widget _buildButtonWrapping(Widget button) {
+    return buildFormElementContainer(Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      mainAxisSize: MainAxisSize.max,
+      children: [
+        SizedBox(
+          width: 0,
+        ),
+        button,
+      ],
+    ));
+  }
+
+  @override
+  getElementData() => null;
 }

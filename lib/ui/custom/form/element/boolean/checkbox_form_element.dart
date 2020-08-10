@@ -28,7 +28,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 // Internal Packages
 import 'package:dreadscout/bloc/form/element/boolean/boolean_data_bloc.dart';
-import 'package:dreadscout/model/form/element/input_form_element.dart';
+import 'file:///C:/Workspace/dreadscout/lib/ui/custom/form/element/input_form_element.dart';
 
 /// [CheckboxFormElement] is a custom data collection widget for boolean data.
 ///
