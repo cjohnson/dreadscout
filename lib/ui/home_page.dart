@@ -40,51 +40,28 @@ class DreadScoutHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // Standard AppBar instance with Application Title.
-      appBar: null,
-      // Contents are contained within Center & Column Objects
-      // TODO Reorganize Home Page
-      body: NestedScrollView(
-        headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
-          return <Widget>[
-            SliverAppBar(
-              expandedHeight: 225.0,
-              collapsedHeight: 90.0,
-              floating: false,
-              pinned: true,
-              flexibleSpace: FlexibleSpaceBar(
-                centerTitle: true,
-                title: Container(
-                  padding: EdgeInsets.only(
-                      left: 8.0, right: 8.0, top: 16.0, bottom: 16.0),
-                  child: Text('Qualification 42'),
-                ),
-                background: Image(
-                  image: AssetImage('assets/images/dreadbots.jpg'),
-                ),
+      body: Center(
+        child: Container(
+          padding: EdgeInsets.all(8.0),
+          decoration: BoxDecoration(borderRadius: BorderRadius.circular(30.0)),
+          child: Column(
+            children: [
+              // TODO Remove Hardcoded Example/Demo, as templates/forms are created by users, not developers.
+              Container(
+                height: 32.0,
+                child: Text("Autonomous Period", style: TextStyle(decoration: TextDecoration.underline),),
               ),
-            ),
-          ];
-        },
-        body: Center(
-          child: Container(
-            padding: EdgeInsets.all(8.0),
-            decoration: BoxDecoration(borderRadius: BorderRadius.circular(30.0)),
-            child: Column(
-              children: [
-                // TODO Remove Hardcoded Example/Demo, as templates/forms are created by users, not developers.
-                CheckboxFormElement.constructFullElement(
-                    formElementTitle: 'Robot Broke?'),
-                RadioOptionFormElement.constructFullElement(
-                  formElementTitle: 'Hab Level',
-                  indexList: <String>["One", "Two", "Three"],
-                ),
-                ChoiceChipOptionFormElement.constructFullElement(
-                  formElementTitle: 'Hab Level',
-                  indexList: <String>["One", "Two", "Three"],
-                )
-              ],
-            ),
+              CheckboxFormElement.constructFullElement(
+                  formElementTitle: 'Robot Broke?'),
+              RadioOptionFormElement.constructFullElement(
+                formElementTitle: 'Hab Level',
+                indexList: <String>["One", "Two", "Three"],
+              ),
+              ChoiceChipOptionFormElement.constructFullElement(
+                formElementTitle: 'Hab Level',
+                indexList: <String>["One", "Two", "Three"],
+              )
+            ],
           ),
         ),
       ),

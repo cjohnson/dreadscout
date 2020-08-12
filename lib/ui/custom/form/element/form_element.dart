@@ -45,19 +45,4 @@ abstract class FormElement extends StatelessWidget {
       child: child,
     );
   }
-
-  Widget buildStylizedFormElementContainer(Widget child) {
-    return Container(
-      padding: EdgeInsets.only(
-        left: FormElement.containerSidePadding,
-        right: FormElement.containerSidePadding,
-        top: FormElement.containerTopBottomPadding,
-        bottom: FormElement.containerTopBottomPadding,
-      ),
-      decoration: BoxDecoration(
-        color: Colors.blueGrey[50],
-      ),
-      child: child,
-    );
-  }
 }

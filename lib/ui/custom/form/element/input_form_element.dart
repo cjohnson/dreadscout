@@ -40,7 +40,7 @@ abstract class InputFormElement extends FormElement {
 
   /// Constructs a basic [InputFormElement] Widget Tree.
   Widget buildInputFormElement(Widget inputMethodWidget) {
-    return buildStylizedFormElementContainer(
+    return buildFormElementContainer(
       Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         mainAxisSize: MainAxisSize.max,
