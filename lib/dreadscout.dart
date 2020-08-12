@@ -23,6 +23,7 @@ SOFTWARE.
  */
 
 import 'file:///C:/Workspace/dreadscout/lib/bloc/form/element/boolean/boolean_data_bloc.dart';
+import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 
 import 'package:logging/logging.dart';
@@ -93,6 +94,9 @@ class DreadScout extends StatelessWidget {
   Widget build(BuildContext context) {
     logger.info('Building Core App Widget... $context');
 
+    // Remove Android System Overlays for a more immersive UI experience.
+    SystemChrome.setEnabledSystemUIOverlays([]);
+
     return MaterialApp(
       // Official Application Title.
       title: applicationName,
@@ -100,6 +104,7 @@ class DreadScout extends StatelessWidget {
         primarySwatch: colorTheme,
         visualDensity: platformVisualDensity,
       ),
+      debugShowCheckedModeBanner: false,
       home: DreadScoutHomePage(title: "$applicationName $applicationVersion"),
     );
   }
