@@ -45,7 +45,7 @@ abstract class InputFormElement extends FormElement {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         mainAxisSize: MainAxisSize.max,
         children: <Widget>[
-          Text(formElementTitle ?? InputFormElement.defaultFormElementTitle),
+          Text(formElementTitle ?? InputFormElement.defaultFormElementTitle, style: TextStyle(decoration: TextDecoration.underline, fontFamily: 'Raleway', fontWeight: FontWeight.w600),),
           inputMethodWidget,
         ],
       ),

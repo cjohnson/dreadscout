@@ -27,6 +27,7 @@ import 'package:flutter/material.dart';
 import 'package:dreadscout/ui/custom/form/element/boolean/checkbox_form_element.dart';
 import 'package:dreadscout/ui/custom/form/element/multiplechoice/choice_chip_option_form_element.dart';
 import 'package:dreadscout/ui/custom/form/element/multiplechoice/radio_option_form_element.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 /// Dreadscout Home Page [DreadScoutHomePage]
 ///
@@ -40,30 +41,37 @@ class DreadScoutHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Container(
-          padding: EdgeInsets.all(8.0),
-          decoration: BoxDecoration(borderRadius: BorderRadius.circular(30.0)),
-          child: Column(
-            children: [
-              // TODO Remove Hardcoded Example/Demo, as templates/forms are created by users, not developers.
-              Container(
-                height: 32.0,
-                child: Text("Autonomous Period", style: TextStyle(decoration: TextDecoration.underline),),
-              ),
-              CheckboxFormElement.constructFullElement(
-                  formElementTitle: 'Robot Broke?'),
-              RadioOptionFormElement.constructFullElement(
-                formElementTitle: 'Hab Level',
-                indexList: <String>["One", "Two", "Three"],
-              ),
-              ChoiceChipOptionFormElement.constructFullElement(
-                formElementTitle: 'Hab Level',
-                indexList: <String>["One", "Two", "Three"],
-              )
-            ],
+      body: Stack(
+        children: <Widget>[
+          ClipRRect(
+            borderRadius: BorderRadius.only(bottomLeft: Radius.circular(30.0), bottomRight: Radius.circular(30.0)),
+            child: Image(
+              image: AssetImage('assets/images/dreadbots.jpg'),
+            ),
           ),
-        ),
+          Positioned(
+            left: 20.0,
+            bottom: 25.0,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text('Dexter Dreadbots', style: TextStyle(color: Colors.white, fontSize: 18.0, fontWeight: FontWeight.w500, fontFamily: 'Arial', letterSpacing: 1.2),),
+                Text('3656', style: TextStyle(color: Colors.white, fontSize: 35.0, fontWeight: FontWeight.w600, fontFamily: 'Arial', letterSpacing: 1.2),),
+                Row(
+                  children: [
+                    Icon(
+                      FontAwesomeIcons.locationArrow,
+                      size: 16.0,
+                      color: Colors.white,
+                    ),
+                    SizedBox(width: 8.0,),
+                    Text('Dexter, Michigan USA', style: TextStyle(color: Colors.white, fontSize: 16.0, fontWeight: FontWeight.w500, fontFamily: 'Arial', letterSpacing: 1.2),)
+                  ],
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }

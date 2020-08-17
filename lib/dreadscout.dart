@@ -103,6 +103,7 @@ class DreadScout extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: colorTheme,
         visualDensity: platformVisualDensity,
+        fontFamily: 'Raleway',
       ),
       debugShowCheckedModeBanner: false,
       home: DreadScoutHomePage(title: "$applicationName $applicationVersion"),
