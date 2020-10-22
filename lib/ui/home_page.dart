@@ -41,11 +41,13 @@ class DreadScoutHomePage extends StatelessWidget {
       body: CustomScrollView(
         slivers: <Widget>[
           const SliverAppBar(
-            title: Text('3656 Dreadbots', style: TextStyle(fontWeight: FontWeight.bold),),
             expandedHeight: 200.0,
             stretch: true,
             flexibleSpace: FlexibleSpaceBar(
               title: Text('3656 Dreadbots', style: TextStyle(fontWeight: FontWeight.bold),),
+              background: Image(
+                image: AssetImage('assets/images/dreadbots.jpg'),
+              ),
             ),
           ),
         ],
