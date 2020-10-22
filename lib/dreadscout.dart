@@ -99,7 +99,7 @@ class DreadScout extends StatelessWidget {
 
     return MaterialApp(
       // Official Application Title.
-      title: applicationName,
+      title: "$applicationName $applicationVersion",
       theme: ThemeData(
         primarySwatch: colorTheme,
         visualDensity: platformVisualDensity,
