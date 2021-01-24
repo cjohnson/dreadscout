@@ -22,6 +22,9 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
  */
 
+import 'package:dreadscout/ui/custom/form/element/boolean/checkbox_form_element.dart';
+import 'package:dreadscout/ui/custom/form/element/button/submit_form_button.dart';
+import 'package:dreadscout/ui/custom/form/element/multiplechoice/choice_chip_option_form_element.dart';
 import 'package:dreadscout/ui/custom/form/element/numeric/counter_form_element.dart';
 import 'package:flutter/material.dart';
 
@@ -55,6 +58,8 @@ class DreadScoutHomePage extends StatelessWidget {
             delegate: SliverChildListDelegate(
               [
                 CounterFormElement.constructFullElement(formElementTitle: 'Cargo'),
+                ChoiceChipOptionFormElement.constructFullElement(formElementTitle: 'Hab Level Achieved', indexList: ['1st', '2nd', '3rd']),
+                CheckboxFormElement.constructFullElement(formElementTitle: 'Robot Broke?')
               ],
             ),
           )
