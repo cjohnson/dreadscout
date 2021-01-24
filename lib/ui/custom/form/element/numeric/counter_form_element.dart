@@ -19,6 +19,7 @@ SOFTWARE.
  */
 
 import 'package:dart_numerics/dart_numerics.dart' as numerics;
+import 'package:dreadscout/bloc/form/element/multiplechoice/indexed_data_bloc.dart';
 import 'package:dreadscout/bloc/form/element/numeric/counter_form_element_bloc.dart';
 
 import 'package:flutter/material.dart';
@@ -28,6 +29,16 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 /// [CounterFormElement] for numeric value tracking.
 class CounterFormElement extends InputFormElement {
+  static BlocProvider<CounterFormElementBloc> constructFullElement(
+    {@required String formElementTitle}) {
+    return BlocProvider<CounterFormElementBloc>(
+      create: (_) => CounterFormElementBloc(),
+      child: CounterFormElement(
+        formElementTitle: formElementTitle,
+      ),
+    );
+  }
+
   /// Maximum Possible value.
   final int maximumValue;
 
@@ -50,18 +61,20 @@ class CounterFormElement extends InputFormElement {
   @override
   Widget build(BuildContext context) {
     final CounterFormElementBloc counterFormElementBloc =
-        BlocProvider.of<CounterFormElementBloc>(context);
+      BlocProvider.of<CounterFormElementBloc>(context);
 
     return buildInputFormElement(Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       mainAxisSize: MainAxisSize.max,
       children: [
-        RaisedButton(
+        ElevatedButton(
           onPressed: () {
             counterFormElementBloc.add(CounterFormElementEvent.decrement);
           },
           child: Text('-'),
-          color: Colors.blueGrey[500],
+          style: ButtonStyle(
+            foregroundColor: MaterialStateProperty.all<Color>(Colors.blueGrey[500])
+          ),
         ),
         SizedBox(
           width: 12,
@@ -74,12 +87,14 @@ class CounterFormElement extends InputFormElement {
         SizedBox(
           width: 12,
         ),
-        RaisedButton(
+        ElevatedButton(
           onPressed: () {
             counterFormElementBloc.add(CounterFormElementEvent.increment);
           },
           child: Text('+'),
-          color: Colors.blueGrey[500],
+          style: ButtonStyle(
+              foregroundColor: MaterialStateProperty.all<Color>(Colors.blueGrey[500])
+          ),
         ),
       ],
     ));

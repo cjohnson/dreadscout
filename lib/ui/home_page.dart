@@ -22,6 +22,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
  */
 
+import 'package:dreadscout/ui/custom/form/element/numeric/counter_form_element.dart';
 import 'package:flutter/material.dart';
 
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -50,8 +51,18 @@ class DreadScoutHomePage extends StatelessWidget {
               ),
             ),
           ),
+          SliverList(
+              delegate: SliverChildBuilderDelegate(
+                  (BuildContext context, int index) {
+                    return Container(
+                      alignment: Alignment.center,
+                      child: CounterFormElement.constructFullElement(formElementTitle: 'Cargo'),
+                    );
+                  }
+              ),
+          )
         ],
-      )
+      ),
     );
   }
 }

@@ -34,10 +34,10 @@ class CounterFormElementBloc extends Bloc<CounterFormElementEvent, int> {
   Stream<int> mapEventToState(CounterFormElementEvent event) async* {
     switch (event) {
       case CounterFormElementEvent.increment:
-        yield state - 1;
+        yield state + 1;
         break;
       case CounterFormElementEvent.decrement:
-        yield state + 1;
+        yield state - 1;
         break;
     }
   }
