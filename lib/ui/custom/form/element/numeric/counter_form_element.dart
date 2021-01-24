@@ -30,31 +30,23 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 /// [CounterFormElement] for numeric value tracking.
 class CounterFormElement extends InputFormElement {
   static BlocProvider<CounterFormElementBloc> constructFullElement(
-    {@required String formElementTitle}) {
+    {@required String formElementTitle,
+      int maximumValue: numerics.int64MaxValue,
+      int minimumValue: 0,
+      int currentValue: 0}) {
     return BlocProvider<CounterFormElementBloc>(
-      create: (_) => CounterFormElementBloc(),
+      create: (_) => CounterFormElementBloc(maximumValue: maximumValue,
+          minimumValue: minimumValue),
       child: CounterFormElement(
         formElementTitle: formElementTitle,
       ),
     );
   }
 
-  /// Maximum Possible value.
-  final int maximumValue;
-
-  /// Minimum Possible value.
-  final int minimumValue;
-
-  /// Current Value of the Counter.
-  int currentValue;
-
   /// Standard Optional Args Constructor.
   CounterFormElement(
       {Key key,
-      String formElementTitle,
-      this.maximumValue: numerics.int64MaxValue,
-      this.minimumValue: 0,
-      this.currentValue: 0})
+      String formElementTitle})
       : super(key: key, formElementTitle: formElementTitle);
 
   /// Default Override for StatefulWidgets.

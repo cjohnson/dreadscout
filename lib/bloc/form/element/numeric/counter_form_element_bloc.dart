@@ -28,15 +28,26 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 enum CounterFormElementEvent { increment, decrement }
 
 class CounterFormElementBloc extends Bloc<CounterFormElementEvent, int> {
-  CounterFormElementBloc() : super(0);
+  int maximumValue;
+  int minimumValue;
+
+  CounterFormElementBloc({this.maximumValue, this.minimumValue}) : super(0);
 
   @override
   Stream<int> mapEventToState(CounterFormElementEvent event) async* {
     switch (event) {
       case CounterFormElementEvent.increment:
+        if((state + 1) > maximumValue) {
+          yield state;
+          break;
+        }
         yield state + 1;
         break;
       case CounterFormElementEvent.decrement:
+        if((state - 1) < minimumValue) {
+          yield state;
+          break;
+        }
         yield state - 1;
         break;
     }
