@@ -23,9 +23,8 @@ SOFTWARE.
  */
 
 import 'package:dreadscout/bloc/form/element/boolean/boolean_data_bloc.dart';
+import 'package:dreadscout/ui/custom/form/element/input_form_element.dart';
 import 'package:flutter/material.dart';
-
-import 'file:///C:/Workspace/dreadscout/lib/ui/custom/form/element/input_form_element.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 /// Custom [SwitchFormElement] widget for simple switch options in a widget

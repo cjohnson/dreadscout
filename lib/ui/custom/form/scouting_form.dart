@@ -23,9 +23,9 @@ SOFTWARE.
  */
 
 import 'package:dreadscout/utility/namespaced_key.dart';
+import 'package:flutter/cupertino.dart';
 
 import 'file:///C:/Workspace/dreadscout/lib/ui/custom/form/element/form_element.dart';
-import 'package:flutter/cupertino.dart';
 
 /// Represents storage of the various forms tracked during the app's runtime.
 class ScoutingForm {

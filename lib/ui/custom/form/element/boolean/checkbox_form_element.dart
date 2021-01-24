@@ -20,15 +20,15 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
+// Internal Packages
+import 'package:dreadscout/bloc/form/element/boolean/boolean_data_bloc.dart';
+import 'package:dreadscout/ui/custom/form/element/input_form_element.dart';
+
 // Flutter Packages
 import 'package:flutter/material.dart';
 
 // Flutter Library Packages
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-// Internal Packages
-import 'package:dreadscout/bloc/form/element/boolean/boolean_data_bloc.dart';
-import 'file:///C:/Workspace/dreadscout/lib/ui/custom/form/element/input_form_element.dart';
 
 /// [CheckboxFormElement] is a custom data collection widget for boolean data.
 ///

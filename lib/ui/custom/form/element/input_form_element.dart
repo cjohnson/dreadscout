@@ -22,9 +22,8 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
  */
 
+import 'package:dreadscout/ui/custom/form/element/form_element.dart';
 import 'package:flutter/material.dart';
-
-import 'file:///C:/Workspace/dreadscout/lib/ui/custom/form/element/form_element.dart';
 
 /// Base Class [InputFormElement] widget for common form element ideas.
 abstract class InputFormElement extends FormElement {
@@ -45,7 +44,13 @@ abstract class InputFormElement extends FormElement {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         mainAxisSize: MainAxisSize.max,
         children: <Widget>[
-          Text(formElementTitle ?? InputFormElement.defaultFormElementTitle, style: TextStyle(decoration: TextDecoration.underline, fontFamily: 'Raleway', fontWeight: FontWeight.w600),),
+          Text(
+            formElementTitle ?? InputFormElement.defaultFormElementTitle,
+            style: TextStyle(
+                decoration: TextDecoration.underline,
+                fontFamily: 'Raleway',
+                fontWeight: FontWeight.w600),
+          ),
           inputMethodWidget,
         ],
       ),

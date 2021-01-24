@@ -19,24 +19,21 @@ SOFTWARE.
  */
 
 import 'package:dart_numerics/dart_numerics.dart' as numerics;
-import 'package:dreadscout/bloc/form/element/multiplechoice/indexed_data_bloc.dart';
 import 'package:dreadscout/bloc/form/element/numeric/counter_form_element_bloc.dart';
-
+import 'package:dreadscout/ui/custom/form/element/input_form_element.dart';
 import 'package:flutter/material.dart';
-
-import 'file:///C:/Workspace/dreadscout/lib/ui/custom/form/element/input_form_element.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 /// [CounterFormElement] for numeric value tracking.
 class CounterFormElement extends InputFormElement {
   static BlocProvider<CounterFormElementBloc> constructFullElement(
-    {@required String formElementTitle,
+      {@required String formElementTitle,
       int maximumValue: numerics.int64MaxValue,
       int minimumValue: 0,
       int currentValue: 0}) {
     return BlocProvider<CounterFormElementBloc>(
-      create: (_) => CounterFormElementBloc(maximumValue: maximumValue,
-          minimumValue: minimumValue),
+      create: (_) => CounterFormElementBloc(
+          maximumValue: maximumValue, minimumValue: minimumValue),
       child: CounterFormElement(
         formElementTitle: formElementTitle,
       ),
@@ -44,16 +41,14 @@ class CounterFormElement extends InputFormElement {
   }
 
   /// Standard Optional Args Constructor.
-  CounterFormElement(
-      {Key key,
-      String formElementTitle})
+  CounterFormElement({Key key, String formElementTitle})
       : super(key: key, formElementTitle: formElementTitle);
 
   /// Default Override for StatefulWidgets.
   @override
   Widget build(BuildContext context) {
     final CounterFormElementBloc counterFormElementBloc =
-      BlocProvider.of<CounterFormElementBloc>(context);
+        BlocProvider.of<CounterFormElementBloc>(context);
 
     return buildInputFormElement(Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -65,8 +60,8 @@ class CounterFormElement extends InputFormElement {
           },
           child: Text('-'),
           style: ButtonStyle(
-            foregroundColor: MaterialStateProperty.all<Color>(Colors.blueGrey[500])
-          ),
+              foregroundColor:
+                  MaterialStateProperty.all<Color>(Colors.blueGrey[500])),
         ),
         SizedBox(
           width: 12,
@@ -85,8 +80,8 @@ class CounterFormElement extends InputFormElement {
           },
           child: Text('+'),
           style: ButtonStyle(
-              foregroundColor: MaterialStateProperty.all<Color>(Colors.blueGrey[500])
-          ),
+              foregroundColor:
+                  MaterialStateProperty.all<Color>(Colors.blueGrey[500])),
         ),
       ],
     ));

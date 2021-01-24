@@ -22,9 +22,8 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
  */
 
+import 'package:dreadscout/ui/custom/form/element/form_element.dart';
 import 'package:flutter/material.dart';
-
-import 'file:///C:/Workspace/dreadscout/lib/ui/custom/form/element/form_element.dart';
 
 class SectionHeader extends FormElement {
   final String title;

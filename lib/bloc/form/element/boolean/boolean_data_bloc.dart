@@ -26,9 +26,6 @@ import 'package:bloc/bloc.dart';
 // Flutter Packages
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-// Internal
-import 'file:///C:/Workspace/dreadscout/lib/ui/custom/form/element/boolean/checkbox_form_element.dart';
-
 /// [CheckboxFormElementEvent] represents an event that has happened on the frontend.
 ///
 /// [CheckboxFormElementEvent.toggleCheck] describes an event where the status

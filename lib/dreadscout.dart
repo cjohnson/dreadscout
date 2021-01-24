@@ -22,19 +22,14 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
  */
 
-import 'file:///C:/Workspace/dreadscout/lib/bloc/form/element/boolean/boolean_data_bloc.dart';
-import 'package:flutter/services.dart';
-import 'package:intl/intl.dart';
-
-import 'package:logging/logging.dart';
-
-import 'package:flutter/material.dart';
-
 import 'package:bloc/bloc.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-
 import 'package:dreadscout/bloc/bloc_observer.dart';
 import 'package:dreadscout/ui/home_page.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
+import 'package:logging/logging.dart';
 
 /// [DreadScout] is the top-level class for the application.
 ///

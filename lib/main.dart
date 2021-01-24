@@ -22,11 +22,9 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
  */
 
-import 'package:logging/logging.dart';
-
-import 'package:flutter/material.dart';
-
 import 'package:dreadscout/dreadscout.dart';
+import 'package:flutter/material.dart';
+import 'package:logging/logging.dart';
 
 /// Main entry point of the application.
 ///

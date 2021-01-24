@@ -1,8 +1,7 @@
 import 'package:dreadscout/ui/custom/form/element/form_element.dart';
 import 'package:dreadscout/ui/custom/form/scouting_form.dart';
-import 'package:flutter/material.dart';
-
 import 'package:dreadscout/utility/namespaced_key.dart';
+import 'package:flutter/material.dart';
 
 class FormDisplay extends StatelessWidget {
   ScoutingForm form;

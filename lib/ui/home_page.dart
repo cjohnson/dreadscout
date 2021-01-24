@@ -23,12 +23,9 @@ SOFTWARE.
  */
 
 import 'package:dreadscout/ui/custom/form/element/boolean/checkbox_form_element.dart';
-import 'package:dreadscout/ui/custom/form/element/button/submit_form_button.dart';
 import 'package:dreadscout/ui/custom/form/element/multiplechoice/choice_chip_option_form_element.dart';
 import 'package:dreadscout/ui/custom/form/element/numeric/counter_form_element.dart';
 import 'package:flutter/material.dart';
-
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 /// Dreadscout Home Page [DreadScoutHomePage]
 ///
@@ -48,7 +45,10 @@ class DreadScoutHomePage extends StatelessWidget {
             expandedHeight: 200.0,
             stretch: true,
             flexibleSpace: FlexibleSpaceBar(
-              title: Text('3656 Dreadbots', style: TextStyle(fontWeight: FontWeight.bold),),
+              title: Text(
+                '3656 Dreadbots',
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
               background: Image(
                 image: AssetImage('assets/images/dreadbots.jpg'),
               ),
@@ -57,9 +57,13 @@ class DreadScoutHomePage extends StatelessWidget {
           SliverList(
             delegate: SliverChildListDelegate(
               [
-                CounterFormElement.constructFullElement(formElementTitle: 'Cargo'),
-                ChoiceChipOptionFormElement.constructFullElement(formElementTitle: 'Hab Level Achieved', indexList: ['1st', '2nd', '3rd']),
-                CheckboxFormElement.constructFullElement(formElementTitle: 'Robot Broke?')
+                CounterFormElement.constructFullElement(
+                    formElementTitle: 'Cargo'),
+                ChoiceChipOptionFormElement.constructFullElement(
+                    formElementTitle: 'Hab Level Achieved',
+                    indexList: ['1st', '2nd', '3rd']),
+                CheckboxFormElement.constructFullElement(
+                    formElementTitle: 'Robot Broke?')
               ],
             ),
           )

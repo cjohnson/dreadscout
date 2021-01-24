@@ -37,14 +37,14 @@ class CounterFormElementBloc extends Bloc<CounterFormElementEvent, int> {
   Stream<int> mapEventToState(CounterFormElementEvent event) async* {
     switch (event) {
       case CounterFormElementEvent.increment:
-        if((state + 1) > maximumValue) {
+        if ((state + 1) > maximumValue) {
           yield state;
           break;
         }
         yield state + 1;
         break;
       case CounterFormElementEvent.decrement:
-        if((state - 1) < minimumValue) {
+        if ((state - 1) < minimumValue) {
           yield state;
           break;
         }
