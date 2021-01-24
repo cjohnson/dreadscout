@@ -52,14 +52,11 @@ class DreadScoutHomePage extends StatelessWidget {
             ),
           ),
           SliverList(
-              delegate: SliverChildBuilderDelegate(
-                  (BuildContext context, int index) {
-                    return Container(
-                      alignment: Alignment.center,
-                      child: CounterFormElement.constructFullElement(formElementTitle: 'Cargo'),
-                    );
-                  }
-              ),
+            delegate: SliverChildListDelegate(
+              [
+                CounterFormElement.constructFullElement(formElementTitle: 'Cargo'),
+              ],
+            ),
           )
         ],
       ),
