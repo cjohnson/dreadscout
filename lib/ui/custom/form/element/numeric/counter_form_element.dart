@@ -30,10 +30,11 @@ class CounterFormElement extends InputFormElement {
       {@required String formElementTitle,
       int maximumValue: numerics.int64MaxValue,
       int minimumValue: 0,
+      int incrementValue: 1,
       int currentValue: 0}) {
     return BlocProvider<CounterFormElementBloc>(
       create: (_) => CounterFormElementBloc(
-          maximumValue: maximumValue, minimumValue: minimumValue),
+          maximumValue: maximumValue, minimumValue: minimumValue, incrementValue: incrementValue),
       child: CounterFormElement(
         formElementTitle: formElementTitle,
       ),

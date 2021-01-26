@@ -30,25 +30,26 @@ enum CounterFormElementEvent { increment, decrement }
 class CounterFormElementBloc extends Bloc<CounterFormElementEvent, int> {
   int maximumValue;
   int minimumValue;
+  int incrementValue;
 
-  CounterFormElementBloc({this.maximumValue, this.minimumValue}) : super(0);
+  CounterFormElementBloc({this.maximumValue, this.minimumValue, this.incrementValue}) : super(0);
 
   @override
   Stream<int> mapEventToState(CounterFormElementEvent event) async* {
     switch (event) {
       case CounterFormElementEvent.increment:
-        if ((state + 1) > maximumValue) {
+        if ((state + incrementValue) > maximumValue) {
           yield state;
           break;
         }
-        yield state + 1;
+        yield state + incrementValue;
         break;
       case CounterFormElementEvent.decrement:
-        if ((state - 1) < minimumValue) {
+        if ((state - incrementValue) < minimumValue) {
           yield state;
           break;
         }
-        yield state - 1;
+        yield state - incrementValue;
         break;
     }
   }

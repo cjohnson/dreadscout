@@ -58,7 +58,7 @@ class DreadScoutHomePage extends StatelessWidget {
             delegate: SliverChildListDelegate(
               [
                 CounterFormElement.constructFullElement(
-                    formElementTitle: 'Cargo'),
+                    formElementTitle: 'Cargo', incrementValue: 2),
                 ChoiceChipOptionFormElement.constructFullElement(
                     formElementTitle: 'Hab Level Achieved',
                     indexList: ['1st', '2nd', '3rd']),
