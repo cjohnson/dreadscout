@@ -21,7 +21,7 @@
 // SOFTWARE.
 
 // Internal Packages
-import 'package:dreadscout/bloc/form/element/boolean/boolean_data_bloc.dart';
+import 'file:///C:/Workspace/dreadscout/lib/bloc/form/element/boolean_data_bloc.dart';
 import 'package:dreadscout/ui/custom/form/element/input_form_element.dart';
 
 // Flutter Packages

@@ -22,35 +22,38 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
  */
 
-import 'package:bloc/bloc.dart';
+import 'file:///C:/Workspace/dreadscout/lib/bloc/form/element/boolean_data_bloc.dart';
+import 'package:dreadscout/ui/custom/form/element/input_form_element.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-enum CounterFormElementEvent { increment, decrement }
-
-class CounterFormElementBloc extends Bloc<CounterFormElementEvent, int> {
-  int maximumValue;
-  int minimumValue;
-  int incrementValue;
-
-  CounterFormElementBloc({this.maximumValue, this.minimumValue, this.incrementValue}) : super(0);
+/// Custom [SwitchFormElement] widget for simple switch options in a widget
+///
+/// This form element collects a "Enabled/Disabled" datum.
+/// Use for specific input configuration.
+class SwitchFormElement extends InputFormElement {
+  /// Default Optional Arguments Constructor for [SwitchFormElement].
+  SwitchFormElement({Key key, String formElementTitle})
+      : super(key: key, formElementTitle: formElementTitle);
 
   @override
-  Stream<int> mapEventToState(CounterFormElementEvent event) async* {
-    switch (event) {
-      case CounterFormElementEvent.increment:
-        if ((state + incrementValue) > maximumValue) {
-          yield state;
-          break;
-        }
-        yield state + incrementValue;
-        break;
-      case CounterFormElementEvent.decrement:
-        if ((state - incrementValue) < minimumValue) {
-          yield state;
-          break;
-        }
-        yield state - incrementValue;
-        break;
-    }
+  Widget build(BuildContext context) {
+    final BooleanDataBloc switchFormElementBloc =
+        BlocProvider.of<BooleanDataBloc>(context);
+
+    return buildInputFormElement(
+      BlocBuilder<BooleanDataBloc, bool>(
+        builder: (context, switchValue) {
+          return Switch(
+            value: switchValue,
+            onChanged: (newState) {
+              switchFormElementBloc.add(BooleanDataBlocEvent.toggleBoolean);
+            },
+          );
+        },
+      ),
+    );
   }
+
+  bool getElementData() => false;
 }

@@ -21,13 +21,14 @@
 // SOFTWARE.
 
 // Testing Packages
+
 import 'package:test/test.dart';
 
 // Flutter Testing Packages
 import 'package:bloc_test/bloc_test.dart';
 
 // Internal
-import 'package:dreadscout/bloc/form/element/multiplechoice/indexed_data_bloc.dart';
+import 'package:dreadscout/bloc/form/element/indexed_data_bloc.dart';
 
 void testIndexedDataBloc() {
   group('IndexedDataBloc', () {
@@ -39,21 +40,22 @@ void testIndexedDataBloc() {
         'Option One',
         'Option Two',
         'Option Three',
-      ],
-      initialIndex: -1);
+      ], initialIndex: -1);
     });
 
     test('Initial State of IndexedDataBloc is 1', () {
       expect(indexedDataBloc.state, -1);
     });
 
-    blocTest('emits [1] when IndexedDataBlocEvent(1) is added',
+    blocTest(
+      'emits [1] when IndexedDataBlocEvent(1) is added',
       build: () => indexedDataBloc,
       act: (bloc) => bloc.add(IndexedDataBlocEvent(1)),
       expect: [1],
     );
 
-    blocTest('emits [2] when IndexedDataBlocEvent(2) is added',
+    blocTest(
+      'emits [2] when IndexedDataBlocEvent(2) is added',
       build: () => indexedDataBloc,
       act: (bloc) => bloc.add(IndexedDataBlocEvent(2)),
       expect: [2],

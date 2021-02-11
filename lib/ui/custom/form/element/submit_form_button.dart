@@ -59,6 +59,5 @@ class SubmitFormButton extends FormElement {
     ));
   }
 
-  @override
   getElementData() => null;
 }

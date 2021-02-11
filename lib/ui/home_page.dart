@@ -22,9 +22,9 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
  */
 
-import 'package:dreadscout/ui/custom/form/element/boolean/checkbox_form_element.dart';
-import 'package:dreadscout/ui/custom/form/element/multiplechoice/choice_chip_option_form_element.dart';
-import 'package:dreadscout/ui/custom/form/element/numeric/counter_form_element.dart';
+import 'file:///C:/Workspace/dreadscout/lib/ui/custom/form/element/checkbox_form_element.dart';
+import 'file:///C:/Workspace/dreadscout/lib/ui/custom/form/element/choice_chip_option_form_element.dart';
+import 'file:///C:/Workspace/dreadscout/lib/ui/custom/form/element/counter_form_element.dart';
 import 'package:flutter/material.dart';
 
 /// Dreadscout Home Page [DreadScoutHomePage]
@@ -58,7 +58,7 @@ class DreadScoutHomePage extends StatelessWidget {
             delegate: SliverChildListDelegate(
               [
                 CounterFormElement.constructFullElement(
-                    formElementTitle: 'Cargo', incrementValue: 2),
+                    formElementTitle: 'Cargo'),
                 ChoiceChipOptionFormElement.constructFullElement(
                     formElementTitle: 'Hab Level Achieved',
                     indexList: ['1st', '2nd', '3rd']),

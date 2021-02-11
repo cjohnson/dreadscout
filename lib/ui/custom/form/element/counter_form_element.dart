@@ -19,7 +19,7 @@ SOFTWARE.
  */
 
 import 'package:dart_numerics/dart_numerics.dart' as numerics;
-import 'package:dreadscout/bloc/form/element/numeric/counter_form_element_bloc.dart';
+import 'file:///C:/Workspace/dreadscout/lib/bloc/form/element/counter_form_element_bloc.dart';
 import 'package:dreadscout/ui/custom/form/element/input_form_element.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -34,7 +34,9 @@ class CounterFormElement extends InputFormElement {
       int currentValue: 0}) {
     return BlocProvider<CounterFormElementBloc>(
       create: (_) => CounterFormElementBloc(
-          maximumValue: maximumValue, minimumValue: minimumValue, incrementValue: incrementValue),
+          maximumValue: maximumValue,
+          minimumValue: minimumValue,
+          incrementValue: incrementValue),
       child: CounterFormElement(
         formElementTitle: formElementTitle,
       ),

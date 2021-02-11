@@ -27,7 +27,7 @@ import 'package:test/test.dart';
 import 'package:bloc_test/bloc_test.dart';
 
 // Internal
-import 'package:dreadscout/bloc/form/element/boolean/boolean_data_bloc.dart';
+import 'file:///C:/Workspace/dreadscout/lib/bloc/form/element/boolean_data_bloc.dart';
 
 void testBooleanDataBloc() {
   group('BooleanDataBloc', () {
@@ -40,8 +40,10 @@ void testBooleanDataBloc() {
     BooleanDataBloc booleanDataBlocSetTest;
 
     setUp(() {
-      booleanDataBlocToggleTestInitialFalse = BooleanDataBloc(initialState: false);
-      booleanDataBlocToggleTestInitialTrue = BooleanDataBloc(initialState: true);
+      booleanDataBlocToggleTestInitialFalse =
+          BooleanDataBloc(initialState: false);
+      booleanDataBlocToggleTestInitialTrue =
+          BooleanDataBloc(initialState: true);
 
       booleanDataBlocSetTest = BooleanDataBloc(initialState: false);
     });
@@ -53,25 +55,29 @@ void testBooleanDataBloc() {
       expect(booleanDataBlocSetTest.state, false);
     });
 
-    blocTest('emits [true] when BooleanDataBlocEvent.toggleBoolean is added',
+    blocTest(
+      'emits [true] when BooleanDataBlocEvent.toggleBoolean is added',
       build: () => booleanDataBlocToggleTestInitialFalse,
       act: (bloc) => bloc.add(BooleanDataBlocEvent.toggleBoolean),
       expect: [true],
     );
 
-    blocTest('emits [false] when BooleanDataBlocEvent.toggleBoolean is added',
+    blocTest(
+      'emits [false] when BooleanDataBlocEvent.toggleBoolean is added',
       build: () => booleanDataBlocToggleTestInitialTrue,
       act: (bloc) => bloc.add(BooleanDataBlocEvent.toggleBoolean),
       expect: [false],
     );
 
-    blocTest('emits [false] when BooleanDataBlocEvent.setFalse is added',
+    blocTest(
+      'emits [false] when BooleanDataBlocEvent.setFalse is added',
       build: () => booleanDataBlocSetTest,
       act: (bloc) => bloc.add(BooleanDataBlocEvent.setFalse),
       expect: [false],
     );
 
-    blocTest('emits [true] when BooleanDataBlocEvent.setTrue is added',
+    blocTest(
+      'emits [true] when BooleanDataBlocEvent.setTrue is added',
       build: () => booleanDataBlocSetTest,
       act: (bloc) => bloc.add(BooleanDataBlocEvent.setTrue),
       expect: [true],
