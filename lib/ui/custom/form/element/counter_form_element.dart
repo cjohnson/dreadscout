@@ -50,16 +50,14 @@ class CounterFormElement extends InputFormElement {
   /// Default Override for StatefulWidgets.
   @override
   Widget build(BuildContext context) {
-    final CounterFormElementBloc counterFormElementBloc =
-        BlocProvider.of<CounterFormElementBloc>(context);
-
     return buildInputFormElement(Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       mainAxisSize: MainAxisSize.max,
       children: [
         ElevatedButton(
           onPressed: () {
-            counterFormElementBloc.add(CounterFormElementEvent.decrement);
+            BlocProvider.of<CounterFormElementBloc>(context)
+                .add(CounterFormElementEvent.decrement);
           },
           child: Text('-'),
           style: ButtonStyle(
@@ -79,7 +77,8 @@ class CounterFormElement extends InputFormElement {
         ),
         ElevatedButton(
           onPressed: () {
-            counterFormElementBloc.add(CounterFormElementEvent.increment);
+            BlocProvider.of<CounterFormElementBloc>(context)
+                .add(CounterFormElementEvent.increment);
           },
           child: Text('+'),
           style: ButtonStyle(

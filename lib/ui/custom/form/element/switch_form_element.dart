@@ -38,16 +38,14 @@ class SwitchFormElement extends InputFormElement {
 
   @override
   Widget build(BuildContext context) {
-    final BooleanDataBloc switchFormElementBloc =
-        BlocProvider.of<BooleanDataBloc>(context);
-
     return buildInputFormElement(
       BlocBuilder<BooleanDataBloc, bool>(
         builder: (context, switchValue) {
           return Switch(
             value: switchValue,
             onChanged: (newState) {
-              switchFormElementBloc.add(BooleanDataBlocEvent.toggleBoolean);
+              BlocProvider.of<BooleanDataBloc>(context)
+                  .add(BooleanDataBlocEvent.toggleBoolean);
             },
           );
         },
