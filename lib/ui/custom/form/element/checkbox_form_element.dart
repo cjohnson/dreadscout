@@ -76,12 +76,6 @@ class CheckboxFormElement extends InputFormElement {
   /// asynchronously.
   @override
   Widget build(BuildContext context) {
-    // Since the BLoC is provided by the BlocProvider class,
-    // the BlocProvider also closes the sink.
-    // ignore: close_sinks
-    final BooleanDataBloc checkboxFormElementBloc =
-        context.bloc<BooleanDataBloc>();
-
     // Return Extension of InputFormElement's default style and UI.
     return buildInputFormElement(
       // BlocBuilder for Handling State Management & Re-rendering.
@@ -92,7 +86,8 @@ class CheckboxFormElement extends InputFormElement {
             value: checkboxValue,
             onChanged: (newState) {
               // Add an instruction to the BLoC to update state & re-render.
-              checkboxFormElementBloc.add(BooleanDataBlocEvent.toggleBoolean);
+              context.bloc<BooleanDataBloc>().add(
+                  BooleanDataBlocEvent.toggleBoolean);
             },
           );
         },

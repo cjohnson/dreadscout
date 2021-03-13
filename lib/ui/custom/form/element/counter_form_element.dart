@@ -19,7 +19,7 @@ SOFTWARE.
  */
 
 import 'package:dart_numerics/dart_numerics.dart' as numerics;
-import 'file:///C:/Workspace/dreadscout/lib/bloc/form/element/counter_form_element_bloc.dart';
+import 'package:dreadscout/bloc/form/element/counter_form_element_bloc.dart';
 import 'package:dreadscout/ui/custom/form/element/input_form_element.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

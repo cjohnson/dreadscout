@@ -22,7 +22,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
  */
 
-import 'file:///C:/Workspace/dreadscout/lib/bloc/form/element/boolean_data_bloc.dart';
+import 'package:dreadscout/bloc/form/element/boolean_data_bloc.dart';
 import 'package:dreadscout/ui/custom/form/element/input_form_element.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
