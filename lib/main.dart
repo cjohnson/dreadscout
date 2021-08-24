@@ -39,8 +39,6 @@ class FormPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var rng = new Random();
-
     return CustomScrollView(
       slivers: <Widget>[
         SliverAppBar(
