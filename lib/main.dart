@@ -33,29 +33,50 @@ class FormPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var rng = new Random();
+
     return CustomScrollView(
       slivers: <Widget>[
         SliverAppBar(
-          expandedHeight: 200.0,
-          stretch: true,
+          expandedHeight: 220.0,
+          floating: true,
+          pinned: true,
+          snap: false,
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.vertical(bottom: Radius.circular(30.0))),
           flexibleSpace: FlexibleSpaceBar(
-            title: Text(
-              '3656 Dreadbots',
-              style: GoogleFonts.roboto(
-                textStyle: Theme.of(context).textTheme.headline1,
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
-                fontSize: 20
+            title: Container(
+              child: Stack(
+                children: [
+                  Text(
+                    '3656 Dreadbots',
+                    style: GoogleFonts.roboto(
+                        textStyle: Theme.of(context).textTheme.headline1,
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20
+                    ),
+                  ),
+                ],
+                alignment: Alignment.center,
+              ),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.vertical(bottom: Radius.circular(30))
               ),
             ),
-            background: Image(
-              image: AssetImage('asset/image/dreadbots.jpg'),
-              fit: BoxFit.fill,
+            background: ClipRRect(
+              borderRadius: BorderRadius.circular(30.0),
+              child: Image(
+                image: AssetImage('asset/image/dreadbots.jpg'),
+                fit: BoxFit.fill,
+              ),
             ),
           ),
         )
       ],
     );
+
+
+
+
     //);
     // return Column(
     //   children: [
