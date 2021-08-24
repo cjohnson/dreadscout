@@ -5,8 +5,6 @@ import 'package:google_fonts/google_fonts.dart';
 
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import 'dart:math';
-
 void main() {
   runApp(MyApp());
 }
@@ -24,6 +22,12 @@ class MyApp extends StatelessWidget {
 
     return MaterialApp(
       title: _title,
+      theme: ThemeData(
+        appBarTheme: AppBarTheme(
+          brightness: Brightness.dark
+        )
+      ),
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
         // appBar: AppBar(title: const Text(_title),),
         body: const FormElement(),
