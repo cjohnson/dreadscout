@@ -11,76 +11,72 @@ class ScoutingForm extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomScrollView(
       slivers: <Widget>[
-        SliverAppBar(
-          expandedHeight: 220.0,
-          floating: true,
-          pinned: true,
-          shape: RoundedRectangleBorder(
-              borderRadius:
-                  BorderRadius.vertical(bottom: Radius.circular(30.0))),
-          flexibleSpace: FlexibleSpaceBar(
-            collapseMode: CollapseMode.pin,
-            centerTitle: true,
-            background: Container(
-              decoration: BoxDecoration(
-                borderRadius:
-                    BorderRadius.vertical(bottom: Radius.circular(30.0)),
-              ),
-              child: Stack(
-                children: [
-                  Positioned.fill(
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(30.0),
-                      child: ColorFiltered(
-                        colorFilter: ColorFilter.mode(
-                            Colors.black.withOpacity(0.2), BlendMode.colorBurn),
-                        child: Image(
-                          image: AssetImage('asset/image/dreadbots.jpg'),
-                          fit: BoxFit.fitHeight,
+        SliverList(
+          delegate: SliverChildListDelegate(
+            [
+              Container(
+                height: 275.0,
+                child: Stack(
+                  children: [
+                    Positioned.fill(
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(30.0),
+                        child: ColorFiltered(
+                          colorFilter: ColorFilter.mode(
+                              Colors.black.withOpacity(0.2), BlendMode.colorBurn),
+                          child: Image(
+                            image: AssetImage('asset/image/dreadbots.jpg'),
+                            fit: BoxFit.fill,
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 48.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        IconButton(
-                          icon: Icon(Icons.arrow_back),
-                          iconSize: 30.0,
-                          color: Colors.white,
-                          onPressed: () {  },
-                        ),
-                        Row(
-                          children: [
-                            IconButton(
-                              icon: Icon(Icons.account_box_rounded),
-                              iconSize: 30.0,
-                              color: Colors.white,
-                              onPressed: () {  },
-                            ),
-                            IconButton(
-                              icon: Icon(FontAwesomeIcons.cog),
-                              iconSize: 23.0,
-                              color: Colors.white,
-                              onPressed: () {  },
-                            ),
-                          ],
-                        )
-                      ],
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 48.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          IconButton(
+                            icon: Icon(Icons.arrow_back),
+                            iconSize: 30.0,
+                            color: Colors.white,
+                            onPressed: () {  },
+                          ),
+                          Row(
+                            children: [
+                              IconButton(
+                                icon: Icon(Icons.account_box_rounded),
+                                iconSize: 30.0,
+                                color: Colors.white,
+                                onPressed: () {  },
+                              ),
+                              IconButton(
+                                icon: Icon(FontAwesomeIcons.cog),
+                                iconSize: 23.0,
+                                color: Colors.white,
+                                onPressed: () {  },
+                              ),
+                            ],
+                          )
+                        ],
+                      ),
                     ),
-                  ),
-                  Positioned(left: 20.0, bottom: 28.0, child: _TitleWidget(
-                    teamNumber: 3656,
-                    teamName: 'Dreadbots',
-                    teamLocation: 'Dexter, Michigan, USA',
-                  ))
-                ],
+                    Positioned(left: 20.0, bottom: 28.0, child: _TitleWidget(
+                      teamNumber: 3656,
+                      teamName: 'Dreadbots',
+                      teamLocation: 'Dexter, Michigan, USA',
+                    ))
+                  ],
+                ),
               ),
-            ),
+              for(var i = 0; i < 18; i++)
+                Container(
+                  height: 100,
+                  child: Text('$i'),
+                ),
+            ],
           ),
-        )
+        ),
       ],
     );
   }
