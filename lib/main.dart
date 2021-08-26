@@ -56,9 +56,6 @@ class FormPage extends StatelessWidget {
             background: Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.vertical(bottom: Radius.circular(30.0)),
-                boxShadow: [
-                  BoxShadow(color: Colors.black26, offset: Offset(0.0, 4.0), blurRadius: 2.0)
-                ]
               ),
               child: Stack(
                 children: [
