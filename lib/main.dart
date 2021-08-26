@@ -30,14 +30,14 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         // appBar: AppBar(title: const Text(_title),),
-        body: const FormElement(),
+        body: const FormPage(),
       )
     );
   }
 }
 
-class FormPage extends StatelessWidget {
-  const FormPage({Key? key, required this.pageNumber}) : super(key: key);
+class ScoutingForm extends StatelessWidget {
+  const ScoutingForm({Key? key, required this.pageNumber}) : super(key: key);
 
   final int pageNumber;
 
@@ -130,17 +130,17 @@ class FormPage extends StatelessWidget {
   }
 }
 
-class FormElement extends StatefulWidget {
-  const FormElement({Key? key}) : super(key: key);
+class FormPage extends StatefulWidget {
+  const FormPage({Key? key}) : super(key: key);
 
   @override
-  _FormElementState createState() => _FormElementState();
+  _FormPageState createState() => _FormPageState();
 }
 
-class _FormElementState extends State<FormElement> {
+class _FormPageState extends State<FormPage> {
   List<Widget> forms = <Widget>[
-    FormPage(pageNumber: 1),
-    FormPage(pageNumber: 2),
+    ScoutingForm(pageNumber: 1),
+    ScoutingForm(pageNumber: 2),
   ];
 
   @override
@@ -157,7 +157,7 @@ class _FormElementState extends State<FormElement> {
   void _onPageChange(int index) {
     print('$index');
     if(index + 1 >= forms.length) {
-      forms.add(FormPage(pageNumber: index + 2));
+      forms.add(ScoutingForm(pageNumber: index + 2));
       print('Created new page instance this swipe. (index=${index + 2})');
     }
   }
