@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-
-import 'package:google_fonts/google_fonts.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class ScoutingForm extends StatelessWidget {
-  const ScoutingForm({Key? key, required this.pageNumber}) : super(key: key);
-
   final int pageNumber;
+
+  const ScoutingForm({Key? key, required this.pageNumber}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -42,60 +41,76 @@ class ScoutingForm extends StatelessWidget {
                       ),
                     ),
                   ),
-                  Positioned(
-                      left: 28.0,
-                      bottom: 28.0,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          Text(
-                            '3656',
-                            style: GoogleFonts.roboto(
-                                textStyle:
-                                    Theme.of(context).textTheme.headline1,
-                                color: Colors.white,
-                                fontWeight: FontWeight.w800,
-                                fontSize: 44.0,
-                                height: 0.5),
-                          ),
-                          Text(
-                            'Dreadbots',
-                            style: GoogleFonts.roboto(
-                                textStyle:
-                                    Theme.of(context).textTheme.headline1,
-                                color: Colors.white,
-                                fontWeight: FontWeight.w700,
-                                fontSize: 32.0),
-                          ),
-                          Row(
-                            children: [
-                              Icon(
-                                FontAwesomeIcons.mapMarkerAlt,
-                                size: 20.0,
-                                color: Colors.white,
-                              ),
-                              SizedBox(
-                                width: 5.0,
-                              ),
-                              Text(
-                                'From Dexter, Michigan, USA',
-                                style: GoogleFonts.nunito(
-                                    textStyle:
-                                        Theme.of(context).textTheme.subtitle1,
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 20.0),
-                              )
-                            ],
-                          )
-                        ],
-                      ))
+                  Positioned(left: 28.0, bottom: 28.0, child: _TitleWidget(
+                    teamNumber: 3656,
+                    teamName: 'Dreadbots',
+                    teamLocation: 'Dexter, Michigan, USA',
+                  ))
                 ],
               ),
             ),
           ),
+        )
+      ],
+    );
+  }
+}
+
+class _TitleWidget extends StatelessWidget {
+  final int teamNumber;
+  final String teamName;
+  final String teamLocation;
+
+  const _TitleWidget(
+      {Key? key,
+      required this.teamNumber,
+      required this.teamName,
+      required this.teamLocation})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisAlignment: MainAxisAlignment.start,
+      mainAxisSize: MainAxisSize.max,
+      children: [
+        Text(
+          '$teamNumber',
+          style: GoogleFonts.roboto(
+              textStyle: Theme.of(context).textTheme.headline1,
+              color: Colors.white,
+              fontWeight: FontWeight.w800,
+              fontSize: 44.0,
+              height: 0.5),
+        ),
+        Text(
+          teamName,
+          style: GoogleFonts.roboto(
+              textStyle: Theme.of(context).textTheme.headline1,
+              color: Colors.white,
+              fontWeight: FontWeight.w700,
+              fontSize: 32.0),
+        ),
+        Row(
+          children: [
+            Icon(
+              FontAwesomeIcons.mapMarkerAlt,
+              size: 20.0,
+              color: Colors.white,
+            ),
+            SizedBox(
+              width: 5.0,
+            ),
+            Text(
+              'From $teamLocation',
+              style: GoogleFonts.nunito(
+                  textStyle: Theme.of(context).textTheme.subtitle1,
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20.0),
+            )
+          ],
         )
       ],
     );
