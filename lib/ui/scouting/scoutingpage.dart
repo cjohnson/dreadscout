@@ -13,6 +13,7 @@ class _FormPageState extends State<FormPage> {
   List<Widget> forms = <Widget>[
     ScoutingForm(pageNumber: 1),
     ScoutingForm(pageNumber: 2),
+    ScoutingForm(pageNumber: 3),
   ];
 
   @override
@@ -22,15 +23,6 @@ class _FormPageState extends State<FormPage> {
       scrollDirection: Axis.horizontal,
       controller: controller,
       children: forms,
-      onPageChanged: _onPageChange,
     );
-  }
-
-  void _onPageChange(int index) {
-    print('$index');
-    if (index + 1 >= forms.length) {
-      forms.add(ScoutingForm(pageNumber: index + 2));
-      print('Created new page instance this swipe. (index=${index + 2})');
-    }
   }
 }
