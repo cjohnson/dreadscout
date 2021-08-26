@@ -41,7 +41,37 @@ class ScoutingForm extends StatelessWidget {
                       ),
                     ),
                   ),
-                  Positioned(left: 28.0, bottom: 28.0, child: _TitleWidget(
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 48.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        IconButton(
+                          icon: Icon(Icons.arrow_back),
+                          iconSize: 30.0,
+                          color: Colors.white,
+                          onPressed: () {  },
+                        ),
+                        Row(
+                          children: [
+                            IconButton(
+                              icon: Icon(Icons.account_box_rounded),
+                              iconSize: 30.0,
+                              color: Colors.white,
+                              onPressed: () {  },
+                            ),
+                            IconButton(
+                              icon: Icon(FontAwesomeIcons.cog),
+                              iconSize: 23.0,
+                              color: Colors.white,
+                              onPressed: () {  },
+                            ),
+                          ],
+                        )
+                      ],
+                    ),
+                  ),
+                  Positioned(left: 20.0, bottom: 28.0, child: _TitleWidget(
                     teamNumber: 3656,
                     teamName: 'Dreadbots',
                     teamLocation: 'Dexter, Michigan, USA',
