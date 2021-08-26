@@ -72,7 +72,7 @@ class ScoutingForm extends StatelessWidget {
               for(var i = 0; i < 18; i++)
                 Container(
                   height: 100,
-                  child: Text('$i'),
+                  child: Center(child: Text('$i')),
                 ),
             ],
           ),
