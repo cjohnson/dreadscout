@@ -20,7 +20,7 @@ class ScoutingForm extends StatelessWidget {
                   children: [
                     Positioned.fill(
                       child: ClipRRect(
-                        borderRadius: BorderRadius.circular(30.0),
+                        borderRadius: BorderRadius.vertical(bottom: Radius.circular(30.0)),
                         child: ColorFiltered(
                           colorFilter: ColorFilter.mode(
                               Colors.black.withOpacity(0.2), BlendMode.colorBurn),
@@ -69,15 +69,85 @@ class ScoutingForm extends StatelessWidget {
                   ],
                 ),
               ),
-              for(var i = 0; i < 18; i++)
-                Container(
-                  height: 100,
-                  child: Center(child: Text('$i')),
-                ),
+              CounterFormElement(dataName: 'Power Cells',),
+              CounterFormElement(dataName: 'Power Cells',),
+              CounterFormElement(dataName: 'Power Cells',),
+              CounterFormElement(dataName: 'Power Cells',),
+              CounterFormElement(dataName: 'Power Cells',),
+              CounterFormElement(dataName: 'Power Cells',),
+              CounterFormElement(dataName: 'Power Cells',),
+              CounterFormElement(dataName: 'Power Cells',),
+              CounterFormElement(dataName: 'Power Cells',),
             ],
           ),
         ),
       ],
+    );
+  }
+}
+
+class CounterFormElement extends StatefulWidget {
+  final String dataName;
+
+  CounterFormElement({
+    Key? key, required this.dataName,
+  }) : super(key: key);
+
+  @override
+  _CounterFormElementState createState() => _CounterFormElementState();
+}
+
+class _CounterFormElementState extends State<CounterFormElement> {
+  int counterState = 0;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 100,
+      padding: EdgeInsets.all(20.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(
+            widget.dataName,
+            style: GoogleFonts.roboto(
+                textStyle: Theme.of(context).textTheme.headline1,
+                color: Colors.black,
+                fontWeight: FontWeight.normal,
+                fontSize: 16.0,
+                height: 1),
+          ),
+          ElevatedButton(
+            onPressed: () => setState(() { counterState--; }),
+            child: Container(
+              padding: EdgeInsets.all(10),
+              child: Icon(FontAwesomeIcons.minus, size: 20,),
+            ),
+            style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.all<Color>(Colors.black),
+            ),
+          ),
+          Text(
+            '$counterState',
+            style: GoogleFonts.roboto(
+                textStyle: Theme.of(context).textTheme.headline1,
+                color: Colors.black,
+                fontWeight: FontWeight.normal,
+                fontSize: 18.0,
+                height: 1),
+          ),
+          ElevatedButton(
+            onPressed: () => setState(() { counterState++; }),
+            child: Container(
+              padding: EdgeInsets.all(10),
+              child: Icon(FontAwesomeIcons.plus, size: 20,),
+            ),
+            style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.all<Color>(Colors.black),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
