@@ -21,18 +21,12 @@ class MyApp extends StatelessWidget {
     ));
 
     return MaterialApp(
-      title: _title,
-      theme: ThemeData(
-        appBarTheme: AppBarTheme(
-          brightness: Brightness.dark
-        )
-      ),
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        // appBar: AppBar(title: const Text(_title),),
-        body: const FormPage(),
-      )
-    );
+        title: _title,
+        theme: ThemeData(appBarTheme: AppBarTheme(brightness: Brightness.dark)),
+        debugShowCheckedModeBanner: false,
+        home: Scaffold(
+          body: const FormPage(),
+        ));
   }
 }
 
@@ -49,13 +43,16 @@ class ScoutingForm extends StatelessWidget {
           expandedHeight: 220.0,
           floating: true,
           pinned: true,
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.vertical(bottom: Radius.circular(30.0))),
+          shape: RoundedRectangleBorder(
+              borderRadius:
+                  BorderRadius.vertical(bottom: Radius.circular(30.0))),
           flexibleSpace: FlexibleSpaceBar(
             collapseMode: CollapseMode.pin,
             centerTitle: true,
             background: Container(
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.vertical(bottom: Radius.circular(30.0)),
+                borderRadius:
+                    BorderRadius.vertical(bottom: Radius.circular(30.0)),
               ),
               child: Stack(
                 children: [
@@ -63,7 +60,8 @@ class ScoutingForm extends StatelessWidget {
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(30.0),
                       child: ColorFiltered(
-                        colorFilter: ColorFilter.mode(Colors.black.withOpacity(0.2), BlendMode.colorBurn),
+                        colorFilter: ColorFilter.mode(
+                            Colors.black.withOpacity(0.2), BlendMode.colorBurn),
                         child: Image(
                           image: AssetImage('asset/image/dreadbots.jpg'),
                           fit: BoxFit.fitHeight,
@@ -82,21 +80,21 @@ class ScoutingForm extends StatelessWidget {
                         Text(
                           '3656',
                           style: GoogleFonts.roboto(
-                              textStyle: Theme.of(context).textTheme.headline1,
+                              textStyle:
+                                  Theme.of(context).textTheme.headline1,
                               color: Colors.white,
                               fontWeight: FontWeight.w800,
                               fontSize: 44.0,
-                              height: 0.5
-                          ),
+                              height: 0.5),
                         ),
                         Text(
                           'Dreadbots',
                           style: GoogleFonts.roboto(
-                              textStyle: Theme.of(context).textTheme.headline1,
+                              textStyle:
+                                  Theme.of(context).textTheme.headline1,
                               color: Colors.white,
                               fontWeight: FontWeight.w700,
-                              fontSize: 32.0
-                          ),
+                              fontSize: 32.0),
                         ),
                         Row(
                           children: [
@@ -105,15 +103,17 @@ class ScoutingForm extends StatelessWidget {
                               size: 20.0,
                               color: Colors.white,
                             ),
-                            SizedBox(width: 5.0,),
+                            SizedBox(
+                              width: 5.0,
+                            ),
                             Text(
                               'From Dexter, Michigan, USA',
                               style: GoogleFonts.nunito(
-                                textStyle: Theme.of(context).textTheme.subtitle1,
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 20.0
-                              ),
+                                  textStyle:
+                                      Theme.of(context).textTheme.subtitle1,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 20.0),
                             )
                           ],
                         )
@@ -156,7 +156,7 @@ class _FormPageState extends State<FormPage> {
 
   void _onPageChange(int index) {
     print('$index');
-    if(index + 1 >= forms.length) {
+    if (index + 1 >= forms.length) {
       forms.add(ScoutingForm(pageNumber: index + 2));
       print('Created new page instance this swipe. (index=${index + 2})');
     }
