@@ -21,11 +21,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
         title: _title,
         theme: ThemeData(
-          appBarTheme: AppBarTheme(
-            backwardsCompatibility: false,
-            systemOverlayStyle: SystemUiOverlayStyle.dark,
-          )
-        ),
+            appBarTheme: AppBarTheme(
+          systemOverlayStyle: SystemUiOverlayStyle.dark,
+        )),
         debugShowCheckedModeBanner: false,
         home: Scaffold(
           body: const FormPage(),

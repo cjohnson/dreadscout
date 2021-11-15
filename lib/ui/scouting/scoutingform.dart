@@ -5,7 +5,18 @@ import 'package:google_fonts/google_fonts.dart';
 class ScoutingForm extends StatelessWidget {
   final int pageNumber;
 
-  const ScoutingForm({Key? key, required this.pageNumber}) : super(key: key);
+  final List scoutingData = [
+    () => new CounterFormElement(
+          dataName: "Power Cells",
+          initialValue: 0,
+        ),
+    () => new CounterFormElement(
+          dataName: "Hatch Panels",
+          initialValue: 9,
+        ),
+  ];
+
+  ScoutingForm({Key? key, required this.pageNumber}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -20,10 +31,12 @@ class ScoutingForm extends StatelessWidget {
                   children: [
                     Positioned.fill(
                       child: ClipRRect(
-                        borderRadius: BorderRadius.vertical(bottom: Radius.circular(30.0)),
+                        borderRadius: BorderRadius.vertical(
+                            bottom: Radius.circular(30.0)),
                         child: ColorFiltered(
                           colorFilter: ColorFilter.mode(
-                              Colors.black.withOpacity(0.2), BlendMode.colorBurn),
+                              Colors.black.withOpacity(0.2),
+                              BlendMode.colorBurn),
                           child: Image(
                             image: AssetImage('asset/image/dreadbots.jpg'),
                             fit: BoxFit.fill,
@@ -32,7 +45,8 @@ class ScoutingForm extends StatelessWidget {
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 48.0),
+                      padding: EdgeInsets.symmetric(
+                          horizontal: 10.0, vertical: 48.0),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -40,7 +54,7 @@ class ScoutingForm extends StatelessWidget {
                             icon: Icon(Icons.arrow_back),
                             iconSize: 30.0,
                             color: Colors.white,
-                            onPressed: () {  },
+                            onPressed: () {},
                           ),
                           Row(
                             children: [
@@ -48,36 +62,31 @@ class ScoutingForm extends StatelessWidget {
                                 icon: Icon(Icons.account_box_rounded),
                                 iconSize: 30.0,
                                 color: Colors.white,
-                                onPressed: () {  },
+                                onPressed: () {},
                               ),
                               IconButton(
                                 icon: Icon(FontAwesomeIcons.cog),
                                 iconSize: 23.0,
                                 color: Colors.white,
-                                onPressed: () {  },
+                                onPressed: () {},
                               ),
                             ],
                           )
                         ],
                       ),
                     ),
-                    Positioned(left: 20.0, bottom: 28.0, child: _TitleWidget(
-                      teamNumber: 3656,
-                      teamName: 'Dreadbots',
-                      teamLocation: 'Dexter, Michigan, USA',
-                    ))
+                    Positioned(
+                        left: 20.0,
+                        bottom: 28.0,
+                        child: _TitleWidget(
+                          teamNumber: 3656,
+                          teamName: 'Dreadbots',
+                          teamLocation: 'Dexter, Michigan, USA',
+                        ))
                   ],
                 ),
               ),
-              CounterFormElement(dataName: 'Power Cells',),
-              CounterFormElement(dataName: 'Power Cells',),
-              CounterFormElement(dataName: 'Power Cells',),
-              CounterFormElement(dataName: 'Power Cells',),
-              CounterFormElement(dataName: 'Power Cells',),
-              CounterFormElement(dataName: 'Power Cells',),
-              CounterFormElement(dataName: 'Power Cells',),
-              CounterFormElement(dataName: 'Power Cells',),
-              CounterFormElement(dataName: 'Power Cells',),
+              for (int i = 0; i < scoutingData.length; ++i) scoutingData[i](),
             ],
           ),
         ),
@@ -88,17 +97,25 @@ class ScoutingForm extends StatelessWidget {
 
 class CounterFormElement extends StatefulWidget {
   final String dataName;
+  int initialValue;
 
   CounterFormElement({
-    Key? key, required this.dataName,
+    Key? key,
+    required this.dataName,
+    this.initialValue = 0,
   }) : super(key: key);
 
   @override
-  _CounterFormElementState createState() => _CounterFormElementState();
+  _CounterFormElementState createState() =>
+      _CounterFormElementState(counterState: initialValue);
 }
 
 class _CounterFormElementState extends State<CounterFormElement> {
-  int counterState = 0;
+  int counterState;
+
+  _CounterFormElementState({
+    required this.counterState,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -118,10 +135,15 @@ class _CounterFormElementState extends State<CounterFormElement> {
                 height: 1),
           ),
           ElevatedButton(
-            onPressed: () => setState(() { counterState--; }),
+            onPressed: () => setState(() {
+              counterState--;
+            }),
             child: Container(
               padding: EdgeInsets.all(10),
-              child: Icon(FontAwesomeIcons.minus, size: 20,),
+              child: Icon(
+                FontAwesomeIcons.minus,
+                size: 20,
+              ),
             ),
             style: ButtonStyle(
               backgroundColor: MaterialStateProperty.all<Color>(Colors.black),
@@ -137,10 +159,15 @@ class _CounterFormElementState extends State<CounterFormElement> {
                 height: 1),
           ),
           ElevatedButton(
-            onPressed: () => setState(() { counterState++; }),
+            onPressed: () => setState(() {
+              counterState++;
+            }),
             child: Container(
               padding: EdgeInsets.all(10),
-              child: Icon(FontAwesomeIcons.plus, size: 20,),
+              child: Icon(
+                FontAwesomeIcons.plus,
+                size: 20,
+              ),
             ),
             style: ButtonStyle(
               backgroundColor: MaterialStateProperty.all<Color>(Colors.black),
