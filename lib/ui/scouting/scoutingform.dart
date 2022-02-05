@@ -4,6 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../form/counterformelement.dart';
+import '../form/togglebuttonelement.dart';
 
 class ScoutingForm extends StatelessWidget {
   final int pageNumber;
@@ -32,6 +33,10 @@ class ScoutingForm extends StatelessWidget {
     () => SwitchFormElement(
           dataName: "Effective Defense",
           initialValue: false,
+        ),
+    () => ToggleButtonFormElement(
+          dataName: "Climb",
+          initialToggle: 0,
         ),
   ];
 
