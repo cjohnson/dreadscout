@@ -21,6 +21,18 @@ class ScoutingForm extends StatelessWidget {
           dataName: "Taxi",
           initialValue: false,
         ),
+    () => CounterFormElement(
+          dataName: "Low Goal",
+          initialValue: 0,
+        ),
+    () => CounterFormElement(
+          dataName: "High Goal",
+          initialValue: 0,
+        ),
+    () => SwitchFormElement(
+          dataName: "Effective Defense",
+          initialValue: false,
+        ),
   ];
 
   ScoutingForm({Key? key, required this.pageNumber}) : super(key: key);
