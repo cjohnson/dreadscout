@@ -1,3 +1,4 @@
+import 'package:dreadscout/ui/form/switchformelement.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -15,6 +16,10 @@ class ScoutingForm extends StatelessWidget {
     () => CounterFormElement(
           dataName: "High Goal",
           initialValue: 0,
+        ),
+    () => SwitchFormElement(
+          dataName: "Taxi",
+          initialValue: false,
         ),
   ];
 
