@@ -7,12 +7,12 @@ class ScoutingForm extends StatelessWidget {
 
   final List scoutingData = [
     () => CounterFormElement(
-          dataName: "Power Cells",
+          dataName: "Low Goal",
           initialValue: 0,
         ),
     () => CounterFormElement(
-          dataName: "Hatch Panels",
-          initialValue: 9,
+          dataName: "High Goal",
+          initialValue: 0,
         ),
   ];
 
