@@ -6,11 +6,11 @@ class ScoutingForm extends StatelessWidget {
   final int pageNumber;
 
   final List scoutingData = [
-    () => new CounterFormElement(
+    () => CounterFormElement(
           dataName: "Power Cells",
           initialValue: 0,
         ),
-    () => new CounterFormElement(
+    () => CounterFormElement(
           dataName: "Hatch Panels",
           initialValue: 9,
         ),
@@ -25,7 +25,7 @@ class ScoutingForm extends StatelessWidget {
         SliverList(
           delegate: SliverChildListDelegate(
             [
-              Container(
+              SizedBox(
                 height: 275.0,
                 child: Stack(
                   children: [

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'package:dreadscout/ui/scouting/scoutingpage.dart';
+import 'ui/scouting/scoutingpage.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -14,19 +14,21 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+    SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
       statusBarColor: Colors.transparent,
     ));
 
     return MaterialApp(
-        title: _title,
-        theme: ThemeData(
-            appBarTheme: AppBarTheme(
+      title: _title,
+      theme: ThemeData(
+        appBarTheme: const AppBarTheme(
           systemOverlayStyle: SystemUiOverlayStyle.dark,
-        )),
-        debugShowCheckedModeBanner: false,
-        home: Scaffold(
-          body: const FormPage(),
-        ));
+        ),
+      ),
+      debugShowCheckedModeBanner: false,
+      home: const Scaffold(
+        body: FormPage(),
+      ),
+    );
   }
 }

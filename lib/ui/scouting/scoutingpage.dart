@@ -1,12 +1,11 @@
-import 'package:flutter/material.dart';
-
 import 'package:dreadscout/ui/scouting/scoutingform.dart';
+import 'package:flutter/material.dart';
 
 class FormPage extends StatefulWidget {
   const FormPage({Key? key}) : super(key: key);
 
   @override
-  _FormPageState createState() => _FormPageState();
+  State<FormPage> createState() => _FormPageState();
 }
 
 class _FormPageState extends State<FormPage> {
@@ -19,6 +18,7 @@ class _FormPageState extends State<FormPage> {
   @override
   Widget build(BuildContext context) {
     final PageController controller = PageController(initialPage: 0);
+
     return PageView(
       scrollDirection: Axis.horizontal,
       controller: controller,
