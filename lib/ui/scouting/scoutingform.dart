@@ -31,13 +31,13 @@ class ScoutingForm extends StatelessWidget {
                   children: [
                     Positioned.fill(
                       child: ClipRRect(
-                        borderRadius: BorderRadius.vertical(
+                        borderRadius: const BorderRadius.vertical(
                             bottom: Radius.circular(30.0)),
                         child: ColorFiltered(
                           colorFilter: ColorFilter.mode(
                               Colors.black.withOpacity(0.2),
                               BlendMode.colorBurn),
-                          child: Image(
+                          child: const Image(
                             image: AssetImage('asset/image/dreadbots.jpg'),
                             fit: BoxFit.fill,
                           ),
@@ -45,13 +45,13 @@ class ScoutingForm extends StatelessWidget {
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsets.symmetric(
+                      padding: const EdgeInsets.symmetric(
                           horizontal: 10.0, vertical: 48.0),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           IconButton(
-                            icon: Icon(Icons.arrow_back),
+                            icon: const Icon(Icons.arrow_back),
                             iconSize: 30.0,
                             color: Colors.white,
                             onPressed: () {},
@@ -59,13 +59,13 @@ class ScoutingForm extends StatelessWidget {
                           Row(
                             children: [
                               IconButton(
-                                icon: Icon(Icons.account_box_rounded),
+                                icon: const Icon(Icons.account_box_rounded),
                                 iconSize: 30.0,
                                 color: Colors.white,
                                 onPressed: () {},
                               ),
                               IconButton(
-                                icon: Icon(FontAwesomeIcons.cog),
+                                icon: const Icon(FontAwesomeIcons.cog),
                                 iconSize: 23.0,
                                 color: Colors.white,
                                 onPressed: () {},
@@ -75,7 +75,7 @@ class ScoutingForm extends StatelessWidget {
                         ],
                       ),
                     ),
-                    Positioned(
+                    const Positioned(
                         left: 20.0,
                         bottom: 28.0,
                         child: _TitleWidget(
@@ -121,7 +121,7 @@ class _CounterFormElementState extends State<CounterFormElement> {
   Widget build(BuildContext context) {
     return Container(
       height: 100,
-      padding: EdgeInsets.all(20.0),
+      padding: const EdgeInsets.all(20.0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -139,8 +139,8 @@ class _CounterFormElementState extends State<CounterFormElement> {
               counterState--;
             }),
             child: Container(
-              padding: EdgeInsets.all(10),
-              child: Icon(
+              padding: const EdgeInsets.all(10),
+              child: const Icon(
                 FontAwesomeIcons.minus,
                 size: 20,
               ),
@@ -163,8 +163,8 @@ class _CounterFormElementState extends State<CounterFormElement> {
               counterState++;
             }),
             child: Container(
-              padding: EdgeInsets.all(10),
-              child: Icon(
+              padding: const EdgeInsets.all(10),
+              child: const Icon(
                 FontAwesomeIcons.plus,
                 size: 20,
               ),
@@ -217,12 +217,12 @@ class _TitleWidget extends StatelessWidget {
         ),
         Row(
           children: [
-            Icon(
+            const Icon(
               FontAwesomeIcons.mapMarkerAlt,
               size: 20.0,
               color: Colors.white,
             ),
-            SizedBox(
+            const SizedBox(
               width: 5.0,
             ),
             Text(
