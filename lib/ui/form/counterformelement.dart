@@ -53,7 +53,7 @@ class _CounterFormElementState extends State<CounterFormElement> {
               ),
             ),
             style: ButtonStyle(
-              backgroundColor: MaterialStateProperty.all<Color>(Colors.black),
+              backgroundColor: MaterialStateProperty.all<Color>(Colors.red),
             ),
           ),
           Text(
@@ -77,7 +77,7 @@ class _CounterFormElementState extends State<CounterFormElement> {
               ),
             ),
             style: ButtonStyle(
-              backgroundColor: MaterialStateProperty.all<Color>(Colors.black),
+              backgroundColor: MaterialStateProperty.all<Color>(Colors.green),
             ),
           ),
         ],

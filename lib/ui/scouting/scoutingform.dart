@@ -38,6 +38,10 @@ class ScoutingForm extends StatelessWidget {
           dataName: "Climb",
           initialToggle: 0,
         ),
+    () => SwitchFormElement(
+          dataName: "Robot Broke?",
+          initialValue: false,
+        ),
   ];
 
   ScoutingForm({Key? key, required this.pageNumber}) : super(key: key);
@@ -92,7 +96,12 @@ class ScoutingForm extends StatelessWidget {
                                 icon: const Icon(FontAwesomeIcons.cog),
                                 iconSize: 23.0,
                                 color: Colors.white,
-                                onPressed: () {},
+                                onPressed: () {
+                                  showDialog(
+                                    context: context,
+                                    builder: (BuildContext context) => _buildSettingsPopupDialog(context),
+                                  );
+                                },
                               ),
                             ],
                           )
@@ -114,6 +123,32 @@ class ScoutingForm extends StatelessWidget {
             ],
           ),
         ),
+      ],
+    );
+  }
+
+  Widget _buildSettingsPopupDialog(BuildContext context) {
+    return AlertDialog(
+      title: const Text('Match Settings'),
+      content: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: const <Widget>[
+          TextField(
+            decoration: InputDecoration(
+              border: OutlineInputBorder(),
+              hintText: 'Team Number'
+            ),
+          ),
+        ],
+      ),
+      actions: <Widget>[
+        TextButton(
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+          child: const Text('Close')
+        )
       ],
     );
   }

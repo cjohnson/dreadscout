@@ -62,6 +62,7 @@ class _ToggleButtonFormElementState extends State<ToggleButtonFormElement> {
                 }
               });
             },
+            color: Colors.grey,
             isSelected: isSelected,
           ),
         ],

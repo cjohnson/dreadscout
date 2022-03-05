@@ -9,20 +9,32 @@ class FormPage extends StatefulWidget {
 }
 
 class _FormPageState extends State<FormPage> {
-  List<Widget> forms = <Widget>[
-    ScoutingForm(pageNumber: 1),
-    ScoutingForm(pageNumber: 2),
-    ScoutingForm(pageNumber: 3),
-  ];
+  final ScoutingTrackController scoutingTrackController = ScoutingTrackController(8);
+
+  List<Widget> forms = <Widget>[];
 
   @override
   Widget build(BuildContext context) {
     final PageController controller = PageController(initialPage: 0);
+
+    for(int i = 0; i <= scoutingTrackController.size; i++) {
+      forms.add(ScoutingForm(pageNumber: i,));
+    }
 
     return PageView(
       scrollDirection: Axis.horizontal,
       controller: controller,
       children: forms,
     );
+  }
+}
+
+class ScoutingTrackController {
+  int size;
+
+  ScoutingTrackController(this.size);
+
+  int getSize() {
+    return size;
   }
 }
