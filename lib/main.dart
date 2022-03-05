@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import 'ui/data/scoutingdata.dart';
 import 'ui/scouting/scoutingpage.dart';
 
 void main() {
