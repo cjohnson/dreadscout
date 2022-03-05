@@ -6,8 +6,17 @@ import 'package:google_fonts/google_fonts.dart';
 import '../form/counterformelement.dart';
 import '../form/togglebuttonelement.dart';
 
-class ScoutingForm extends StatelessWidget {
+class ScoutingForm extends StatefulWidget {
   final int pageNumber;
+
+  ScoutingForm({Key? key, required this.pageNumber}) : super(key: key);
+
+  @override
+  State<ScoutingForm> createState() => _ScoutingFormState();
+}
+
+class _ScoutingFormState extends State<ScoutingForm> {
+  int teamNumber = -1;
 
   final List scoutingData = [
     () => CounterFormElement(
@@ -44,7 +53,11 @@ class ScoutingForm extends StatelessWidget {
         ),
   ];
 
-  ScoutingForm({Key? key, required this.pageNumber}) : super(key: key);
+  void setTeamNumber(int teamNumber) {
+    setState(() {
+      this.teamNumber = teamNumber;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -61,14 +74,18 @@ class ScoutingForm extends StatelessWidget {
                       child: ClipRRect(
                         borderRadius: const BorderRadius.vertical(
                             bottom: Radius.circular(30.0)),
-                        child: ColorFiltered(
-                          colorFilter: ColorFilter.mode(
-                              Colors.black.withOpacity(0.2),
-                              BlendMode.colorBurn),
-                          child: const Image(
-                            image: AssetImage('asset/image/dreadbots.jpg'),
-                            fit: BoxFit.fill,
-                          ),
+                        // child: ColorFiltered(
+                        //   colorFilter: ColorFilter.mode(
+                        //       Colors.black.withOpacity(0.2),
+                        //       BlendMode.colorBurn),
+                        //   child: const Image(
+                        //     image: AssetImage('asset/image/dreadbots.jpg'),
+                        //     fit: BoxFit.fill,
+                        //   ),
+                        // ),
+                        child: ColoredBox(
+                          color: Colors.black,
+                          child: Container()
                         ),
                       ),
                     ),
@@ -99,7 +116,7 @@ class ScoutingForm extends StatelessWidget {
                                 onPressed: () {
                                   showDialog(
                                     context: context,
-                                    builder: (BuildContext context) => _buildSettingsPopupDialog(context),
+                                    builder: (BuildContext context) => _buildSettingsPopupDialog(context, setTeamNumber),
                                   );
                                 },
                               ),
@@ -108,13 +125,13 @@ class ScoutingForm extends StatelessWidget {
                         ],
                       ),
                     ),
-                    const Positioned(
+                    Positioned(
                         left: 20.0,
                         bottom: 28.0,
                         child: _TitleWidget(
-                          teamNumber: 3656,
-                          teamName: 'Dreadbots',
-                          teamLocation: 'Dexter, Michigan, USA',
+                          teamNumber: teamNumber == -1 ? -1 : teamNumber,
+                          // teamName: 'Dreadbots',
+                          // teamLocation: 'Dexter, Michigan, USA',
                         ))
                   ],
                 ),
@@ -127,18 +144,20 @@ class ScoutingForm extends StatelessWidget {
     );
   }
 
-  Widget _buildSettingsPopupDialog(BuildContext context) {
+  Widget _buildSettingsPopupDialog(BuildContext context, void Function(int teamNumber) setTeamNumber) {
+    TextEditingController _controller = TextEditingController();
     return AlertDialog(
       title: const Text('Match Settings'),
       content: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: const <Widget>[
+        children: <Widget>[
           TextField(
-            decoration: InputDecoration(
+            decoration: const InputDecoration(
               border: OutlineInputBorder(),
-              hintText: 'Team Number'
+              hintText: 'Team Number',
             ),
+            controller: _controller,
           ),
         ],
       ),
@@ -146,8 +165,10 @@ class ScoutingForm extends StatelessWidget {
         TextButton(
           onPressed: () {
             Navigator.of(context).pop();
+            int? teamNumber = int.tryParse(_controller.text);
+            setTeamNumber.call(teamNumber?? -1);
           },
-          child: const Text('Close')
+          child: const Text('Done')
         )
       ],
     );
@@ -159,12 +180,17 @@ class _TitleWidget extends StatelessWidget {
   final String teamName;
   final String teamLocation;
 
-  const _TitleWidget(
+  _TitleWidget(
       {Key? key,
       required this.teamNumber,
-      required this.teamName,
-      required this.teamLocation})
+      this.teamName = "",
+      this.teamLocation = ""})
       : super(key: key);
+
+  String _getTeamString() {
+    if(teamNumber == -1) return '----';
+    return '$teamNumber';
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -174,7 +200,7 @@ class _TitleWidget extends StatelessWidget {
       mainAxisSize: MainAxisSize.max,
       children: [
         Text(
-          '$teamNumber',
+          '${_getTeamString()}',
           style: GoogleFonts.roboto(
               textStyle: Theme.of(context).textTheme.headline1,
               color: Colors.white,
@@ -182,34 +208,36 @@ class _TitleWidget extends StatelessWidget {
               fontSize: 44.0,
               height: 0.5),
         ),
-        Text(
-          teamName,
-          style: GoogleFonts.roboto(
-              textStyle: Theme.of(context).textTheme.headline1,
-              color: Colors.white,
-              fontWeight: FontWeight.w700,
-              fontSize: 32.0),
-        ),
-        Row(
-          children: [
-            const Icon(
-              FontAwesomeIcons.mapMarkerAlt,
-              size: 20.0,
-              color: Colors.white,
-            ),
-            const SizedBox(
-              width: 5.0,
-            ),
-            Text(
-              'From $teamLocation',
-              style: GoogleFonts.nunito(
-                  textStyle: Theme.of(context).textTheme.subtitle1,
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 20.0),
-            )
-          ],
-        )
+        // if(teamNumber != -1)
+        //   Text(
+        //     teamName,
+        //     style: GoogleFonts.roboto(
+        //         textStyle: Theme.of(context).textTheme.headline1,
+        //         color: Colors.white,
+        //         fontWeight: FontWeight.w700,
+        //         fontSize: 32.0),
+        //   ),
+        // if(teamNumber != -1)
+        //   Row(
+        //     children: [
+        //       const Icon(
+        //         FontAwesomeIcons.mapMarkerAlt,
+        //         size: 20.0,
+        //         color: Colors.white,
+        //       ),
+        //       const SizedBox(
+        //         width: 5.0,
+        //       ),
+        //       Text(
+        //         'From $teamLocation',
+        //         style: GoogleFonts.nunito(
+        //             textStyle: Theme.of(context).textTheme.subtitle1,
+        //             color: Colors.white,
+        //             fontWeight: FontWeight.bold,
+        //             fontSize: 20.0),
+        //       )
+        //     ],
+        //   )
       ],
     );
   }
