@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -10,50 +12,11 @@ import '../form/togglebuttonelement.dart';
 class ScoutingFormUI extends StatelessWidget {
   final ScoutingForm data;
 
-  ScoutingFormUI({Key? key, required this.data}) : super(key: key);
-
-  final List formWidgets = [
-    CounterFormElementUI(
-      formElement: CounterFormElement(id: "low_goal", title: "Low Goal"),
-    ),
-    CounterFormElementUI(
-      formElement: CounterFormElement(id: "high_goal", title: "High Goal"),
-    ),
-    SwitchFormElementUI(
-      formElement: SwitchFormElement(id: "taxi", title: "Taxi", value: false),
-    ),
-    CounterFormElementUI(
-      formElement: CounterFormElement(id: "low_goal", title: "Low Goal"),
-    ),
-    CounterFormElementUI(
-      formElement: CounterFormElement(id: "high_goal", title: "High Goal"),
-    ),
-    SwitchFormElementUI(
-      formElement: SwitchFormElement(
-          id: "defense", title: "Effective Defense", value: false),
-    ),
-    ToggleButtonFormElementUI(
-      formElement: ToggleButtonFormElement(
-          id: "climb",
-          title: "Climb Level",
-          index: 0,
-          toggles: [
-            'NONE',
-            'LOW',
-            'MED',
-            'HIGH',
-            'TRAV',
-          ]),
-    ),
-    SwitchFormElementUI(
-      formElement:
-          SwitchFormElement(id: "broken", title: "Robot Broken?", value: false),
-    ),
-  ];
+  const ScoutingFormUI({Key? key, required this.data}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    print(data.elements!);
+    print(jsonEncode(data.toJson()));
     return CustomScrollView(
       slivers: <Widget>[
         SliverList(

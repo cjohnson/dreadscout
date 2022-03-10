@@ -42,18 +42,27 @@ class ScoutingFormElement {
     formElement = json['section_header'] != null
         ? SectionHeader.fromJson(json['section_header'])
         : null;
+    if (formElement != null) return;
+
     formElement = json['switch_form_element'] != null
         ? SwitchFormElement.fromJson(json['switch_form_element'])
         : null;
+    if (formElement != null) return;
+
     formElement = json['counter_form_element'] != null
         ? CounterFormElement.fromJson(json['counter_form_element'])
         : null;
+    if (formElement != null) return;
+
     formElement = json['toggle_button_form_element'] != null
         ? ToggleButtonFormElement.fromJson(json['toggle_button_form_element'])
         : null;
+    if (formElement != null) return;
+
     formElement = json['text_field_element'] != null
         ? TextFieldElement.fromJson(json['text_field_element'])
         : null;
+    if (formElement != null) return;
   }
 
   Map<String, dynamic> toJson() {
@@ -159,15 +168,15 @@ class CounterFormElement extends FormElementData {
   CounterFormElement.fromJson(Map<String, dynamic> json) {
     json = super.fromJson(json);
 
-    value = json['value'];
     lowerBound = json['lower_bound'];
+    value = json['value'];
   }
 
   @override
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = super.toJson();
 
-    data['initial_value'] = value;
+    data['value'] = value;
     data['lower_bound'] = lowerBound;
     return data;
   }
@@ -207,16 +216,16 @@ class ToggleButtonFormElement extends FormElementData {
   ToggleButtonFormElement.fromJson(Map<String, dynamic> json) {
     json = super.fromJson(json);
 
-    index = int.tryParse(json['initial_index']);
     toggles = json['toggles'].cast<String>();
+    index = json['initial_index'];
   }
 
   @override
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = super.toJson();
 
-    data['initial_index'] = index;
     data['toggles'] = toggles;
+    data['initial_index'] = index;
     return data;
   }
 
