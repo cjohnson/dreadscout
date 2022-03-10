@@ -15,43 +15,42 @@ class ScoutingFormUI extends StatelessWidget {
       : super(key: key);
 
   final List formWidgets = [
-    () => CounterFormElementUI(
-          formElement: CounterFormElement(id: "low_goal", title: "Low Goal"),
-        ),
-    () => CounterFormElementUI(
-          formElement: CounterFormElement(id: "high_goal", title: "High Goal"),
-        ),
-    () => SwitchFormElementUI(
-          formElement:
-              SwitchFormElement(id: "taxi", title: "Taxi", value: false),
-        ),
-    () => CounterFormElementUI(
-          formElement: CounterFormElement(id: "low_goal", title: "Low Goal"),
-        ),
-    () => CounterFormElementUI(
-          formElement: CounterFormElement(id: "high_goal", title: "High Goal"),
-        ),
-    () => SwitchFormElementUI(
-          formElement: SwitchFormElement(
-              id: "defense", title: "Effective Defense", value: false),
-        ),
-    () => ToggleButtonFormElementUI(
-          formElement: ToggleButtonFormElement(
-              id: "climb",
-              title: "Climb Level",
-              index: 0,
-              toggles: [
-                'NONE',
-                'LOW',
-                'MED',
-                'HIGH',
-                'TRAV',
-              ]),
-        ),
-    () => SwitchFormElementUI(
-          formElement: SwitchFormElement(
-              id: "broken", title: "Robot Broken?", value: false),
-        ),
+    CounterFormElementUI(
+      formElement: CounterFormElement(id: "low_goal", title: "Low Goal"),
+    ),
+    CounterFormElementUI(
+      formElement: CounterFormElement(id: "high_goal", title: "High Goal"),
+    ),
+    SwitchFormElementUI(
+      formElement: SwitchFormElement(id: "taxi", title: "Taxi", value: false),
+    ),
+    CounterFormElementUI(
+      formElement: CounterFormElement(id: "low_goal", title: "Low Goal"),
+    ),
+    CounterFormElementUI(
+      formElement: CounterFormElement(id: "high_goal", title: "High Goal"),
+    ),
+    SwitchFormElementUI(
+      formElement: SwitchFormElement(
+          id: "defense", title: "Effective Defense", value: false),
+    ),
+    ToggleButtonFormElementUI(
+      formElement: ToggleButtonFormElement(
+          id: "climb",
+          title: "Climb Level",
+          index: 0,
+          toggles: [
+            'NONE',
+            'LOW',
+            'MED',
+            'HIGH',
+            'TRAV',
+          ]),
+    ),
+    SwitchFormElementUI(
+      formElement:
+          SwitchFormElement(id: "broken", title: "Robot Broken?", value: false),
+    ),
   ];
 
   @override
@@ -65,7 +64,7 @@ class ScoutingFormUI extends StatelessWidget {
                 formName: formName,
                 teamNumber: teamNumber,
               ),
-              for (int i = 0; i < formWidgets.length; ++i) formWidgets[i](),
+              for (int i = 0; i < formWidgets.length; ++i) formWidgets[i],
             ],
           ),
         ),
@@ -74,13 +73,18 @@ class ScoutingFormUI extends StatelessWidget {
   }
 }
 
-class _ScoutingFormHeader extends StatelessWidget {
+class _ScoutingFormHeader extends StatefulWidget {
   final String formName;
   int teamNumber;
 
   _ScoutingFormHeader({Key? key, required this.formName, this.teamNumber = -1})
       : super(key: key);
 
+  @override
+  State<_ScoutingFormHeader> createState() => _ScoutingFormHeaderState();
+}
+
+class _ScoutingFormHeaderState extends State<_ScoutingFormHeader> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -91,15 +95,6 @@ class _ScoutingFormHeader extends StatelessWidget {
             child: ClipRRect(
               borderRadius:
                   const BorderRadius.vertical(bottom: Radius.circular(30.0)),
-              // child: ColorFiltered(
-              //   colorFilter: ColorFilter.mode(
-              //       Colors.black.withOpacity(0.2),
-              //       BlendMode.colorBurn),
-              //   child: const Image(
-              //     image: AssetImage('asset/image/dreadbots.jpg'),
-              //     fit: BoxFit.fill,
-              //   ),
-              // ),
               child: ColoredBox(color: Colors.teal, child: Container()),
             ),
           ),
@@ -116,7 +111,7 @@ class _ScoutingFormHeader extends StatelessWidget {
                   onPressed: () {},
                 ),
                 Text(
-                  formName,
+                  widget.formName,
                   textAlign: TextAlign.center,
                   style: GoogleFonts.nunito(
                       textStyle: Theme.of(context).textTheme.headline1,
@@ -142,7 +137,9 @@ class _ScoutingFormHeader extends StatelessWidget {
                           context: context,
                           builder: (BuildContext context) =>
                               _buildSettingsPopupDialog(
-                                  context, (newTeamNumber) => teamNumber),
+                                  context,
+                                  (newTeamNumber) => setState(
+                                      () => widget.teamNumber = newTeamNumber)),
                         );
                       },
                     ),
@@ -155,9 +152,7 @@ class _ScoutingFormHeader extends StatelessWidget {
               left: 20.0,
               bottom: 28.0,
               child: _TitleWidget(
-                teamNumber: teamNumber == -1 ? -1 : teamNumber,
-                // teamName: 'Dreadbots',
-                // teamLocation: 'Dexter, Michigan, USA',
+                teamNumber: widget.teamNumber == -1 ? -1 : widget.teamNumber,
               ))
         ],
       ),
@@ -168,7 +163,7 @@ class _ScoutingFormHeader extends StatelessWidget {
       BuildContext context, void Function(int teamNumber) setTeamNumber) {
     TextEditingController _controller = TextEditingController();
     return AlertDialog(
-      title: const Text('Match Settings'),
+      title: const Text('Settings'),
       content: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -228,36 +223,36 @@ class _TitleWidget extends StatelessWidget {
               fontSize: 44.0,
               height: 0.5),
         ),
-        // if(teamNumber != -1)
-        //   Text(
-        //     teamName,
-        //     style: GoogleFonts.roboto(
-        //         textStyle: Theme.of(context).textTheme.headline1,
-        //         color: Colors.white,
-        //         fontWeight: FontWeight.w700,
-        //         fontSize: 32.0),
-        //   ),
-        // if(teamNumber != -1)
-        //   Row(
-        //     children: [
-        //       const Icon(
-        //         FontAwesomeIcons.mapMarkerAlt,
-        //         size: 20.0,
-        //         color: Colors.white,
-        //       ),
-        //       const SizedBox(
-        //         width: 5.0,
-        //       ),
-        //       Text(
-        //         'From $teamLocation',
-        //         style: GoogleFonts.nunito(
-        //             textStyle: Theme.of(context).textTheme.subtitle1,
-        //             color: Colors.white,
-        //             fontWeight: FontWeight.bold,
-        //             fontSize: 20.0),
-        //       )
-        //     ],
-        //   )
+        if (teamNumber != -1 && teamName.isNotEmpty)
+          Text(
+            teamName,
+            style: GoogleFonts.roboto(
+                textStyle: Theme.of(context).textTheme.headline1,
+                color: Colors.white,
+                fontWeight: FontWeight.w700,
+                fontSize: 32.0),
+          ),
+        if (teamNumber != -1 && teamLocation.isNotEmpty)
+          Row(
+            children: [
+              const Icon(
+                FontAwesomeIcons.mapMarkerAlt,
+                size: 20.0,
+                color: Colors.white,
+              ),
+              const SizedBox(
+                width: 5.0,
+              ),
+              Text(
+                'From $teamLocation',
+                style: GoogleFonts.nunito(
+                    textStyle: Theme.of(context).textTheme.subtitle1,
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20.0),
+              )
+            ],
+          )
       ],
     );
   }
