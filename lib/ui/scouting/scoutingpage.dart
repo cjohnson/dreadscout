@@ -15,7 +15,7 @@ class _FormPageState extends State<FormPage> {
 
   final int size = 8;
 
-  List<ScoutingForm> forms = <ScoutingForm>[];
+  List<ScoutingFormUI> forms = <ScoutingFormUI>[];
 
   _FormPageState(this.trackTitle);
 
@@ -25,7 +25,7 @@ class _FormPageState extends State<FormPage> {
         PageController(initialPage: 0, keepPage: true);
 
     for (int i = 0; i <= 8; i++) {
-      forms.add(ScoutingForm(
+      forms.add(ScoutingFormUI(
         formName: '$trackTitle:$i',
         teamNumber: -1,
       ));

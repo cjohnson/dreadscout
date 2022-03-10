@@ -7,14 +7,12 @@ import '../form/data/scoutingtemplate.dart';
 import '../form/switchformelement.dart';
 import '../form/togglebuttonelement.dart';
 
-class ScoutingForm extends StatelessWidget {
+class ScoutingFormUI extends StatelessWidget {
   final String formName;
   final int teamNumber;
 
-  late final CounterFormElement test;
-
-  ScoutingForm({Key? key, required this.formName, required this.teamNumber})
-      : super(key: key) {}
+  ScoutingFormUI({Key? key, required this.formName, required this.teamNumber})
+      : super(key: key);
 
   final List formWidgets = [
     () => CounterFormElementUI(
