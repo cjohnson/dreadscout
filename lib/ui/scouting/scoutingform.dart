@@ -3,20 +3,27 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../data/scoutingdata.dart';
 import '../form/counterformelement.dart';
 import '../form/togglebuttonelement.dart';
 
 class ScoutingForm extends StatefulWidget {
-  final int pageNumber;
+  final String formName;
+  final int teamNumber = -1;
+  late final ScoutingData scoutingData;
 
-  ScoutingForm({Key? key, required this.pageNumber}) : super(key: key);
+  ScoutingForm({Key? key, required this.formName}) : super(key: key) {
+    scoutingData = ScoutingData();
+  }
 
   @override
-  State<ScoutingForm> createState() => _ScoutingFormState();
+  State<ScoutingForm> createState() => _ScoutingFormState(formName, teamNumber, scoutingData);
 }
 
 class _ScoutingFormState extends State<ScoutingForm> {
-  int teamNumber = -1;
+  String formName;
+  int teamNumber;
+  ScoutingData data;
 
   final List scoutingData = [
     () => CounterFormElement(
@@ -52,6 +59,8 @@ class _ScoutingFormState extends State<ScoutingForm> {
           initialValue: false,
         ),
   ];
+
+  _ScoutingFormState(this.formName, this.teamNumber, this.data);
 
   void setTeamNumber(int teamNumber) {
     setState(() {

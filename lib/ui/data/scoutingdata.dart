@@ -5,8 +5,10 @@ class ScoutingData {
   int teleopLowGoal = 0;
   int teleopHighGoal = 0;
   bool effectiveDefense = false;
-  ClimbLevel climb = ClimbLevel.NONE;
+  ClimbLevel climb = ClimbLevel.none;
   String comments = "";
+
+  ScoutingData();
 
   Map<String, dynamic> toJson() => {
     'autonLowGoal': autonLowGoal,
@@ -21,9 +23,9 @@ class ScoutingData {
 }
 
 enum ClimbLevel {
-  NONE,
-  LOW,
-  MEDIUM,
-  HIGH,
-  TRAVERSAL
+  none,
+  low,
+  medium,
+  high,
+  traversal,
 }
