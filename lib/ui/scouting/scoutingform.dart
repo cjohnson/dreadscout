@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../data/datastore.dart';
 import '../form/counterformelement.dart';
 import '../form/data/scoutingtemplate.dart';
 import '../form/switchformelement.dart';
@@ -25,8 +26,12 @@ class ScoutingFormUI extends StatelessWidget {
                 formName: data.formId!,
                 teamNumber: data.teamNumber!,
                 onSave: () {
-                  print(data.toJson());
+                  DataStore().saveData(data);
+                  DataStore().writeToDisk();
                 },
+                onRead: () {
+                  DataStore().readFromDisk();
+                }
               ),
               for (int i = 0; i < data.elements!.length; ++i)
                 data.elements![i].formElement!.wrapInUI(),
@@ -41,9 +46,10 @@ class ScoutingFormUI extends StatelessWidget {
 class _ScoutingFormHeader extends StatefulWidget {
   final String formName;
   final void Function() onSave;
+  final void Function() onRead;
   int teamNumber;
 
-  _ScoutingFormHeader({Key? key, required this.formName, this.teamNumber = -1, required this.onSave})
+  _ScoutingFormHeader({Key? key, required this.formName, this.teamNumber = -1, required this.onSave, required this.onRead})
       : super(key: key);
 
   @override
@@ -74,7 +80,7 @@ class _ScoutingFormHeaderState extends State<_ScoutingFormHeader> {
                   icon: const Icon(Icons.arrow_back),
                   iconSize: 30.0,
                   color: Colors.white,
-                  onPressed: () {},
+                  onPressed: widget.onRead,
                 ),
                 Text(
                   widget.formName,
