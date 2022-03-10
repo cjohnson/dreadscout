@@ -49,7 +49,7 @@ class __SwitchDisplayState extends State<_SwitchDisplay> {
       value: widget.formElement.value ?? false,
       onChanged: (newValue) =>
           setState(() => widget.formElement.value = newValue),
-      activeColor: Colors.black,
+      activeColor: Colors.green,
     );
   }
 }
