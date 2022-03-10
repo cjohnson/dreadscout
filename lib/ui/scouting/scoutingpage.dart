@@ -35,9 +35,6 @@ class _FormPageState extends State<FormPage> {
       scrollDirection: Axis.horizontal,
       controller: controller,
       children: forms,
-      onPageChanged: (int page) {
-        forms[page].saveData();
-      },
     );
   }
 }

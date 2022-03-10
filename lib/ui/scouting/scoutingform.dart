@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../data/datastore.dart';
-import '../data/scoutingdata.dart';
 import '../form/counterformelement.dart';
 import '../form/data/scoutingtemplate.dart';
 import '../form/switchformelement.dart';
@@ -12,17 +10,11 @@ import '../form/togglebuttonelement.dart';
 class ScoutingForm extends StatelessWidget {
   final String formName;
   final int teamNumber;
-  late final ScoutingData data;
 
   late final CounterFormElement test;
 
   ScoutingForm({Key? key, required this.formName, required this.teamNumber})
-      : super(key: key) {
-    data = ScoutingData();
-
-    test = CounterFormElement(
-        id: "test_id", title: "TEST OBJECT", value: 2, lowerBound: 0);
-  }
+      : super(key: key) {}
 
   final List formWidgets = [
     () => CounterFormElementUI(
@@ -63,11 +55,6 @@ class ScoutingForm extends StatelessWidget {
               id: "broken", title: "Robot Broken?", value: false),
         ),
   ];
-
-  void saveData() {
-    DataStore().scoutingForms[formName] = data;
-    print(data.toJson());
-  }
 
   @override
   Widget build(BuildContext context) {
