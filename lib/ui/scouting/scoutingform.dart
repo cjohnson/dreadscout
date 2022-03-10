@@ -24,6 +24,9 @@ class ScoutingFormUI extends StatelessWidget {
               _ScoutingFormHeader(
                 formName: data.formId!,
                 teamNumber: data.teamNumber!,
+                onSave: () {
+                  print(data.toJson());
+                },
               ),
               for (int i = 0; i < data.elements!.length; ++i)
                 data.elements![i].formElement!.wrapInUI(),
@@ -37,9 +40,10 @@ class ScoutingFormUI extends StatelessWidget {
 
 class _ScoutingFormHeader extends StatefulWidget {
   final String formName;
+  final void Function() onSave;
   int teamNumber;
 
-  _ScoutingFormHeader({Key? key, required this.formName, this.teamNumber = -1})
+  _ScoutingFormHeader({Key? key, required this.formName, this.teamNumber = -1, required this.onSave})
       : super(key: key);
 
   @override
@@ -85,10 +89,10 @@ class _ScoutingFormHeaderState extends State<_ScoutingFormHeader> {
                 Row(
                   children: [
                     IconButton(
-                      icon: const Icon(Icons.refresh),
+                      icon: const Icon(Icons.save),
                       iconSize: 30.0,
                       color: Colors.white,
-                      onPressed: () {},
+                      onPressed: widget.onSave,
                     ),
                     IconButton(
                       icon: const Icon(FontAwesomeIcons.cog),
