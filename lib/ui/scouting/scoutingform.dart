@@ -1,3 +1,4 @@
+import 'package:dreadscout/ui/data/datastore.dart';
 import 'package:dreadscout/ui/form/switchformelement.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -7,45 +8,28 @@ import '../data/scoutingdata.dart';
 import '../form/counterformelement.dart';
 import '../form/togglebuttonelement.dart';
 
-class ScoutingForm extends StatefulWidget {
+class ScoutingForm extends StatelessWidget {
   final String formName;
-  final int teamNumber = -1;
-  late final ScoutingData scoutingData;
+  final int teamNumber;
+  late final ScoutingData data;
 
-  ScoutingForm({Key? key, required this.formName}) : super(key: key) {
-    scoutingData = ScoutingData();
+  ScoutingForm({Key? key, required this.formName, required this.teamNumber})
+      : super(key: key) {
+    data = ScoutingData();
   }
 
-  @override
-  State<ScoutingForm> createState() => _ScoutingFormState(formName, teamNumber, scoutingData);
-}
-
-class _ScoutingFormState extends State<ScoutingForm> {
-  String formName;
-  int teamNumber;
-  ScoutingData data;
-
-  final List scoutingData = [
+  final List formWidgets = [
     () => CounterFormElement(
           dataName: "Low Goal",
           initialValue: 0,
         ),
-    () => CounterFormElement(
-          dataName: "High Goal",
-          initialValue: 0,
-        ),
+    () => CounterFormElement(dataName: "High Goal", initialValue: 0),
     () => SwitchFormElement(
           dataName: "Taxi",
           initialValue: false,
         ),
-    () => CounterFormElement(
-          dataName: "Low Goal",
-          initialValue: 0,
-        ),
-    () => CounterFormElement(
-          dataName: "High Goal",
-          initialValue: 0,
-        ),
+    () => CounterFormElement(dataName: "Low Goal", initialValue: 0),
+    () => CounterFormElement(dataName: "High Goal", initialValue: 0),
     () => SwitchFormElement(
           dataName: "Effective Defense",
           initialValue: false,
@@ -60,12 +44,9 @@ class _ScoutingFormState extends State<ScoutingForm> {
         ),
   ];
 
-  _ScoutingFormState(this.formName, this.teamNumber, this.data);
-
-  void setTeamNumber(int teamNumber) {
-    setState(() {
-      this.teamNumber = teamNumber;
-    });
+  void saveData() {
+    DataStore().scoutingForms[formName] = data;
+    print(data.toJson());
   }
 
   @override
@@ -75,85 +56,111 @@ class _ScoutingFormState extends State<ScoutingForm> {
         SliverList(
           delegate: SliverChildListDelegate(
             [
-              SizedBox(
-                height: 275.0,
-                child: Stack(
-                  children: [
-                    Positioned.fill(
-                      child: ClipRRect(
-                        borderRadius: const BorderRadius.vertical(
-                            bottom: Radius.circular(30.0)),
-                        // child: ColorFiltered(
-                        //   colorFilter: ColorFilter.mode(
-                        //       Colors.black.withOpacity(0.2),
-                        //       BlendMode.colorBurn),
-                        //   child: const Image(
-                        //     image: AssetImage('asset/image/dreadbots.jpg'),
-                        //     fit: BoxFit.fill,
-                        //   ),
-                        // ),
-                        child: ColoredBox(
-                          color: Colors.black,
-                          child: Container()
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 10.0, vertical: 48.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          IconButton(
-                            icon: const Icon(Icons.arrow_back),
-                            iconSize: 30.0,
-                            color: Colors.white,
-                            onPressed: () {},
-                          ),
-                          Row(
-                            children: [
-                              IconButton(
-                                icon: const Icon(Icons.account_box_rounded),
-                                iconSize: 30.0,
-                                color: Colors.white,
-                                onPressed: () {},
-                              ),
-                              IconButton(
-                                icon: const Icon(FontAwesomeIcons.cog),
-                                iconSize: 23.0,
-                                color: Colors.white,
-                                onPressed: () {
-                                  showDialog(
-                                    context: context,
-                                    builder: (BuildContext context) => _buildSettingsPopupDialog(context, setTeamNumber),
-                                  );
-                                },
-                              ),
-                            ],
-                          )
-                        ],
-                      ),
-                    ),
-                    Positioned(
-                        left: 20.0,
-                        bottom: 28.0,
-                        child: _TitleWidget(
-                          teamNumber: teamNumber == -1 ? -1 : teamNumber,
-                          // teamName: 'Dreadbots',
-                          // teamLocation: 'Dexter, Michigan, USA',
-                        ))
-                  ],
-                ),
+              _ScoutingFormHeader(
+                formName: formName,
+                teamNumber: teamNumber,
               ),
-              for (int i = 0; i < scoutingData.length; ++i) scoutingData[i](),
+              for (int i = 0; i < formWidgets.length; ++i) formWidgets[i](),
             ],
           ),
         ),
       ],
     );
   }
+}
 
-  Widget _buildSettingsPopupDialog(BuildContext context, void Function(int teamNumber) setTeamNumber) {
+class _ScoutingFormHeader extends StatelessWidget {
+  final String formName;
+  int teamNumber;
+
+  _ScoutingFormHeader({Key? key, required this.formName, this.teamNumber = -1})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 275.0,
+      child: Stack(
+        children: [
+          Positioned.fill(
+            child: ClipRRect(
+              borderRadius:
+                  const BorderRadius.vertical(bottom: Radius.circular(30.0)),
+              // child: ColorFiltered(
+              //   colorFilter: ColorFilter.mode(
+              //       Colors.black.withOpacity(0.2),
+              //       BlendMode.colorBurn),
+              //   child: const Image(
+              //     image: AssetImage('asset/image/dreadbots.jpg'),
+              //     fit: BoxFit.fill,
+              //   ),
+              // ),
+              child: ColoredBox(color: Colors.teal, child: Container()),
+            ),
+          ),
+          Padding(
+            padding:
+                const EdgeInsets.symmetric(horizontal: 10.0, vertical: 48.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                IconButton(
+                  icon: const Icon(Icons.arrow_back),
+                  iconSize: 30.0,
+                  color: Colors.white,
+                  onPressed: () {},
+                ),
+                Text(
+                  formName,
+                  textAlign: TextAlign.center,
+                  style: GoogleFonts.nunito(
+                      textStyle: Theme.of(context).textTheme.headline1,
+                      color: Colors.white,
+                      fontWeight: FontWeight.w800,
+                      fontSize: 25.0,
+                      height: 0.5),
+                ),
+                Row(
+                  children: [
+                    IconButton(
+                      icon: const Icon(Icons.refresh),
+                      iconSize: 30.0,
+                      color: Colors.white,
+                      onPressed: () {},
+                    ),
+                    IconButton(
+                      icon: const Icon(FontAwesomeIcons.cog),
+                      iconSize: 23.0,
+                      color: Colors.white,
+                      onPressed: () {
+                        showDialog(
+                          context: context,
+                          builder: (BuildContext context) =>
+                              _buildSettingsPopupDialog(
+                                  context, (newTeamNumber) => teamNumber),
+                        );
+                      },
+                    ),
+                  ],
+                )
+              ],
+            ),
+          ),
+          Positioned(
+              left: 20.0,
+              bottom: 28.0,
+              child: _TitleWidget(
+                teamNumber: teamNumber == -1 ? -1 : teamNumber,
+                // teamName: 'Dreadbots',
+                // teamLocation: 'Dexter, Michigan, USA',
+              ))
+        ],
+      ),
+    );
+  }
+
+  Widget _buildSettingsPopupDialog(
+      BuildContext context, void Function(int teamNumber) setTeamNumber) {
     TextEditingController _controller = TextEditingController();
     return AlertDialog(
       title: const Text('Match Settings'),
@@ -172,13 +179,12 @@ class _ScoutingFormState extends State<ScoutingForm> {
       ),
       actions: <Widget>[
         TextButton(
-          onPressed: () {
-            Navigator.of(context).pop();
-            int? teamNumber = int.tryParse(_controller.text);
-            setTeamNumber.call(teamNumber?? -1);
-          },
-          child: const Text('Done')
-        )
+            onPressed: () {
+              Navigator.of(context).pop();
+              int? teamNumber = int.tryParse(_controller.text);
+              setTeamNumber.call(teamNumber ?? -1);
+            },
+            child: const Text('Done'))
       ],
     );
   }
@@ -197,7 +203,7 @@ class _TitleWidget extends StatelessWidget {
       : super(key: key);
 
   String _getTeamString() {
-    if(teamNumber == -1) return '----';
+    if (teamNumber == -1) return '----';
     return '$teamNumber';
   }
 
@@ -209,7 +215,7 @@ class _TitleWidget extends StatelessWidget {
       mainAxisSize: MainAxisSize.max,
       children: [
         Text(
-          '${_getTeamString()}',
+          _getTeamString(),
           style: GoogleFonts.roboto(
               textStyle: Theme.of(context).textTheme.headline1,
               color: Colors.white,

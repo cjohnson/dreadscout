@@ -13,24 +13,31 @@ class FormPage extends StatefulWidget {
 class _FormPageState extends State<FormPage> {
   final String trackTitle;
 
-  final ScoutingTrackController scoutingTrackController = ScoutingTrackController(8);
+  final int size = 8;
 
-  List<Widget> forms = <Widget>[];
+  List<ScoutingForm> forms = <ScoutingForm>[];
 
   _FormPageState(this.trackTitle);
 
   @override
   Widget build(BuildContext context) {
-    final PageController controller = PageController(initialPage: 0);
+    final PageController controller =
+        PageController(initialPage: 0, keepPage: true);
 
-    for(int i = 0; i <= scoutingTrackController.size; i++) {
-      forms.add(ScoutingForm(formName: '$trackTitle:$i',));
+    for (int i = 0; i <= 8; i++) {
+      forms.add(ScoutingForm(
+        formName: '$trackTitle:$i',
+        teamNumber: -1,
+      ));
     }
 
     return PageView(
       scrollDirection: Axis.horizontal,
       controller: controller,
       children: forms,
+      onPageChanged: (int page) {
+        forms[page].saveData();
+      },
     );
   }
 }
