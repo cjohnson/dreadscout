@@ -26,13 +26,30 @@ class SwitchFormElementUI extends StatelessWidget {
                 fontSize: 16.0,
                 height: 1),
           ),
-          Switch(
-            value: formElement.value ?? false,
-            onChanged: (newValue) => formElement.value,
-            activeColor: Colors.black,
-          ),
+          _SwitchDisplay(formElement: formElement)
         ],
       ),
+    );
+  }
+}
+
+class _SwitchDisplay extends StatefulWidget {
+  final SwitchFormElement formElement;
+
+  const _SwitchDisplay({Key? key, required this.formElement}) : super(key: key);
+
+  @override
+  State<_SwitchDisplay> createState() => __SwitchDisplayState();
+}
+
+class __SwitchDisplayState extends State<_SwitchDisplay> {
+  @override
+  Widget build(BuildContext context) {
+    return Switch(
+      value: widget.formElement.value ?? false,
+      onChanged: (newValue) =>
+          setState(() => widget.formElement.value = newValue),
+      activeColor: Colors.black,
     );
   }
 }

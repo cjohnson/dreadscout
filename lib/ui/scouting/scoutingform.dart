@@ -26,10 +26,11 @@ class ScoutingForm extends StatelessWidget {
 
   final List formWidgets = [
     () => CounterFormElementUI(
-          formElement: CounterFormElement(
-              id: "low_goal", title: "Low Goal", value: 0, lowerBound: 0),
+          formElement: CounterFormElement(id: "low_goal", title: "Low Goal"),
         ),
-    // () => CounterFormElement(dataName: "High Goal", value: 0),
+    () => CounterFormElementUI(
+          formElement: CounterFormElement(id: "high_goal", title: "High Goal"),
+        ),
     () => SwitchFormElementUI(
           formElement:
               SwitchFormElement(id: "taxi", title: "Taxi", value: false),

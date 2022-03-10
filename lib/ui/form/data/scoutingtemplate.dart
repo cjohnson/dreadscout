@@ -134,7 +134,8 @@ class CounterFormElement extends FormElementData {
   int? _value;
   int? lowerBound;
 
-  CounterFormElement({id, title, value, this.lowerBound = 0})
+  CounterFormElement(
+      {required id, required title, value = 0, this.lowerBound = 0})
       : super(id: id, title: title) {
     _value = value;
   }
