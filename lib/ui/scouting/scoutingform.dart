@@ -16,7 +16,6 @@ class ScoutingFormUI extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(jsonEncode(data.toJson()));
     return CustomScrollView(
       slivers: <Widget>[
         SliverList(
