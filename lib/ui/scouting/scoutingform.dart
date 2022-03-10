@@ -35,15 +35,28 @@ class ScoutingForm extends StatelessWidget {
           formElement:
               SwitchFormElement(id: "taxi", title: "Taxi", value: false),
         ),
-    // () => CounterFormElement(dataName: "Low Goal", value: 0),
-    // () => CounterFormElement(dataName: "High Goal", value: 0),
+    () => CounterFormElementUI(
+          formElement: CounterFormElement(id: "low_goal", title: "Low Goal"),
+        ),
+    () => CounterFormElementUI(
+          formElement: CounterFormElement(id: "high_goal", title: "High Goal"),
+        ),
     () => SwitchFormElementUI(
           formElement: SwitchFormElement(
               id: "defense", title: "Effective Defense", value: false),
         ),
     () => ToggleButtonFormElementUI(
-          dataName: "Climb",
-          initialToggle: 0,
+          formElement: ToggleButtonFormElement(
+              id: "climb",
+              title: "Climb Level",
+              index: 0,
+              toggles: [
+                'NONE',
+                'LOW',
+                'MED',
+                'HIGH',
+                'TRAV',
+              ]),
         ),
     () => SwitchFormElementUI(
           formElement: SwitchFormElement(

@@ -175,15 +175,18 @@ class CounterFormElement extends FormElementData {
 }
 
 class ToggleButtonFormElement extends FormElementData {
-  int? initialIndex;
+  int? _index;
   List<String>? toggles;
 
-  ToggleButtonFormElement({this.initialIndex, this.toggles});
+  ToggleButtonFormElement({required id, required title, index, this.toggles})
+      : super(id: id, title: title) {
+    _index = index;
+  }
 
   ToggleButtonFormElement.fromJson(Map<String, dynamic> json) {
     json = super.fromJson(json);
 
-    initialIndex = int.tryParse(json['initial_index']);
+    index = int.tryParse(json['initial_index']);
     toggles = json['toggles'].cast<String>();
   }
 
@@ -191,9 +194,28 @@ class ToggleButtonFormElement extends FormElementData {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = super.toJson();
 
-    data['initial_index'] = initialIndex;
+    data['initial_index'] = index;
     data['toggles'] = toggles;
     return data;
+  }
+
+  List<bool> getSelected() {
+    final List<bool> buttonStatuses = <bool>[];
+
+    for (int i = 0; i < toggles!.length; i++) {
+      buttonStatuses.add(index == i ? true : false);
+    }
+
+    return buttonStatuses;
+  }
+
+  int? get index => _index;
+
+  set index(int? newIndex) {
+    if (newIndex! < 0) newIndex = 0;
+    if (newIndex >= toggles!.length) newIndex = toggles!.length - 1;
+
+    _index = newIndex;
   }
 }
 
