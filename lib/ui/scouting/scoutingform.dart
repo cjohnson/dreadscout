@@ -8,11 +8,9 @@ import '../form/switchformelement.dart';
 import '../form/togglebuttonelement.dart';
 
 class ScoutingFormUI extends StatelessWidget {
-  final String formName;
-  final int teamNumber;
+  final ScoutingForm data;
 
-  ScoutingFormUI({Key? key, required this.formName, required this.teamNumber})
-      : super(key: key);
+  ScoutingFormUI({Key? key, required this.data}) : super(key: key);
 
   final List formWidgets = [
     CounterFormElementUI(
@@ -55,16 +53,18 @@ class ScoutingFormUI extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print(data.elements!);
     return CustomScrollView(
       slivers: <Widget>[
         SliverList(
           delegate: SliverChildListDelegate(
             [
               _ScoutingFormHeader(
-                formName: formName,
-                teamNumber: teamNumber,
+                formName: data.formId!,
+                teamNumber: data.teamNumber!,
               ),
-              for (int i = 0; i < formWidgets.length; ++i) formWidgets[i],
+              for (int i = 0; i < data.elements!.length; ++i)
+                data.elements![i].formElement!.wrapInUI(),
             ],
           ),
         ),

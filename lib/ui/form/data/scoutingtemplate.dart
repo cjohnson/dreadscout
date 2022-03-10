@@ -1,11 +1,19 @@
+import 'package:flutter/material.dart';
+
+import '../counterformelement.dart';
+import '../switchformelement.dart';
+import '../togglebuttonelement.dart';
+
 class ScoutingForm {
-  String? templateId;
+  String? formId;
+  int? teamNumber;
   List<ScoutingFormElement>? elements;
 
-  ScoutingForm({this.templateId, this.elements});
+  ScoutingForm({this.formId, this.teamNumber, this.elements});
 
   ScoutingForm.fromJson(Map<String, dynamic> json) {
-    templateId = json['template_id'];
+    formId = json['form_id'];
+    teamNumber = json['team_number'];
     if (json['element'] != null) {
       elements = <ScoutingFormElement>[];
       json['element'].forEach((v) {
@@ -16,7 +24,8 @@ class ScoutingForm {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
-    data['template_id'] = templateId;
+    data['form_id'] = formId;
+    data['team_number'] = teamNumber;
     if (elements != null) {
       data['element'] = elements!.map((v) => v.toJson()).toList();
     }
@@ -25,15 +34,11 @@ class ScoutingForm {
 }
 
 class ScoutingFormElement {
-  String? id;
-  String? title;
   FormElementData? formElement;
 
-  ScoutingFormElement({this.id, this.title, this.formElement});
+  ScoutingFormElement({this.formElement});
 
   ScoutingFormElement.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    title = json['title'];
     formElement = json['section_header'] != null
         ? SectionHeader.fromJson(json['section_header'])
         : null;
@@ -53,8 +58,6 @@ class ScoutingFormElement {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
-    data['id'] = id;
-    data['title'] = title;
     if (formElement is SectionHeader) {
       data['section_header'] = formElement!.toJson();
     }
@@ -94,11 +97,19 @@ abstract class FormElementData {
 
     return data;
   }
+
+  Widget wrapInUI();
 }
 
 class SectionHeader extends FormElementData {
   SectionHeader.fromJson(Map<String, dynamic> json) {
     json = super.fromJson(json);
+  }
+
+  @override
+  Widget wrapInUI() {
+    // TODO: implement wrapInUI
+    throw UnimplementedError();
   }
 }
 
@@ -127,6 +138,11 @@ class SwitchFormElement extends FormElementData {
 
   set value(bool? newValue) {
     _value = newValue!;
+  }
+
+  @override
+  Widget wrapInUI() {
+    return SwitchFormElementUI(formElement: this);
   }
 }
 
@@ -171,6 +187,11 @@ class CounterFormElement extends FormElementData {
   void decrement() {
     if (value! == lowerBound!) return;
     value = value! - 1;
+  }
+
+  @override
+  Widget wrapInUI() {
+    return CounterFormElementUI(formElement: this);
   }
 }
 
@@ -217,6 +238,11 @@ class ToggleButtonFormElement extends FormElementData {
 
     _index = newIndex;
   }
+
+  @override
+  Widget wrapInUI() {
+    return ToggleButtonFormElementUI(formElement: this);
+  }
 }
 
 class TextFieldElement extends FormElementData {
@@ -233,5 +259,11 @@ class TextFieldElement extends FormElementData {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['initialValue'] = initialValue;
     return data;
+  }
+
+  @override
+  Widget wrapInUI() {
+    // TODO: implement wrapInUI
+    throw UnimplementedError();
   }
 }
