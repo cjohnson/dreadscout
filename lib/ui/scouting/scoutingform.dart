@@ -1,11 +1,12 @@
-import 'package:dreadscout/ui/data/datastore.dart';
-import 'package:dreadscout/ui/form/switchformelement.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../data/datastore.dart';
 import '../data/scoutingdata.dart';
 import '../form/counterformelement.dart';
+import '../form/data/scoutingtemplate.dart';
+import '../form/switchformelement.dart';
 import '../form/togglebuttonelement.dart';
 
 class ScoutingForm extends StatelessWidget {
@@ -13,32 +14,37 @@ class ScoutingForm extends StatelessWidget {
   final int teamNumber;
   late final ScoutingData data;
 
+  late final CounterFormElement test;
+
   ScoutingForm({Key? key, required this.formName, required this.teamNumber})
       : super(key: key) {
     data = ScoutingData();
+
+    test = CounterFormElement(
+        id: "test_id", title: "TEST OBJECT", value: 2, lowerBound: 0);
   }
 
   final List formWidgets = [
-    () => CounterFormElement(
-          dataName: "Low Goal",
-          initialValue: 0,
+    () => CounterFormElementUI(
+          formElement: CounterFormElement(
+              id: "low_goal", title: "Low Goal", value: 0, lowerBound: 0),
         ),
-    () => CounterFormElement(dataName: "High Goal", initialValue: 0),
-    () => SwitchFormElement(
+    // () => CounterFormElement(dataName: "High Goal", value: 0),
+    () => SwitchFormElementUI(
           dataName: "Taxi",
           initialValue: false,
         ),
-    () => CounterFormElement(dataName: "Low Goal", initialValue: 0),
-    () => CounterFormElement(dataName: "High Goal", initialValue: 0),
-    () => SwitchFormElement(
+    // () => CounterFormElement(dataName: "Low Goal", value: 0),
+    // () => CounterFormElement(dataName: "High Goal", value: 0),
+    () => SwitchFormElementUI(
           dataName: "Effective Defense",
           initialValue: false,
         ),
-    () => ToggleButtonFormElement(
+    () => ToggleButtonFormElementUI(
           dataName: "Climb",
           initialToggle: 0,
         ),
-    () => SwitchFormElement(
+    () => SwitchFormElementUI(
           dataName: "Robot Broke?",
           initialValue: false,
         ),

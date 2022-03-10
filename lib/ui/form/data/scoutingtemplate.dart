@@ -1,15 +1,15 @@
-class ScoutingFormTemplate {
+class ScoutingForm {
   String? templateId;
-  List<ScoutingFormTemplateElement>? elements;
+  List<ScoutingFormElement>? elements;
 
-  ScoutingFormTemplate({this.templateId, this.elements});
+  ScoutingForm({this.templateId, this.elements});
 
-  ScoutingFormTemplate.fromJson(Map<String, dynamic> json) {
+  ScoutingForm.fromJson(Map<String, dynamic> json) {
     templateId = json['template_id'];
     if (json['element'] != null) {
-      elements = <ScoutingFormTemplateElement>[];
+      elements = <ScoutingFormElement>[];
       json['element'].forEach((v) {
-        elements!.add(ScoutingFormTemplateElement.fromJson(v));
+        elements!.add(ScoutingFormElement.fromJson(v));
       });
     }
   }
@@ -24,14 +24,14 @@ class ScoutingFormTemplate {
   }
 }
 
-class ScoutingFormTemplateElement {
+class ScoutingFormElement {
   String? id;
   String? title;
-  FormElement? formElement;
+  FormElementData? formElement;
 
-  ScoutingFormTemplateElement({this.id, this.title, this.formElement});
+  ScoutingFormElement({this.id, this.title, this.formElement});
 
-  ScoutingFormTemplateElement.fromJson(Map<String, dynamic> json) {
+  ScoutingFormElement.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     title = json['title'];
     formElement = json['section_header'] != null
@@ -74,24 +74,35 @@ class ScoutingFormTemplateElement {
   }
 }
 
-abstract class FormElement {
+abstract class FormElementData {
+  String? id;
+  String? title;
+
+  FormElementData({this.id, this.title});
+
+  Map<String, dynamic> fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    title = json['title'];
+
+    return json;
+  }
+
   Map<String, dynamic> toJson() {
-    return <String, dynamic>{};
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['title'] = title;
+
+    return data;
   }
 }
 
-class SectionHeader extends FormElement {
-  SectionHeader();
-
-  SectionHeader.fromJson(Map<String, dynamic> json);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return <String, dynamic>{};
+class SectionHeader extends FormElementData {
+  SectionHeader.fromJson(Map<String, dynamic> json) {
+    json = super.fromJson(json);
   }
 }
 
-class SwitchFormElement extends FormElement {
+class SwitchFormElement extends FormElementData {
   bool? initialValue;
 
   SwitchFormElement({this.initialValue});
@@ -108,47 +119,64 @@ class SwitchFormElement extends FormElement {
   }
 }
 
-class CounterFormElement extends FormElement {
-  int? initialValue;
+class CounterFormElement extends FormElementData {
+  int? value;
   int? lowerBound;
 
-  CounterFormElement({this.initialValue, this.lowerBound});
+  CounterFormElement({id, title, this.value, this.lowerBound})
+      : super(id: id, title: title);
 
   CounterFormElement.fromJson(Map<String, dynamic> json) {
-    initialValue = json['initial_value'];
+    json = super.fromJson(json);
+
+    value = json['initial_value'];
     lowerBound = json['lower_bound'];
   }
 
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['initial_value'] = initialValue;
+    final Map<String, dynamic> data = super.toJson();
+
+    data['initial_value'] = value;
     data['lower_bound'] = lowerBound;
     return data;
   }
+
+  void setValue(int newValue) {
+    if (newValue < lowerBound!) newValue = lowerBound!;
+
+    value = newValue;
+  }
+
+  int getValue() {
+    return value!;
+  }
 }
 
-class ToggleButtonFormElement extends FormElement {
-  String? initialIndex;
+class ToggleButtonFormElement extends FormElementData {
+  int? initialIndex;
   List<String>? toggles;
 
   ToggleButtonFormElement({this.initialIndex, this.toggles});
 
   ToggleButtonFormElement.fromJson(Map<String, dynamic> json) {
-    initialIndex = json['initial_index'];
+    json = super.fromJson(json);
+
+    initialIndex = int.tryParse(json['initial_index']);
     toggles = json['toggles'].cast<String>();
   }
 
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
+    final Map<String, dynamic> data = super.toJson();
+
     data['initial_index'] = initialIndex;
     data['toggles'] = toggles;
     return data;
   }
 }
 
-class TextFieldElement extends FormElement {
+class TextFieldElement extends FormElementData {
   String? initialValue;
 
   TextFieldElement({this.initialValue});

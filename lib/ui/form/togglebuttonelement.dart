@@ -1,26 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class ToggleButtonFormElement extends StatefulWidget {
+class ToggleButtonFormElementUI extends StatefulWidget {
   final String dataName;
   int initialToggle;
 
-  ToggleButtonFormElement({
+  ToggleButtonFormElementUI({
     Key? key,
     required this.dataName,
     this.initialToggle = 0,
   }) : super(key: key);
 
   @override
-  State<ToggleButtonFormElement> createState() =>
-      _ToggleButtonFormElementState(toggleState: initialToggle);
+  State<ToggleButtonFormElementUI> createState() =>
+      _ToggleButtonFormElementUIState(toggleState: initialToggle);
 }
 
-class _ToggleButtonFormElementState extends State<ToggleButtonFormElement> {
+class _ToggleButtonFormElementUIState extends State<ToggleButtonFormElementUI> {
   int toggleState;
   List<bool> isSelected = [true, false, false, false, false];
 
-  _ToggleButtonFormElementState({
+  _ToggleButtonFormElementUIState({
     required this.toggleState,
   });
 

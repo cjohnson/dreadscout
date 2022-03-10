@@ -1,25 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class SwitchFormElement extends StatefulWidget {
+class SwitchFormElementUI extends StatefulWidget {
   final String dataName;
   bool initialValue;
 
-  SwitchFormElement({
+  SwitchFormElementUI({
     Key? key,
     required this.dataName,
     this.initialValue = false,
   }) : super(key: key);
 
   @override
-  State<SwitchFormElement> createState() =>
-      _SwitchFormElementState(switchState: initialValue);
+  State<SwitchFormElementUI> createState() =>
+      _SwitchFormElementUIState(switchState: initialValue);
 }
 
-class _SwitchFormElementState extends State<SwitchFormElement> {
+class _SwitchFormElementUIState extends State<SwitchFormElementUI> {
   bool switchState;
 
-  _SwitchFormElementState({
+  _SwitchFormElementUIState({
     required this.switchState,
   });
 
