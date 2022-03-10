@@ -28,8 +28,7 @@ class CounterFormElementUI extends StatelessWidget {
                 height: 1),
           ),
           _CounterDisplay(
-            getValue: formElement.getValue,
-            setValue: formElement.setValue,
+            formElement: formElement,
           )
         ],
       ),
@@ -38,11 +37,9 @@ class CounterFormElementUI extends StatelessWidget {
 }
 
 class _CounterDisplay extends StatefulWidget {
-  final int Function() getValue;
-  final void Function(int) setValue;
+  final CounterFormElement formElement;
 
-  const _CounterDisplay(
-      {required this.getValue, required this.setValue, Key? key})
+  const _CounterDisplay({required this.formElement, Key? key})
       : super(key: key);
 
   @override
@@ -56,9 +53,7 @@ class __CounterDisplayState extends State<_CounterDisplay> {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         ElevatedButton(
-          onPressed: () => setState(() {
-            widget.setValue.call(widget.getValue.call() - 1);
-          }),
+          onPressed: () => setState(widget.formElement.decrement),
           child: Container(
             padding: const EdgeInsets.all(10),
             child: const Icon(
@@ -74,7 +69,7 @@ class __CounterDisplayState extends State<_CounterDisplay> {
           width: 24,
         ),
         Text(
-          '${widget.getValue.call()}',
+          '${widget.formElement.value}',
           style: GoogleFonts.roboto(
               textStyle: Theme.of(context).textTheme.headline1,
               color: Colors.black,
@@ -86,9 +81,7 @@ class __CounterDisplayState extends State<_CounterDisplay> {
           width: 24,
         ),
         ElevatedButton(
-          onPressed: () => setState(() {
-            widget.setValue.call(widget.getValue.call() + 1);
-          }),
+          onPressed: () => setState(widget.formElement.increment),
           child: Container(
             padding: const EdgeInsets.all(10),
             child: const Icon(

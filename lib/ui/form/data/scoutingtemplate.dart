@@ -103,33 +103,46 @@ class SectionHeader extends FormElementData {
 }
 
 class SwitchFormElement extends FormElementData {
-  bool? initialValue;
+  bool? _value;
 
-  SwitchFormElement({this.initialValue});
+  SwitchFormElement({id, title, value}) : super(id: id, title: title) {
+    _value = value;
+  }
 
   SwitchFormElement.fromJson(Map<String, dynamic> json) {
-    initialValue = json['initial_value'];
+    json = super.fromJson(json);
+
+    value = json['initial_value'];
   }
 
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['initial_value'] = initialValue;
+    final Map<String, dynamic> data = super.toJson();
+
+    data['initial_value'] = value;
     return data;
+  }
+
+  bool? get value => _value;
+
+  set value(bool? newValue) {
+    _value = newValue!;
   }
 }
 
 class CounterFormElement extends FormElementData {
-  int? value;
+  int? _value;
   int? lowerBound;
 
-  CounterFormElement({id, title, this.value, this.lowerBound})
-      : super(id: id, title: title);
+  CounterFormElement({id, title, value, this.lowerBound = 0})
+      : super(id: id, title: title) {
+    _value = value;
+  }
 
   CounterFormElement.fromJson(Map<String, dynamic> json) {
     json = super.fromJson(json);
 
-    value = json['initial_value'];
+    value = json['value'];
     lowerBound = json['lower_bound'];
   }
 
@@ -142,14 +155,21 @@ class CounterFormElement extends FormElementData {
     return data;
   }
 
-  void setValue(int newValue) {
-    if (newValue < lowerBound!) newValue = lowerBound!;
+  int? get value => _value;
 
-    value = newValue;
+  set value(int? newValue) {
+    if (newValue! < lowerBound!) newValue = lowerBound;
+
+    _value = newValue!;
   }
 
-  int getValue() {
-    return value!;
+  void increment() {
+    value = value! + 1;
+  }
+
+  void decrement() {
+    if (value! == lowerBound!) return;
+    value = value! - 1;
   }
 }
 

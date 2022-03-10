@@ -1,27 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class SwitchFormElementUI extends StatefulWidget {
-  final String dataName;
-  bool initialValue;
+import 'data/scoutingtemplate.dart';
 
-  SwitchFormElementUI({
-    Key? key,
-    required this.dataName,
-    this.initialValue = false,
-  }) : super(key: key);
+class SwitchFormElementUI extends StatelessWidget {
+  final SwitchFormElement formElement;
 
-  @override
-  State<SwitchFormElementUI> createState() =>
-      _SwitchFormElementUIState(switchState: initialValue);
-}
-
-class _SwitchFormElementUIState extends State<SwitchFormElementUI> {
-  bool switchState;
-
-  _SwitchFormElementUIState({
-    required this.switchState,
-  });
+  const SwitchFormElementUI({Key? key, required this.formElement})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +18,7 @@ class _SwitchFormElementUIState extends State<SwitchFormElementUI> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(
-            widget.dataName,
+            formElement.title ?? "NO TITLE",
             style: GoogleFonts.roboto(
                 textStyle: Theme.of(context).textTheme.headline1,
                 color: Colors.black,
@@ -41,8 +27,8 @@ class _SwitchFormElementUIState extends State<SwitchFormElementUI> {
                 height: 1),
           ),
           Switch(
-            value: switchState,
-            onChanged: (newState) => setState(() => switchState = newState),
+            value: formElement.value ?? false,
+            onChanged: (newValue) => formElement.value,
             activeColor: Colors.black,
           ),
         ],

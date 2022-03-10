@@ -31,22 +31,22 @@ class ScoutingForm extends StatelessWidget {
         ),
     // () => CounterFormElement(dataName: "High Goal", value: 0),
     () => SwitchFormElementUI(
-          dataName: "Taxi",
-          initialValue: false,
+          formElement:
+              SwitchFormElement(id: "taxi", title: "Taxi", value: false),
         ),
     // () => CounterFormElement(dataName: "Low Goal", value: 0),
     // () => CounterFormElement(dataName: "High Goal", value: 0),
     () => SwitchFormElementUI(
-          dataName: "Effective Defense",
-          initialValue: false,
+          formElement: SwitchFormElement(
+              id: "defense", title: "Effective Defense", value: false),
         ),
     () => ToggleButtonFormElementUI(
           dataName: "Climb",
           initialToggle: 0,
         ),
     () => SwitchFormElementUI(
-          dataName: "Robot Broke?",
-          initialValue: false,
+          formElement: SwitchFormElement(
+              id: "broken", title: "Robot Broken?", value: false),
         ),
   ];
 
