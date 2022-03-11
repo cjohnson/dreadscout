@@ -5,11 +5,17 @@ import '../switchformelement.dart';
 import '../togglebuttonelement.dart';
 
 class ScoutingForm {
-  String? formId;
+  String? _formId;
+
+  String? get formId => _formId;
+
+  set formId(String? formId) {
+    _formId = formId;
+  }
   int? teamNumber;
   List<ScoutingFormElement>? elements;
 
-  ScoutingForm({this.formId, this.teamNumber, this.elements});
+  ScoutingForm({formId, this.teamNumber, this.elements}) {_formId = formId;}
 
   ScoutingForm.fromJson(Map<String, dynamic> json) {
     formId = json['form_id'];

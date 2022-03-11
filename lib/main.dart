@@ -21,17 +21,10 @@ class MyApp extends StatelessWidget {
     return decode;
   }
 
-  Future<List<ScoutingFormUI>?> getTemplate() async {
-    var scoutingForm = ScoutingForm.fromJson(await loadJson());
-
-    List<ScoutingFormUI>? forms = <ScoutingFormUI>[
-      for (int i = 1; i <= 8; i++)
-        ScoutingFormUI(
-          data: scoutingForm,
-        ),
-    ];
-
-    return forms;
+  Future<ScoutingFormUI> getTemplate() async {
+    return ScoutingFormUI(
+      data: ScoutingForm.fromJson(await loadJson()),
+    );
   }
 
   @override
@@ -51,14 +44,14 @@ class MyApp extends StatelessWidget {
       ),
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        body: FutureBuilder<List<ScoutingFormUI>?>(
+        body: FutureBuilder<ScoutingFormUI?>(
           future: getTemplate(),
-          builder: (BuildContext context, AsyncSnapshot<List<ScoutingFormUI>?> snapshot) {
+          builder: (BuildContext context, AsyncSnapshot<ScoutingFormUI?> snapshot) {
             TrackPage trackPage;
             if(snapshot.hasData) {
-              trackPage = TrackPage(trackTitle: "trackTitle", forms: snapshot.data!);
+              trackPage = TrackPage(trackTitle: "Milford", trackSize: 80, template: snapshot.data!);
             } else {
-              trackPage = TrackPage(trackTitle: "ERROR", forms: const [],);
+              trackPage = TrackPage(trackTitle: "ERROR", trackSize: 0, template: ScoutingFormUI(data: ScoutingForm()),);
             }
             return trackPage;
           },
