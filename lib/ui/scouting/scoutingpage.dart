@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 
 import '../../model/scoutingform.dart';
 
-class TrackPage extends StatefulWidget {
+class TrackPage extends StatelessWidget {
   final String trackTitle;
   final ScoutingForm template;
   final int trackSize;
@@ -19,15 +19,10 @@ class TrackPage extends StatefulWidget {
     ];
 
     for(int i = 0; i < trackSize; i++) {
-      forms[i] = ScoutingForm.fromTemplate(template, formId: '$trackTitle Qual $i').wrap();
+      forms[i] = ScoutingForm.fromTemplate(template, formId: '$trackTitle Qual ${i + 1}').wrap();
     }
   }
 
-  @override
-  State<TrackPage> createState() => _TrackPageState();
-}
-
-class _TrackPageState extends State<TrackPage> {
   @override
   Widget build(BuildContext context) {
     final PageController controller = PageController(initialPage: 0, keepPage: true);
@@ -35,7 +30,7 @@ class _TrackPageState extends State<TrackPage> {
     return PageView(
       scrollDirection: Axis.horizontal,
       controller: controller,
-      children: widget.forms,
+      children: forms,
     );
   }
 }
