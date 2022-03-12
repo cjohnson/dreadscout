@@ -19,8 +19,7 @@ class ScoutingFormUI extends StatelessWidget {
           delegate: SliverChildListDelegate(
             [
               _ScoutingFormHeader(
-                formName: data.formId!,
-                teamNumber: data.teamNumber!,
+                data: data,
                 onRead: () {
                   DataStore().readFromDisk();
                 }
@@ -36,11 +35,10 @@ class ScoutingFormUI extends StatelessWidget {
 }
 
 class _ScoutingFormHeader extends StatefulWidget {
-  final String formName;
+  final ScoutingForm data;
   final void Function() onRead;
-  int teamNumber;
 
-  _ScoutingFormHeader({Key? key, required this.formName, this.teamNumber = -1, required this.onRead})
+  const _ScoutingFormHeader({Key? key, required this.data, required this.onRead})
       : super(key: key);
 
   @override
@@ -75,7 +73,7 @@ class _ScoutingFormHeaderState extends State<_ScoutingFormHeader> {
                   onPressed: widget.onRead,
                 ),
                 Text(
-                  widget.formName,
+                  widget.data.formId!,
                   textAlign: TextAlign.center,
                   style: GoogleFonts.nunito(
                     textStyle: Theme.of(context).textTheme.headline1,
@@ -104,7 +102,7 @@ class _ScoutingFormHeaderState extends State<_ScoutingFormHeader> {
                               _buildSettingsPopupDialog(
                                   context,
                                   (newTeamNumber) => setState(
-                                      () => widget.teamNumber = newTeamNumber)),
+                                      () => widget.data.teamNumber = newTeamNumber)),
                         );
                       },
                     ),
@@ -117,7 +115,7 @@ class _ScoutingFormHeaderState extends State<_ScoutingFormHeader> {
               left: 20.0,
               bottom: 28.0,
               child: _TitleWidget(
-                teamNumber: widget.teamNumber == -1 ? -1 : widget.teamNumber,
+                teamNumber: widget.data.teamNumber == -1 ? -1 : widget.data.teamNumber!,
               ))
         ],
       ),
