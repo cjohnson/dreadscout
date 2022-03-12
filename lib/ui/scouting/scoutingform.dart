@@ -68,7 +68,7 @@ class _ScoutingFormHeaderState extends State<_ScoutingFormHeader> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 IconButton(
-                  icon: const Icon(Icons.arrow_back),
+                  icon: const Icon(Icons.find_in_page),
                   iconSize: 30.0,
                   color: Colors.white,
                   onPressed: widget.onRead,
