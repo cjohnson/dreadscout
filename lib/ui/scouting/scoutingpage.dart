@@ -40,7 +40,6 @@ class TrackPage extends StatelessWidget {
           content: Text('Saved Page: ${forms[DataStore().currentPage].data.formId}'),
           duration: const Duration(milliseconds: 650),
         );
-
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
 
         DataStore().currentPage = page;
