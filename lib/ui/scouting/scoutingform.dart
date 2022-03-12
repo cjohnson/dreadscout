@@ -1,14 +1,10 @@
-import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../model/scoutingform.dart';
 import '../data/datastore.dart';
-import '../form/counterformelement.dart';
-import '../form/data/scoutingtemplate.dart';
-import '../form/switchformelement.dart';
-import '../form/togglebuttonelement.dart';
 
 class ScoutingFormUI extends StatelessWidget {
   final ScoutingForm data;
@@ -34,7 +30,7 @@ class ScoutingFormUI extends StatelessWidget {
                 }
               ),
               for (int i = 0; i < data.elements!.length; ++i)
-                data.elements![i].formElement!.wrapInUI(),
+                data.elements![i].wrap(),
             ],
           ),
         ),

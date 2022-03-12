@@ -1,6 +1,7 @@
-import 'package:dreadscout/ui/form/data/scoutingtemplate.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+import '../../model/formelement/togglebuttons.dart';
 
 class ToggleButtonFormElementUI extends StatelessWidget {
   final ToggleButtonFormElement formElement;
@@ -45,12 +46,9 @@ class __ToggleDisplayState extends State<_ToggleDisplay> {
   @override
   Widget build(BuildContext context) {
     return ToggleButtons(
-      children: const <Widget>[
-        _ToggleButton(title: 'NONE'),
-        _ToggleButton(title: 'LOW'),
-        _ToggleButton(title: 'MED'),
-        _ToggleButton(title: 'HIGH'),
-        _ToggleButton(title: 'TRAV'),
+      children: <Widget>[
+        for(String toggle in widget.formElement.toggles!)
+          _ToggleButton(title: toggle)
       ],
       onPressed: (int index) =>
           setState(() => widget.formElement.index = index),

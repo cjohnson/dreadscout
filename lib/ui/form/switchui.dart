@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import 'data/scoutingtemplate.dart';
+import '../../model/formelement/switch.dart';
 
 class SwitchFormElementUI extends StatelessWidget {
   final SwitchFormElement formElement;
@@ -12,8 +12,8 @@ class SwitchFormElementUI extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 100,
-      padding: const EdgeInsets.all(20.0),
+      height: 80,
+      padding: const EdgeInsets.only(left: 20.0, right: 20.0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [

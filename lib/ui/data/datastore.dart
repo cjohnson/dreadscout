@@ -3,7 +3,7 @@ import 'dart:io';
 
 import 'package:path_provider/path_provider.dart';
 
-import '../form/data/scoutingtemplate.dart';
+import '../../model/scoutingform.dart';
 
 class DataStore {
   Map<String, ScoutingForm> scoutingForms = {};
@@ -24,9 +24,8 @@ class DataStore {
   void writeToDisk() async {
     final file = await _localFile;
 
-    var jsonEncode2 = jsonEncode(scoutingForms);
-    print(jsonEncode2);
-    file.writeAsString(jsonEncode2);
+    var rawJson = jsonEncode(scoutingForms);
+    file.writeAsString(rawJson);
   }
 
   void readFromDisk() async {

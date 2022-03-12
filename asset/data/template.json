@@ -1,0 +1,75 @@
+{
+  "form_id": "template",
+  "team_number": -1,
+  "elements": [
+    {
+      "id": "autonomous_header",
+      "title": "Autonomous Period",
+      "type": "section_header"
+    },
+    {
+      "id": "autonomous_taxi",
+      "title": "Robot Taxi?",
+      "type": "switch",
+      "value": false
+    },
+    {
+      "id": "autonomous_high_goal",
+      "title": "Scored High Goal",
+      "type": "counter",
+      "value": 0,
+      "lower_bound": 0
+    },
+    {
+      "id": "autonomous_low_goal",
+      "title": "Scored Low Goal",
+      "type": "counter",
+      "value": 0,
+      "lower_bound": 0
+    },
+    {
+      "id": "teleoperated_header",
+      "title": "Teleoperated Period",
+      "type": "section_header"
+    },
+    {
+      "id": "teleoperated_high_goal",
+      "title": "Scored High Goal",
+      "type": "counter",
+      "value": 0,
+      "lower_bound": 0
+    },
+    {
+      "id": "teleoperated_low_goal",
+      "title": "Scored Low Goal",
+      "type": "counter",
+      "value": 0,
+      "lower_bound": 0
+    },
+    {
+      "id": "endgame_header",
+      "title": "End Game",
+      "type": "section_header"
+    },
+    {
+      "id": "endgame_climb",
+      "title": "Climb",
+      "type": "toggle_buttons",
+      "toggles": [
+        "NONE",
+        "LOW",
+        "MED",
+        "HIGH",
+        "TRAVERSAL"
+      ],
+      "initial_index": 0
+    },
+    {
+      "id": "endgame_comments",
+      "title": "Comments",
+      "type": "text_field",
+      "text": "",
+      "hint_text": "Comments..."
+    }
+  ]
+}
