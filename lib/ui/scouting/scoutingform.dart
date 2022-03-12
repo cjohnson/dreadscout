@@ -66,6 +66,7 @@ class _ScoutingFormHeaderState extends State<_ScoutingFormHeader> {
                 const EdgeInsets.symmetric(horizontal: 10.0, vertical: 48.0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 IconButton(
                   icon: const Icon(Icons.find_in_page),
@@ -77,11 +78,12 @@ class _ScoutingFormHeaderState extends State<_ScoutingFormHeader> {
                   widget.formName,
                   textAlign: TextAlign.center,
                   style: GoogleFonts.nunito(
-                      textStyle: Theme.of(context).textTheme.headline1,
-                      color: Colors.white,
-                      fontWeight: FontWeight.w800,
-                      fontSize: 25.0,
-                      height: 0.5),
+                    textStyle: Theme.of(context).textTheme.headline1,
+                    color: Colors.white,
+                    fontWeight: FontWeight.w800,
+                    fontSize: 28.0,
+                    //height: 0.5,
+                  ),
                 ),
                 Row(
                   children: [
