@@ -21,6 +21,8 @@ class TrackPage extends StatelessWidget {
 
     for(int i = 0; i < trackSize; i++) {
       forms[i] = ScoutingForm.fromTemplate(template, formId: '$trackTitle Qual ${i + 1}').wrap();
+
+      DataStore().saveData(forms[i].data);
     }
   }
 
