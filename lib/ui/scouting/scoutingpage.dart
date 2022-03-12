@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:dreadscout/ui/scouting/scoutingform.dart';
 import 'package:flutter/material.dart';
 
+import '../../model/data/datastore.dart';
 import '../../model/scoutingform.dart';
 
 class TrackPage extends StatelessWidget {
@@ -26,11 +27,16 @@ class TrackPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final PageController controller = PageController(initialPage: 0, keepPage: true);
+    DataStore().currentPage = 0;
 
     return PageView(
       scrollDirection: Axis.horizontal,
       controller: controller,
       children: forms,
+      onPageChanged: (page) {
+        DataStore().saveData(forms[DataStore().currentPage].data);
+        DataStore().currentPage = page;
+      },
     );
   }
 }

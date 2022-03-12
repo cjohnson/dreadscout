@@ -6,6 +6,7 @@ import 'package:path_provider/path_provider.dart';
 import '../scoutingform.dart';
 
 class DataStore {
+  int currentPage = 0;
   Map<String, ScoutingForm> scoutingForms = {};
 
   DataStore._privateConstructor();
