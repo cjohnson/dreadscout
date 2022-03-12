@@ -35,6 +35,14 @@ class TrackPage extends StatelessWidget {
       children: forms,
       onPageChanged: (page) {
         DataStore().saveData(forms[DataStore().currentPage].data);
+
+        var snackBar = SnackBar(
+          content: Text('Saved Page: ${forms[DataStore().currentPage].data.formId}'),
+          duration: const Duration(milliseconds: 650),
+        );
+
+        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+
         DataStore().currentPage = page;
       },
     );
