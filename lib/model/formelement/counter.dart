@@ -13,6 +13,14 @@ class CounterFormElement extends ScoutingFormElement {
     _value = value;
   }
 
+  CounterFormElement.clone(CounterFormElement source) {
+    id = source.id;
+    title = source.title;
+
+    _value = source._value;
+    lowerBound = source.lowerBound;
+  }
+
   void increment() => value = value! + 1;
 
   void decrement() {

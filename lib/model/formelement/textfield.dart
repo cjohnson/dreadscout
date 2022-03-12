@@ -9,6 +9,14 @@ class TextFieldFormElement extends ScoutingFormElement {
 
   TextFieldFormElement({required id, required title, this.text = '', this.hintText = ''}) : super(id: id, title: title, type: 'text_field');
 
+  TextFieldFormElement.clone(TextFieldFormElement source) {
+    id = source.id;
+    title = source.title;
+
+    text = source.text;
+    hintText = source.hintText;
+  }
+
   @override
   Widget wrap() => TextFieldFormElementUI(formElement: this);
 

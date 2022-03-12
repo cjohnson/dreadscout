@@ -10,6 +10,11 @@ class SectionHeaderFormElement extends ScoutingFormElement {
     super.fromJson(json);
   }
 
+  SectionHeaderFormElement.clone(SectionHeaderFormElement source) {
+    id = source.id;
+    title = source.title;
+  }
+
   @override
   Widget wrap() => SectionHeaderFormElementUI(formElement: this);
 }

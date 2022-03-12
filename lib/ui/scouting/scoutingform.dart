@@ -4,7 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../model/scoutingform.dart';
-import '../data/datastore.dart';
+import '../../model/data/datastore.dart';
 
 class ScoutingFormUI extends StatelessWidget {
   final ScoutingForm data;

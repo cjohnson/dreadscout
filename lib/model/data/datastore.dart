@@ -3,7 +3,7 @@ import 'dart:io';
 
 import 'package:path_provider/path_provider.dart';
 
-import '../../model/scoutingform.dart';
+import '../scoutingform.dart';
 
 class DataStore {
   Map<String, ScoutingForm> scoutingForms = {};

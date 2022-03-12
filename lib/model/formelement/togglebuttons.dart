@@ -12,6 +12,14 @@ class ToggleButtonFormElement extends ScoutingFormElement {
     _index = index;
   }
 
+  ToggleButtonFormElement.clone(ToggleButtonFormElement source) {
+    id = source.id;
+    title = source.title;
+
+    _index = source._index;
+    toggles = source.toggles;
+  }
+
   @override
   Widget wrap() => ToggleButtonFormElementUI(formElement: this);
 

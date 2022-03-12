@@ -1,3 +1,6 @@
+import 'package:flutter/material.dart';
+
+import '../ui/scouting/scoutingform.dart';
 import 'formelement.dart';
 import 'formelement/counter.dart';
 import 'formelement/sectionheader.dart';
@@ -23,6 +26,50 @@ class ScoutingForm {
         elements!.add(formElement!);
       });
     }
+  }
+
+  ScoutingForm.fromTemplate(ScoutingForm template, {required this.formId, this.teamNumber = -1}) {
+    elements = <ScoutingFormElement>[];
+    for(ScoutingFormElement element in template.elements!) {
+      if(element is CounterFormElement) {
+        elements!.add(CounterFormElement.clone(element));
+        continue;
+      }
+
+      if(element is SectionHeaderFormElement) {
+        elements!.add(SectionHeaderFormElement.clone(element));
+        continue;
+      }
+
+      if(element is SwitchFormElement) {
+        elements!.add(SwitchFormElement.clone(element));
+        continue;
+      }
+
+      if(element is TextFieldFormElement) {
+        elements!.add(TextFieldFormElement.clone(element));
+        continue;
+      }
+
+      if(element is ToggleButtonFormElement) {
+        elements!.add(ToggleButtonFormElement.clone(element));
+        continue;
+      }
+    }
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['form_id'] = formId;
+    data['team_number'] = teamNumber;
+    if (elements != null) {
+      data['elements'] = elements!.map((v) => v.toJson()).toList();
+    }
+    return data;
+  }
+
+  ScoutingFormUI wrap() {
+    return ScoutingFormUI(data: this,);
   }
 
   ScoutingFormElement? mapTypeJsonToDartType(ScoutingFormElement? formElement, v) {
@@ -52,15 +99,5 @@ class ScoutingForm {
     if(formElement != null) return formElement;
 
     return formElement;
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['form_id'] = formId;
-    data['team_number'] = teamNumber;
-    if (elements != null) {
-      data['elements'] = elements!.map((v) => v.toJson()).toList();
-    }
-    return data;
   }
 }

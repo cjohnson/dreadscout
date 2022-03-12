@@ -14,12 +14,12 @@ class TrackPage extends StatefulWidget {
 
   TrackPage({required this.trackTitle, required this.trackSize, required this.template, Key? key}) : super(key: key) {
     forms = <ScoutingFormUI>[
-      for(int i = 1; i <= trackSize; i++)
+      for(int i = 0; i < trackSize; i++)
         ScoutingFormUI(data: template)
     ];
 
-    for(int i = 1; i <= trackSize; i++) {
-      forms[i - 1] = ScoutingFormUI(data: ScoutingForm(formId: '$trackTitle Qual $i', elements: List.of(template.elements!.toList()), teamNumber: -1));
+    for(int i = 0; i < trackSize; i++) {
+      forms[i] = ScoutingForm.fromTemplate(template, formId: '$trackTitle Qual $i').wrap();
     }
   }
 

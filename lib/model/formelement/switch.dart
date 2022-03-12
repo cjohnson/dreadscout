@@ -8,6 +8,13 @@ class SwitchFormElement extends ScoutingFormElement {
 
   SwitchFormElement({id, title, this.value = false}) : super(id: id, title: title, type: 'switch');
 
+  SwitchFormElement.clone(SwitchFormElement source) {
+    id = source.id;
+    title = source.title;
+
+    value = source.value;
+  }
+
   @override
   Widget wrap() => SwitchFormElementUI(formElement: this);
 
